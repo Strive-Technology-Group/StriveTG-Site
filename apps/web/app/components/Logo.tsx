@@ -50,9 +50,6 @@ export function Logo({
           <span className={`font-display font-bold ${textSizeClasses[size]} ${textColorClasses[variant]} leading-tight`}>
             Strive Technology Group
           </span>
-          <span className={`text-xs ${variant === 'white' ? 'text-white/70' : 'text-gray-500'} font-medium tracking-wide`}>
-            Scale Smarter. Compete Bigger.
-          </span>
         </div>
       )}
     </Link>

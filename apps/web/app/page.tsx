@@ -12,21 +12,24 @@ export default function Home() {
   return (
     <>
       {/* Hero Section */}
-      <Section background="dark" size="xl" className="bg-gradient-hero relative overflow-hidden">
+      <Section background="dark" size="xl" className="bg-gradient-hero relative overflow-hidden py-20 md:py-28 lg:py-32">
         <div className="text-center animate-fade-in-up relative z-10">
-          <div className="mb-4">
+          <div className="mb-6">
             <p className="text-lg md:text-xl text-accent-teal font-semibold tracking-wide uppercase">
               Strive Technology Group
             </p>
+            <p className="text-sm md:text-base text-gray-400 mt-2 font-medium tracking-wide">
+              Scale Smarter. Compete Bigger.
+            </p>
           </div>
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-display font-bold tracking-tight mb-6">
-            Scale Smarter.{' '}
-            <span className="gradient-text">Compete Bigger.</span>
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-display font-bold tracking-tight mb-8">
+            Transform Your Business{' '}
+            <span className="gradient-text">with Smart Technology</span>
           </h1>
-          <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl md:text-2xl text-gray-200 mb-10 max-w-3xl mx-auto leading-relaxed">
             Websites, SEO, and tech solutions that make small businesses unstoppable.
           </p>
-          <p className="text-lg text-gray-400 mb-10 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-400 mb-12 max-w-2xl mx-auto">
             Get professional tech talent for less than the cost of a minimum-wage employee — Strive Technology Group powers your business operations.
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
@@ -39,11 +42,23 @@ export default function Home() {
           </div>
         </div>
         
-        {/* Background decoration */}
+        {/* Enhanced Background decoration */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {/* Radial gradient aura */}
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-gradient-radial from-blue-500/10 via-purple-500/5 to-transparent rounded-full blur-3xl"></div>
+          
+          {/* Floating decorative elements */}
           <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-accent-blue/10 rounded-full blur-xl animate-float"></div>
           <div className="absolute top-3/4 right-1/4 w-24 h-24 bg-accent-teal/10 rounded-full blur-xl animate-float" style={{animationDelay: '1s'}}></div>
           <div className="absolute bottom-1/4 left-1/3 w-20 h-20 bg-accent-purple/10 rounded-full blur-xl animate-float" style={{animationDelay: '2s'}}></div>
+          
+          {/* Subtle grid pattern */}
+          <div className="absolute inset-0 opacity-5">
+            <div className="absolute inset-0" style={{
+              backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
+              backgroundSize: '60px 60px'
+            }}></div>
+          </div>
         </div>
       </Section>
 
@@ -53,7 +68,7 @@ export default function Home() {
           <h2 className="text-3xl md:text-5xl font-display font-bold text-primary mb-6 tracking-tight">
             How We Scale Your Operations
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Four core services that transform how your business operates, attracts customers, and grows revenue.
           </p>
         </MotionWrapper>
@@ -135,7 +150,7 @@ export default function Home() {
           <h2 className="text-3xl md:text-5xl font-display font-bold text-primary mb-6 tracking-tight">
             Strive Technology Group vs Hiring In-House
           </h2>
-          <p className="text-xl text-gray-600 leading-relaxed">
+          <p className="text-lg text-gray-600 leading-relaxed">
             Get enterprise-level tech expertise without the overhead costs.
           </p>
         </MotionWrapper>
@@ -234,7 +249,7 @@ export default function Home() {
           <h2 className="text-3xl md:text-5xl font-display font-bold text-primary mb-6 tracking-tight">
             Measurable Impact on Your Business
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
             See how Strive Technology Group's tech solutions directly translate to business growth and operational efficiency.
           </p>
         </MotionWrapper>
@@ -288,7 +303,7 @@ export default function Home() {
           <h2 className="text-3xl md:text-5xl font-display font-bold text-primary mb-6 tracking-tight">
             How We Work Together
           </h2>
-          <p className="text-xl text-gray-600 leading-relaxed">
+          <p className="text-lg text-gray-600 leading-relaxed">
             A proven 4-step process that gets results fast.
           </p>
         </MotionWrapper>
@@ -344,7 +359,7 @@ export default function Home() {
           <h2 className="text-3xl md:text-5xl font-display font-bold text-primary mb-6">
             Built on Trust & Results
           </h2>
-          <p className="text-xl text-gray-600 mb-12">
+          <p className="text-lg text-gray-600 mb-12">
             Your success is our success. Every solution is designed with your business growth in mind.
           </p>
           

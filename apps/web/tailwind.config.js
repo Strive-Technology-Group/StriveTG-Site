@@ -27,6 +27,7 @@ export default {
         'gradient-hero': 'linear-gradient(135deg, #0A2540 0%, #1E3A8A 100%)',
         'gradient-primary': 'linear-gradient(to right, #2563EB, #14B8A6, #7C3AED)',
         'gradient-subtle': 'linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(20, 184, 166, 0.1) 50%, rgba(124, 58, 237, 0.1) 100%)',
+        'gradient-radial': 'radial-gradient(ellipse at center, var(--tw-gradient-stops))',
       },
       animation: {
         'fade-in': 'fadeIn 0.6s ease-out',
