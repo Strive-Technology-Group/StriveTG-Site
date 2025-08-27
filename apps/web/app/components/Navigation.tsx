@@ -63,10 +63,10 @@ export function Navigation() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="text-gray-700 hover:text-primary transition-colors duration-200 font-medium text-sm relative group"
+                  className="relative text-gray-700 hover:text-gray-900 transition-colors duration-200 font-medium text-sm py-2 group"
                 >
                   {item.name}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-primary transition-all duration-300 group-hover:w-full"></span>
+                  <span className="absolute -bottom-2 left-0 right-0 h-0.5 bg-gray-900 scale-x-0 transition-transform duration-200 group-hover:scale-x-100 origin-left"></span>
                 </Link>
               ))}
               <ServicesDropdown />
@@ -77,7 +77,7 @@ export function Navigation() {
               <Button 
                 href="/consultation" 
                 size="sm" 
-                className="bg-gradient-primary hover:shadow-xl hover:scale-105 transition-all duration-300 px-6 py-2"
+                className="bg-gradient-primary hover:shadow-lg transition-all duration-200"
               >
                 Book Consultation
               </Button>
