@@ -112,28 +112,41 @@ export function Navigation() {
           />
           
           {/* Mobile Menu */}
-          <div className="fixed top-16 left-0 right-0 bg-white border-b border-gray-200 shadow-xl">
-            <div className="px-4 py-6 space-y-1">
-              {navItems.map((item) => (
+          <div className="fixed top-16 left-0 right-0 bg-white border-b border-gray-200 shadow-xl animate-in slide-in-from-top-4 duration-300">
+            <div className="px-6 py-8 space-y-2">
+              {navItems.map((item, index) => (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="block px-4 py-3 text-gray-700 hover:text-primary hover:bg-gray-50 transition-all duration-200 font-medium rounded-lg"
+                  className="block px-4 py-4 text-gray-700 hover:text-gray-900 transition-colors duration-200 font-medium text-lg relative group animate-fade-in-up"
                   onClick={() => setIsOpen(false)}
+                  style={{
+                    animationDelay: `${index * 100}ms`
+                  }}
                 >
                   {item.name}
+                  <span className="absolute bottom-2 left-4 right-4 h-0.5 bg-gray-900 scale-x-0 transition-transform duration-200 group-hover:scale-x-100 origin-left"></span>
                 </Link>
               ))}
               <Link
                 href="/services"
-                className="block px-4 py-3 text-gray-700 hover:text-primary hover:bg-gray-50 transition-all duration-200 font-medium rounded-lg"
+                className="block px-4 py-4 text-gray-700 hover:text-gray-900 transition-colors duration-200 font-medium text-lg relative group animate-fade-in-up"
                 onClick={() => setIsOpen(false)}
+                style={{
+                  animationDelay: `${navItems.length * 100}ms`
+                }}
               >
                 Services
+                <span className="absolute bottom-2 left-4 right-4 h-0.5 bg-gray-900 scale-x-0 transition-transform duration-200 group-hover:scale-x-100 origin-left"></span>
               </Link>
               
               {/* Mobile CTA */}
-              <div className="pt-4 px-4">
+              <div 
+                className="pt-6 px-4 animate-fade-in-up"
+                style={{
+                  animationDelay: `${(navItems.length + 1) * 100}ms`
+                }}
+              >
                 <Button 
                   href="/consultation" 
                   size="md" 
@@ -142,27 +155,6 @@ export function Navigation() {
                 >
                   Book Consultation
                 </Button>
-              </div>
-              
-              {/* Quick Links */}
-              <div className="pt-4 px-4 border-t border-gray-100 mt-4">
-                <p className="text-xs text-gray-500 font-semibold uppercase tracking-wide mb-3">Quick Links</p>
-                <div className="space-y-2">
-                  <Link 
-                    href="/faq" 
-                    className="block text-sm text-gray-600 hover:text-primary transition-colors"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    Frequently Asked Questions
-                  </Link>
-                  <Link 
-                    href="/contact" 
-                    className="block text-sm text-gray-600 hover:text-primary transition-colors"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    Contact Us
-                  </Link>
-                </div>
               </div>
             </div>
           </div>
