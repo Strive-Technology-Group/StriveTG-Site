@@ -56,9 +56,9 @@ export function ServicesDropdown() {
       {isOpen && (
         <>
           {/* Invisible bridge to prevent hover gaps */}
-          <div className="absolute top-full left-0 right-0 h-2 bg-transparent"></div>
+          <div className="absolute top-full left-0 right-0 h-4 bg-transparent"></div>
           
-          <div className="absolute top-full left-0 mt-1 w-64 bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden z-50">
+          <div className="absolute top-full left-0 mt-3 w-64 bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden z-50">
             {services.map((service) => (
               <Link
                 key={service.name}

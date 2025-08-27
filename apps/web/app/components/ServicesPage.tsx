@@ -1,4 +1,4 @@
-import { Check } from "lucide-react";
+// Enhanced agency-style services page with polished design elements
 
 const sections = [
   {
@@ -67,10 +67,11 @@ function GradientButton({ href, children, aria }: { href: string; children: Reac
     <a
       href={href}
       aria-label={aria}
-      className="inline-flex items-center justify-center rounded-xl px-5 py-3 font-medium text-white
-                 bg-gradient-to-r from-[#3BA7F5] to-[#7B61FF] shadow-md transition-all
-                 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2
-                 focus-visible:ring-offset-2 focus-visible:ring-[#7B61FF]"
+      className="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white
+                 bg-gradient-to-r from-indigo-600 to-cyan-400 shadow-md 
+                 hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:scale-105
+                 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400
+                 focus-visible:ring-offset-2"
     >
       {children}
     </a>
@@ -79,16 +80,36 @@ function GradientButton({ href, children, aria }: { href: string; children: Reac
 
 function Hero() {
   return (
-    <section className="bg-slate-900 text-white">
+    <section className="relative bg-[#0E1B2B] text-white overflow-hidden">
       <Container>
-        <div className="py-16 md:py-20">
-          <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight">Services</h1>
-          <p className="mt-4 max-w-3xl text-slate-300 leading-relaxed">
-            Our offerings work together to design, implement, and evolve reliable digital systems across your brand's touchpoints.
-            We build, maintain, and scale—so you can focus on running the business.
-          </p>
+        <div className="py-20 md:py-28 lg:py-32 pb-32 text-center">
+          <div className="mx-auto max-w-4xl">
+            <h1 className="text-6xl md:text-7xl lg:text-8xl font-black tracking-tight text-balance mb-6">
+              Our Services
+            </h1>
+            <p className="text-xl md:text-2xl text-slate-300 font-light leading-relaxed mb-4">
+              Comprehensive digital solutions designed to elevate your business
+            </p>
+            <p className="text-lg text-slate-400 leading-relaxed max-w-2xl mx-auto">
+              From custom websites to AI automation, we build, maintain, and scale reliable digital systems 
+              so you can focus on what matters most—growing your business.
+            </p>
+          </div>
         </div>
       </Container>
+      
+      {/* Wave SVG Divider */}
+      <svg 
+        className="absolute inset-x-0 -bottom-px h-12 w-full text-white" 
+        viewBox="0 0 1440 48" 
+        preserveAspectRatio="none" 
+        aria-hidden="true"
+      >
+        <path 
+          className="fill-white" 
+          d="M0,24 C240,48 480,0 720,24 C960,48 1200,0 1440,24 L1440,48 L0,48 Z"
+        />
+      </svg>
     </section>
   );
 }
@@ -127,18 +148,20 @@ function ServiceSection({
             <div className={`grid grid-cols-1 lg:grid-cols-2 gap-10 items-center`}>
               {/* Content */}
               <div className={`${reverse ? "lg:order-2" : "lg:order-1"}`}>
-                <h2 id={`${s.id}-title`} className={`text-3xl md:text-4xl font-bold tracking-tight ${textPrimary}`}>
+                <h2 id={`${s.id}-title`} className={`text-3xl md:text-4xl font-extrabold tracking-tight ${textPrimary}`}>
                   {s.title}
                 </h2>
-                <p className={`mt-4 leading-relaxed max-w-prose ${textSecondary}`}>
+                <p className={`mt-4 text-base md:text-lg leading-relaxed max-w-prose ${textSecondary}`}>
                   {s.lead}
                 </p>
 
-                <ul className="mt-6 space-y-2">
+                <ul className="mt-6 space-y-3">
                   {s.bullets.map((b, i) => (
-                    <li key={i} className={`flex items-start gap-2 leading-7 ${textSecondary}`}>
-                      <Check className={`mt-1 h-4 w-4 shrink-0 ${isDark ? 'text-slate-400' : 'text-slate-500'}`} />
-                      <span>{b}</span>
+                    <li key={i} className={`flex items-start gap-3 leading-relaxed ${textSecondary}`}>
+                      <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-gradient-to-br from-indigo-600 to-cyan-400 text-white text-xs font-bold mt-0.5 shrink-0">
+                        ✓
+                      </span>
+                      <span className="text-base md:text-lg">{b}</span>
                     </li>
                   ))}
                 </ul>
@@ -179,18 +202,20 @@ function ServiceSection({
             <div className={`grid grid-cols-1 lg:grid-cols-12 gap-10 items-start`}>
               {/* Left (title/lead) or right depending on reverse */}
               <div className={`${reverse ? "lg:col-start-7 lg:col-span-6" : "lg:col-span-6"}`}>
-                <h2 id={`${s.id}-title`} className={`text-3xl md:text-4xl font-bold tracking-tight ${textPrimary}`}>
+                <h2 id={`${s.id}-title`} className={`text-3xl md:text-4xl font-extrabold tracking-tight ${textPrimary}`}>
                   {s.title}
                 </h2>
-                <p className={`mt-4 leading-relaxed max-w-prose ${textSecondary}`}>
+                <p className={`mt-4 text-base md:text-lg leading-relaxed max-w-prose ${textSecondary}`}>
                   {s.lead}
                 </p>
 
-                <ul className="mt-6 space-y-2">
+                <ul className="mt-6 space-y-3">
                   {s.bullets.map((b, i) => (
-                    <li key={i} className={`flex items-start gap-2 leading-7 ${textSecondary}`}>
-                      <Check className={`mt-1 h-4 w-4 shrink-0 ${isDark ? 'text-slate-400' : 'text-slate-500'}`} />
-                      <span>{b}</span>
+                    <li key={i} className={`flex items-start gap-3 leading-relaxed ${textSecondary}`}>
+                      <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-gradient-to-br from-indigo-600 to-cyan-400 text-white text-xs font-bold mt-0.5 shrink-0">
+                        ✓
+                      </span>
+                      <span className="text-base md:text-lg">{b}</span>
                     </li>
                   ))}
                 </ul>
