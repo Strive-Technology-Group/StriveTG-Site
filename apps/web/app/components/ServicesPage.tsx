@@ -82,47 +82,48 @@ function Hero() {
     <section className="bg-slate-900 text-white">
       <Container>
         <div className="py-16 md:py-20">
-          <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight">Services</h1>
-          <p className="mt-4 max-w-3xl text-slate-300 leading-relaxed">
+          <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight mb-6">Services</h1>
+          <p className="max-w-3xl text-slate-300 leading-relaxed mb-12">
             Our offerings work together to design, implement, and evolve reliable digital systems across your brand's touchpoints.
             We build, maintain, and scale—so you can focus on running the business.
           </p>
+          
+          {/* Service Navigation */}
+          <div className="max-w-4xl">
+            <p className="text-sm font-semibold text-slate-400 mb-4 uppercase tracking-wide">Jump to Service</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              {sections.map((s, index) => (
+                <a
+                  key={s.id}
+                  href={`#${s.id}`}
+                  className="group relative overflow-hidden rounded-xl border border-slate-700 bg-slate-800/50 p-4 transition-all duration-200 hover:border-slate-600 hover:bg-slate-700/50 hover:-translate-y-0.5"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500/20 to-purple-500/20 text-blue-400">
+                      <span className="text-sm font-bold">{String(index + 1).padStart(2, '0')}</span>
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <p className="truncate text-sm font-medium text-white group-hover:text-blue-300">
+                        {s.title}
+                      </p>
+                    </div>
+                  </div>
+                  
+                  {/* Hover effect */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 opacity-0 transition-opacity group-hover:opacity-100"></div>
+                </a>
+              ))}
+            </div>
+          </div>
         </div>
       </Container>
     </section>
   );
 }
 
-function TOC() {
-  return (
-    <div className="sticky top-20 z-10 hidden lg:block">
-      <nav aria-label="Service navigation" className="rounded-xl border border-slate-200 p-4">
-        <p className="mb-3 text-sm font-semibold text-slate-700">On this page</p>
-        <ul className="space-y-2 text-sm">
-          {sections.map((s) => (
-            <li key={s.id}>
-              <a
-                href={`#${s.id}`}
-                className="text-slate-600 hover:text-slate-900 transition-colors"
-              >
-                {s.title}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </nav>
-    </div>
-  );
-}
 
-function Bullet({ children }: { children: React.ReactNode }) {
-  return (
-    <li className="flex items-start gap-2 text-slate-600 leading-7">
-      <Check className="mt-1 h-4 w-4 shrink-0 text-slate-500" />
-      <span>{children}</span>
-    </li>
-  );
-}
+
+
 
 function ServiceSection({
   s,
@@ -133,24 +134,39 @@ function ServiceSection({
 }) {
   const reverse = index % 2 === 1; // alternate layout
   const isWebsiteDevelopment = s.id === "website-development";
+  const isUpkeepSupport = s.id === "upkeep-support";
+  const isSearchVisibility = s.id === "search-visibility";
+  const hasVideo = isWebsiteDevelopment || isUpkeepSupport || isSearchVisibility;
+  
+  // Professional alternating color scheme
+  const isDark = index % 2 === 1; // Alternate: white (0,2,4) -> dark (1,3)
+  const sectionBg = isDark ? "bg-slate-900" : "bg-white";
+  const textPrimary = isDark ? "text-white" : "text-slate-900";
+  const textSecondary = isDark ? "text-slate-300" : "text-slate-600";
+  const borderColor = isDark ? "border-slate-700" : "border-slate-200";
   
   return (
-    <section id={s.id} aria-labelledby={`${s.id}-title`} className="scroll-mt-24">
-      <Container>
-        <div className="py-14 md:py-20 border-b last:border-0 border-slate-200">
-          {isWebsiteDevelopment ? (
+    <section id={s.id} aria-labelledby={`${s.id}-title`} className={`scroll-mt-24 ${sectionBg}`}>
+      <div className={`py-14 md:py-20 border-b last:border-0 ${borderColor}`}>
+        <Container>
+          {hasVideo ? (
             <div className={`grid grid-cols-1 lg:grid-cols-2 gap-10 items-center`}>
-              {/* Website Development Content */}
+              {/* Content */}
               <div className={`${reverse ? "lg:order-2" : "lg:order-1"}`}>
-                <h2 id={`${s.id}-title`} className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900">
+                <h2 id={`${s.id}-title`} className={`text-3xl md:text-4xl font-bold tracking-tight ${textPrimary}`}>
                   {s.title}
                 </h2>
-                <p className="mt-4 text-slate-600 leading-relaxed max-w-prose">
+                <p className={`mt-4 leading-relaxed max-w-prose ${textSecondary}`}>
                   {s.lead}
                 </p>
 
                 <ul className="mt-6 space-y-2">
-                  {s.bullets.map((b, i) => <Bullet key={i}>{b}</Bullet>)}
+                  {s.bullets.map((b, i) => (
+                    <li key={i} className={`flex items-start gap-2 leading-7 ${textSecondary}`}>
+                      <Check className={`mt-1 h-4 w-4 shrink-0 ${isDark ? 'text-slate-400' : 'text-slate-500'}`} />
+                      <span>{b}</span>
+                    </li>
+                  ))}
                 </ul>
 
                 <div className="mt-8">
@@ -168,11 +184,19 @@ function ServiceSection({
                   muted
                   playsInline
                   className="w-full h-auto rounded-2xl shadow-lg"
-                  aria-label="Website creation animation demonstrating our development process"
+                  aria-label={`${s.title} animation demonstrating our ${s.title.toLowerCase()} process`}
                 >
-                  <source src="/Website Creation Animation.webm" type="video/webm" />
+                  {isWebsiteDevelopment && (
+                    <source src="/Website Creation Animation.webm" type="video/webm" />
+                  )}
+                  {isUpkeepSupport && (
+                    <source src="/Website Upkeep Animation.webm" type="video/webm" />
+                  )}
+                  {isSearchVisibility && (
+                    <source src="/Modern_Search_Engine_Animation.webm" type="video/webm" />
+                  )}
                   <div className="w-full h-64 bg-gradient-to-br from-slate-50 to-white flex items-center justify-center rounded-2xl">
-                    <span className="text-slate-400 text-sm">Website Creation Animation</span>
+                    <span className="text-slate-400 text-sm">{s.title} Animation</span>
                   </div>
                 </video>
               </div>
@@ -181,15 +205,20 @@ function ServiceSection({
             <div className={`grid grid-cols-1 lg:grid-cols-12 gap-10 items-start`}>
               {/* Left (title/lead) or right depending on reverse */}
               <div className={`${reverse ? "lg:col-start-7 lg:col-span-6" : "lg:col-span-6"}`}>
-                <h2 id={`${s.id}-title`} className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900">
+                <h2 id={`${s.id}-title`} className={`text-3xl md:text-4xl font-bold tracking-tight ${textPrimary}`}>
                   {s.title}
                 </h2>
-                <p className="mt-4 text-slate-600 leading-relaxed max-w-prose">
+                <p className={`mt-4 leading-relaxed max-w-prose ${textSecondary}`}>
                   {s.lead}
                 </p>
 
                 <ul className="mt-6 space-y-2">
-                  {s.bullets.map((b, i) => <Bullet key={i}>{b}</Bullet>)}
+                  {s.bullets.map((b, i) => (
+                    <li key={i} className={`flex items-start gap-2 leading-7 ${textSecondary}`}>
+                      <Check className={`mt-1 h-4 w-4 shrink-0 ${isDark ? 'text-slate-400' : 'text-slate-500'}`} />
+                      <span>{b}</span>
+                    </li>
+                  ))}
                 </ul>
 
                 <div className="mt-8">
@@ -201,15 +230,20 @@ function ServiceSection({
 
               {/* Placeholder for other sections */}
               <div className={`${reverse ? "lg:col-start-1 lg:col-span-5" : "lg:col-start-8 lg:col-span-5"} flex items-center`}>
-                <div className="rounded-2xl border border-slate-200 bg-white h-56 md:h-72 shadow-sm
-                                bg-gradient-to-br from-slate-50 to-white flex items-center justify-center w-full">
-                  <span className="text-slate-400 text-sm">Add image, diagram, or metric block</span>
+                <div className={`rounded-2xl border shadow-sm h-56 md:h-72 flex items-center justify-center w-full ${
+                  isDark 
+                    ? 'border-slate-700 bg-slate-800 bg-gradient-to-br from-slate-800 to-slate-900' 
+                    : 'border-slate-200 bg-white bg-gradient-to-br from-slate-50 to-white'
+                }`}>
+                  <span className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-400'}`}>
+                    Add image, diagram, or metric block
+                  </span>
                 </div>
               </div>
             </div>
           )}
-        </div>
-      </Container>
+        </Container>
+      </div>
     </section>
   );
 }
@@ -218,16 +252,10 @@ export default function ServicesPage() {
   return (
     <main>
       <Hero />
-      <Container>
-        <div className="relative grid grid-cols-1 lg:grid-cols-12 gap-10 py-10">
-          <div className="lg:col-span-3">
-            <TOC />
-          </div>
-          <div className="lg:col-span-9">
-            {sections.map((s, i) => <ServiceSection key={s.id} s={s} index={i} />)}
-          </div>
-        </div>
-      </Container>
+      {/* Full-width sections */}
+      <div>
+        {sections.map((s, i) => <ServiceSection key={s.id} s={s} index={i} />)}
+      </div>
     </main>
   );
 }
