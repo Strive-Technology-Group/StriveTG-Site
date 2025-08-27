@@ -73,7 +73,7 @@ export function Navigation() {
             </div>
 
             {/* CTA Button - Desktop */}
-            <div className="hidden md:flex items-center space-x-4">
+            <div className="hidden lg:flex items-center space-x-4">
               <Button 
                 href="/consultation" 
                 size="sm" 
