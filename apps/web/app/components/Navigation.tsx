@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Button } from './Button';
 import { Logo, LogoCompact } from './Logo';
 import { Menu, X } from 'lucide-react';
+import { ServicesDropdown } from './ServicesDropdown';
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,10 +13,7 @@ export function Navigation() {
 
   const navItems = [
     { name: 'About', href: '/about' },
-    { name: 'Services', href: '/services' },
-    { name: 'Pricing', href: '/pricing' },
-    { name: 'Portfolio', href: '/portfolio' },
-    { name: 'Blog', href: '/blog' },
+    { name: 'FAQ', href: '/faq' },
     { name: 'Contact', href: '/contact' },
   ];
 
@@ -71,6 +69,7 @@ export function Navigation() {
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-primary transition-all duration-300 group-hover:w-full"></span>
                 </Link>
               ))}
+              <ServicesDropdown />
             </div>
 
             {/* CTA Button - Desktop */}
@@ -125,6 +124,13 @@ export function Navigation() {
                   {item.name}
                 </Link>
               ))}
+              <Link
+                href="/services"
+                className="block px-4 py-3 text-gray-700 hover:text-primary hover:bg-gray-50 transition-all duration-200 font-medium rounded-lg"
+                onClick={() => setIsOpen(false)}
+              >
+                Services
+              </Link>
               
               {/* Mobile CTA */}
               <div className="pt-4 px-4">
@@ -143,11 +149,11 @@ export function Navigation() {
                 <p className="text-xs text-gray-500 font-semibold uppercase tracking-wide mb-3">Quick Links</p>
                 <div className="space-y-2">
                   <Link 
-                    href="/pricing" 
+                    href="/faq" 
                     className="block text-sm text-gray-600 hover:text-primary transition-colors"
                     onClick={() => setIsOpen(false)}
                   >
-                    View Pricing
+                    Frequently Asked Questions
                   </Link>
                   <Link 
                     href="/contact" 

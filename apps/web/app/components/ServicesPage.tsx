@@ -82,44 +82,18 @@ function Hero() {
     <section className="bg-slate-900 text-white">
       <Container>
         <div className="py-16 md:py-20">
-          <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight mb-6">Services</h1>
-          <p className="max-w-3xl text-slate-300 leading-relaxed mb-12">
+          <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight">Services</h1>
+          <p className="mt-4 max-w-3xl text-slate-300 leading-relaxed">
             Our offerings work together to design, implement, and evolve reliable digital systems across your brand's touchpoints.
             We build, maintain, and scale—so you can focus on running the business.
           </p>
-          
-          {/* Service Navigation */}
-          <div className="max-w-4xl">
-            <p className="text-sm font-semibold text-slate-400 mb-4 uppercase tracking-wide">Jump to Service</p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-              {sections.map((s, index) => (
-                <a
-                  key={s.id}
-                  href={`#${s.id}`}
-                  className="group relative overflow-hidden rounded-xl border border-slate-700 bg-slate-800/50 p-4 transition-all duration-200 hover:border-slate-600 hover:bg-slate-700/50 hover:-translate-y-0.5"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500/20 to-purple-500/20 text-blue-400">
-                      <span className="text-sm font-bold">{String(index + 1).padStart(2, '0')}</span>
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <p className="truncate text-sm font-medium text-white group-hover:text-blue-300">
-                        {s.title}
-                      </p>
-                    </div>
-                  </div>
-                  
-                  {/* Hover effect */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 opacity-0 transition-opacity group-hover:opacity-100"></div>
-                </a>
-              ))}
-            </div>
-          </div>
         </div>
       </Container>
     </section>
   );
 }
+
+
 
 
 
