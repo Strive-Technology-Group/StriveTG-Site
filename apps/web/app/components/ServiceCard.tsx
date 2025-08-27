@@ -8,11 +8,12 @@ interface ServiceCardProps {
   description: string;
   features: string[];
   highlight?: boolean;
+  buttonText?: string;
 }
 
-export function ServiceCard({ icon, title, description, features, highlight = false }: ServiceCardProps) {
+export function ServiceCard({ icon, title, description, features, highlight = false, buttonText = "Request a Quote" }: ServiceCardProps) {
   return (
-    <Card variant="service" className={`h-full ${highlight ? 'ring-2 ring-accent-blue' : ''}`}>
+    <Card variant="service" className={`h-full hover:scale-105 transition-transform duration-300 ${highlight ? 'ring-2 ring-accent-blue' : ''}`}>
       <div className="flex flex-col h-full">
         <div className="flex items-center justify-center w-12 h-12 bg-gradient-brand rounded-lg mb-4">
           {icon}
@@ -34,7 +35,7 @@ export function ServiceCard({ icon, title, description, features, highlight = fa
           ))}
         </ul>
         <Button href="/contact" className="w-full">
-          Request a Quote
+          {buttonText}
         </Button>
       </div>
     </Card>

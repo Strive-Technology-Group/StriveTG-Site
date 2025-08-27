@@ -41,7 +41,6 @@ a {
   color: inherit;
   text-decoration: none;
 }
-
 /* Custom animations */
 @keyframes fadeInUp {
   from {
@@ -197,3 +196,4 @@ a {
   transform: translateY(-1px);
   box-shadow: 0 8px 20px rgba(255, 255, 255, 0.1);
 }
+

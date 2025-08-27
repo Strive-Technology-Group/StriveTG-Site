@@ -20,7 +20,7 @@ export default function Services() {
             Professional <span className="gradient-text">Tech Services</span>
           </h1>
           <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
-            Four core services that transform how your business operates, attracts customers, and grows revenue.
+            Five comprehensive services that transform how your business operates, attracts customers, and grows revenue.
           </p>
           <p className="text-lg text-gray-400 max-w-2xl mx-auto">
             Custom solutions designed specifically for your business needs and budget.
@@ -30,42 +30,60 @@ export default function Services() {
 
       {/* Services Grid */}
       <Section size="xl">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-8 max-w-7xl mx-auto">
+          {/* First Row */}
           <ServiceCard
             icon={
               <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
               </svg>
             }
-            title="Website Development"
-            description="Responsive, fast-loading websites that convert visitors into customers. Built with modern technologies and optimized for search engines."
+            title="Website Development & Hosting"
+            description="We build modern, scalable websites that give your brand a professional online presence."
             features={[
-              "Mobile-first responsive design",
-              "E-commerce & booking system integration", 
-              "SEO-optimized structure and content",
-              "Fast loading speeds and performance",
-              "Content management system (CMS)",
-              "SSL security and regular backups"
+              "Custom websites (landing pages → e-commerce)",
+              "Subscription pricing (monthly fee, includes hosting, SSL, domain)",
+              "Scalable features (booking systems, integrations, forms)"
             ]}
             highlight={true}
+            buttonText="Get Started"
           />
 
+          <ServiceCard
+            icon={
+              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+              </svg>
+            }
+            title="Website Upkeep & Support"
+            description="Your site should run smoothly without you having to worry."
+            features={[
+              "Ongoing maintenance (updates, patches, security)",
+              "Performance monitoring (speed + uptime)",
+              "Basic analytics reports (traffic, top pages, engagement)",
+              "Dedicated support line"
+            ]}
+            buttonText="Learn More"
+          />
+
+          {/* Second Row */}
           <ServiceCard
             icon={
               <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
             }
-            title="SEO Optimization"
-            description="Rank higher on Google and attract nearby customers who are actively searching for your services. Local SEO that drives real business results."
+            title="Search & Visibility Suite"
+            description="Helping your business get found on search engines — and now through AI tools."
             features={[
-              "Local SEO for nearby customer targeting",
-              "Keyword research and content optimization",
-              "Google Business Profile setup and optimization",
-              "Technical SEO improvements",
-              "Monthly ranking reports and analytics",
-              "Competitor analysis and strategy"
+              "Google Search Console setup + sitemap monitoring",
+              "On-page & technical SEO fixes",
+              "Google Analytics integration (event tracking)",
+              "Monthly visibility reports",
+              "LLM Surge Service → AI search visibility (ChatGPT, Perplexity, Bing AI)",
+              "Structured data (schema.org, FAQs, knowledge graphs)"
             ]}
+            buttonText="Boost Visibility"
           />
 
           <ServiceCard
@@ -74,35 +92,36 @@ export default function Services() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
               </svg>
             }
-            title="Company Analytics"
-            description="Streamline workflows, reduce costs, and make data-driven decisions with actionable business insights and automation tools."
+            title="Insight Analytics Pipelines"
+            description="Turn raw data into actionable insights with custom analytics systems."
             features={[
-              "Customer behavior tracking and analysis",
-              "Workflow optimization and automation",
-              "ROI measurement and reporting",
-              "Sales funnel analysis and optimization",
-              "Custom dashboard creation",
-              "Regular performance reviews and recommendations"
+              "Custom dashboards (KPIs, sales funnels, behavior tracking)",
+              "Automated reporting (PDF or interactive dashboards)",
+              "Business intelligence recommendations"
             ]}
+            buttonText="View Analytics"
           />
 
-          <ServiceCard
-            icon={
-              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M12 2.196l4.243 4.243-8.486 8.486L2.5 21.5l6.565-5.257 8.486-8.486L12 2.196z" />
-              </svg>
-            }
-            title="Ongoing Tech Support"
-            description="Monthly updates, hosting, fixes, and reliable support so you can focus on running your business without worrying about technical issues."
-            features={[
-              "24/7 website monitoring and maintenance",
-              "Regular security updates and patches",
-              "Priority technical support via email/phone",
-              "Monthly performance reports",
-              "Backup management and disaster recovery",
-              "Software updates and feature enhancements"
-            ]}
-          />
+          {/* Third Row - Centered Single Card */}
+          <div className="lg:col-span-2 xl:col-span-2 flex justify-center">
+            <div className="w-full lg:w-1/2 xl:w-1/2">
+              <ServiceCard
+                icon={
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                }
+                title="AI Automation"
+                description="Automate, accelerate, and scale your business processes."
+                features={[
+                  "AI chatbots for customer support & lead qualification",
+                  "Automated workflows (emails, scheduling, invoicing)",
+                  "Predictive insights (forecasting + recommendations)"
+                ]}
+                buttonText="Automate Now"
+              />
+            </div>
+          </div>
         </div>
       </Section>
 
