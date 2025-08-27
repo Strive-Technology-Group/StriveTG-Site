@@ -87,13 +87,13 @@ export function Navigation() {
             <div className="lg:hidden">
               <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="text-gray-700 hover:text-primary focus:outline-none focus:text-primary transition-colors duration-200 p-2"
+                className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-700 hover:text-gray-900 focus:outline-none transition-all duration-300"
                 aria-label="Toggle mobile menu"
               >
                 {isOpen ? (
-                  <X className="h-6 w-6" />
+                  <X className="h-5 w-5 transition-transform duration-300 rotate-90" />
                 ) : (
-                  <Menu className="h-6 w-6" />
+                  <Menu className="h-5 w-5 transition-transform duration-300" />
                 )}
               </button>
             </div>
