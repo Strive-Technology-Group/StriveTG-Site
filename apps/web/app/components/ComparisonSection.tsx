@@ -169,7 +169,7 @@ export default function ComparisonSection({
                     <td className="px-6 py-4 text-sm text-slate-300 text-center">
                       {row.agency}
                     </td>
-                    <td className="px-6 py-4 text-sm text-slate-400 text-center">
+                    <td className="px-6 py-4 text-sm text-slate-300 text-center">
                       {row.inHouse}
                     </td>
                   </tr>
