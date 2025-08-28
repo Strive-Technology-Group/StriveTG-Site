@@ -99,11 +99,7 @@ export function Button({
       {/* Content */}
       {showArrow && arrowPosition === 'left' && (
         <svg 
-          className={`${arrowClasses[size]} transition-all duration-400 ${
-            arrowPosition === 'right' 
-              ? 'group-hover:translate-x-1' 
-              : 'group-hover:-translate-x-1 rotate-180'
-          } relative z-10 ${getTextColorClass()}`}
+          className={`${arrowClasses[size]} transition-all duration-400 group-hover:-translate-x-1 rotate-180 relative z-10 ${getTextColorClass()}`}
           fill="none" 
           stroke="currentColor" 
           viewBox="0 0 24 24"
@@ -121,11 +117,7 @@ export function Button({
       </span>
       {showArrow && arrowPosition === 'right' && (
         <svg 
-          className={`${arrowClasses[size]} transition-all duration-400 ${
-            arrowPosition === 'right' 
-              ? 'group-hover:translate-x-1' 
-              : 'group-hover:-translate-x-1 rotate-180'
-          } relative z-10 ${getTextColorClass()}`}
+          className={`${arrowClasses[size]} transition-all duration-400 group-hover:translate-x-1 relative z-10 ${getTextColorClass()}`}
           fill="none" 
           stroke="currentColor" 
           viewBox="0 0 24 24"
