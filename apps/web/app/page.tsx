@@ -7,6 +7,7 @@ import { Card } from './components/Card';
 import { MotionWrapper, MotionStagger, MotionStaggerChild } from './components/MotionWrapper';
 import { ProcessTimeline } from './components/ProcessTimeline';
 import { CTAStrip } from './components/CTAStrip';
+import ComparisonSection from './components/ComparisonSection';
 
 export default function Home() {
   return (
@@ -237,112 +238,41 @@ export default function Home() {
                 </MotionStaggerChild>
               </MotionStagger>
             </div>
+
+            {/* CTA Button */}
+            <div className="text-center mt-12">
+              <a
+                href="/consultation"
+                aria-label="Book consultation"
+                className="group inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 font-semibold text-lg
+                         bg-[#0A2540] border-2 border-[#0A2540] text-white focus-visible:ring-[#0A2540] shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:scale-[1.02]
+                         focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 relative overflow-hidden"
+              >
+                <div className="absolute inset-0 bg-white translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-400 ease-out" />
+                <span className="relative z-10 tracking-wide transition-all duration-400 text-white group-hover:text-[#0A2540]">
+                  Book a Consultation
+                </span>
+                <svg 
+                  className="w-5 h-5 transition-all duration-400 group-hover:translate-x-1 relative z-10 text-white group-hover:text-[#0A2540]"
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round" 
+                    strokeWidth={2} 
+                    d="M17 8l4 4m0 0l-4 4m4-4H3" 
+                  />
+                </svg>
+              </a>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Strive Technology Group vs Hiring In-House */}
-      <section className="bg-slate-900">
-        <div className="py-14 md:py-20 border-b border-slate-700">
-          <div className="mx-auto max-w-6xl px-4 md:px-6">
-            <MotionWrapper direction="fade" className="text-center mb-16">
-              <h2 className="text-3xl md:text-5xl font-display font-bold text-white mb-6 tracking-tight">
-                Strive Technology Group vs Hiring In-House
-              </h2>
-              <p className="text-lg text-slate-300 leading-relaxed">
-                Get enterprise-level tech expertise without the overhead costs.
-              </p>
-            </MotionWrapper>
-        
-        <MotionStagger className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-          <MotionStaggerChild>
-            <Card className="p-8 border-2 border-slate-700 bg-slate-800 relative overflow-hidden group">
-              <div className="text-center mb-6">
-                <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                  <Image 
-                    src="/Full logo.svg" 
-                    alt="Strive Technology Group Logo" 
-                    width={40}
-                    height={40}
-                    className="w-10 h-10 filter brightness-0 invert"
-                  />
-                </div>
-                <h3 className="text-2xl font-display font-bold text-white mb-2">Strive Technology Group</h3>
-                <p className="text-accent-teal font-semibold">Professional Tech Talent</p>
-              </div>
-            <ul className="space-y-4">
-              <li className="flex items-start space-x-3">
-                <svg className="w-5 h-5 text-green-400 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                </svg>
-                <span className="text-slate-300"><strong className="text-white">Cost:</strong> Custom pricing (typically $1,500-5,000/month)</span>
-              </li>
-              <li className="flex items-start space-x-3">
-                <svg className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                </svg>
-                <span className="text-slate-300"><strong className="text-white">Skills:</strong> Full-stack development, SEO, analytics, support</span>
-              </li>
-              <li className="flex items-start space-x-3">
-                <svg className="w-5 h-5 text-green-400 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                </svg>
-                <span className="text-slate-300"><strong className="text-white">Timeline:</strong> Start immediately, rapid deployment</span>
-              </li>
-              <li className="flex items-start space-x-3">
-                <svg className="w-5 h-5 text-green-400 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                </svg>
-                <span className="text-slate-300"><strong className="text-white">Risk:</strong> No payroll overhead, flexible engagement</span>
-              </li>
-            </ul>
-          </Card>
-          
-          </MotionStaggerChild>
-          
-          <MotionStaggerChild>
-            <Card className="p-8 opacity-75 relative overflow-hidden">
-              <div className="text-center mb-6">
-                <div className="w-16 h-16 bg-gray-400 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                  </svg>
-                </div>
-                <h3 className="text-2xl font-display font-bold text-gray-600 mb-2">Hiring In-House</h3>
-                <p className="text-gray-500 font-semibold">Traditional Employee</p>
-              </div>
-            <ul className="space-y-4">
-              <li className="flex items-start space-x-3">
-                <svg className="w-5 h-5 text-red-500 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
-                </svg>
-                <span><strong>Cost:</strong> $40,000-80,000+ salary + benefits</span>
-              </li>
-              <li className="flex items-start space-x-3">
-                <svg className="w-5 h-5 text-red-500 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
-                </svg>
-                <span><strong>Skills:</strong> Limited to one area of expertise</span>
-              </li>
-              <li className="flex items-start space-x-3">
-                <svg className="w-5 h-5 text-red-500 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
-                </svg>
-                <span><strong>Timeline:</strong> 2-6 months to hire and onboard</span>
-              </li>
-              <li className="flex items-start space-x-3">
-                <svg className="w-5 h-5 text-red-500 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
-                </svg>
-                <span><strong>Risk:</strong> Payroll overhead, training costs, turnover</span>
-              </li>
-            </ul>
-            </Card>
-          </MotionStaggerChild>
-        </MotionStagger>
-          </div>
-        </div>
-      </section>
+      {/* Comparison Section */}
+      <ComparisonSection />
 
       {/* ROI/Impact Section */}
       <section className="bg-white">
