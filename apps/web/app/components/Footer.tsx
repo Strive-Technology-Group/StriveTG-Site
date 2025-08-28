@@ -20,18 +20,15 @@ export function Footer() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {/* Company Info */}
             <div className="md:col-span-2">
-              <div className="flex items-center space-x-3 mb-4">
-                <Image 
-                  src="/strivetg-logo.svg" 
-                  alt="Strive Technology Group Logo" 
-                  width={32}
-                  height={32}
-                  className="w-8 h-8"
-                />
+              <div className="mb-4">
                 <div className="flex flex-col">
-                  <span className="font-display font-bold text-xl">
-                    Strive Technology Group
-                  </span>
+                  <Image 
+                    src="/Full logo.svg" 
+                    alt="Strive Technology Group" 
+                    width={220}
+                    height={58}
+                    className="mb-2"
+                  />
                   <span className="text-sm text-accent-teal font-medium">
                     Scale Smarter. Compete Bigger.
                   </span>

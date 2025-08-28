@@ -161,7 +161,7 @@ export default function Home() {
               <div className="text-center mb-6">
                 <div className="w-16 h-16 bg-gradient-brand rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
                   <Image 
-                    src="/strivetg-logo.svg" 
+                    src="/Full logo.svg" 
                     alt="Strive Technology Group Logo" 
                     width={40}
                     height={40}

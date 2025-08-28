@@ -16,42 +16,23 @@ export function Logo({
   className = '' 
 }: LogoProps) {
   const sizeClasses = {
-    sm: 'w-6 h-6',
-    md: 'w-8 h-8',
-    lg: 'w-10 h-10'
-  };
-
-  const textSizeClasses = {
-    sm: 'text-lg',
-    md: 'text-xl', 
-    lg: 'text-2xl'
-  };
-
-  const textColorClasses = {
-    default: 'text-primary',
-    white: 'text-white',
-    dark: 'text-primary'
+    sm: { width: 140, height: 38 },
+    md: { width: 200, height: 50 },
+    lg: { width: 240, height: 60 }
   };
 
   return (
-    <Link href="/" className={`flex items-center space-x-3 group ${className}`}>
-      <div className="transition-transform duration-200 group-hover:scale-105">
+    <Link href="/" className={`group ${className}`}>
+      <div className="transition-all duration-200 group-hover:scale-105">
         <Image 
-          src="/strivetg-logo.svg" 
+          src="/Full logo.svg" 
           alt="Strive Technology Group" 
-          width={size === 'sm' ? 24 : size === 'md' ? 32 : 40}
-          height={size === 'sm' ? 24 : size === 'md' ? 32 : 40}
-          className={`${sizeClasses[size]} transition-transform duration-200`}
+          width={sizeClasses[size].width}
+          height={sizeClasses[size].height}
+          className="transition-transform duration-200"
           priority
         />
       </div>
-      {showText && (
-        <div className="flex flex-col">
-          <span className={`font-display font-bold ${textSizeClasses[size]} ${textColorClasses[variant]} leading-tight`}>
-            Strive Technology Group
-          </span>
-        </div>
-      )}
     </Link>
   );
 }
@@ -64,27 +45,18 @@ export function LogoCompact({
   variant?: 'default' | 'white' | 'dark';
   className?: string;
 }) {
-  const textColorClasses = {
-    default: 'text-primary',
-    white: 'text-white',
-    dark: 'text-primary'
-  };
-
   return (
-    <Link href="/" className={`flex items-center space-x-2 group ${className}`}>
-      <div className="transition-transform duration-200 group-hover:scale-105">
+    <Link href="/" className={`group ${className}`}>
+      <div className="transition-all duration-200 group-hover:scale-105">
         <Image 
-          src="/strivetg-logo.svg" 
+          src="/Full logo.svg" 
           alt="Strive Technology Group" 
-          width={28}
-          height={28}
-          className="w-7 h-7"
+          width={160}
+          height={44}
+          className="transition-transform duration-200"
           priority
         />
       </div>
-      <span className={`font-display font-bold text-lg ${textColorClasses[variant]}`}>
-        StriveTG
-      </span>
     </Link>
   );
 }
