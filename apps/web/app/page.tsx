@@ -21,7 +21,7 @@ export default function Home() {
                 Transform Your Business with Smart Technology
               </h1>
               <p className="text-xl md:text-2xl text-slate-300 font-light leading-relaxed mb-4">
-                Websites, SEO, and tech solutions that make small businesses unstoppable.
+                Smart websites, SEO, and analytics that help small and mid sized businesses scale faster and compete with bigger players.
               </p>
               <p className="text-lg text-slate-400 leading-relaxed max-w-2xl mx-auto mb-12">
                 Access top-tier tech expertise—without the overhead of hiring in-house.
@@ -105,79 +105,138 @@ export default function Home() {
                 How We Scale Your Operations
               </h2>
               <p className="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
-                Four core services that transform how your business operates, attracts customers, and grows revenue.
+                Five comprehensive services that transform how your business operates, attracts customers, and grows revenue.
               </p>
             </MotionWrapper>
-        
-        <MotionStagger className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <MotionStaggerChild>
-            <FeatureCard
-              icon={
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-              }
-              title="Website Development"
-              description="Responsive design, e-commerce, and booking systems that convert visitors into customers."
-              benefits={[
-                "Mobile-first responsive design",
-                "E-commerce & booking integration",
-                "Fast loading & SEO optimized"
-              ]}
-            />
-          </MotionStaggerChild>
-          
-          <MotionStaggerChild>
-            <FeatureCard
-              icon={
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
-              }
-              title="SEO Optimization"
-              description="Rank on Google and attract nearby customers who are actively searching for your services."
-              benefits={[
-                "Local SEO for nearby customers",
-                "Keyword research & optimization",
-                "Google Business Profile setup"
-              ]}
-            />
-          </MotionStaggerChild>
-          
-          <MotionStaggerChild>
-            <FeatureCard
-              icon={
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                </svg>
-              }
-              title="Company Analytics"
-              description="Streamline workflows, reduce costs, and make data-driven decisions with actionable insights."
-              benefits={[
-                "Customer behavior tracking",
-                "Workflow optimization",
-                "ROI measurement & reporting"
-              ]}
-            />
-          </MotionStaggerChild>
-          
-          <MotionStaggerChild>
-            <FeatureCard
-              icon={
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M12 2.196l4.243 4.243-8.486 8.486L2.5 21.5l6.565-5.257 8.486-8.486L12 2.196z" />
-                </svg>
-              }
-              title="Ongoing Tech Support"
-              description="Monthly updates, hosting, fixes, and reliable support so you can focus on running your business."
-              benefits={[
-                "24/7 monitoring & maintenance",
-                "Regular security updates",
-                "Priority technical support"
-              ]}
-            />
-          </MotionStaggerChild>
-        </MotionStagger>
+
+            <div className="max-w-3xl mx-auto">
+              <MotionStagger className="space-y-3">
+                {/* 1. Website Development & Hosting */}
+                <MotionStaggerChild>
+                  <a
+                    href="/services#website-development"
+                    className="group flex items-center gap-4 p-4 bg-white border-2 border-slate-200 rounded-lg hover:border-[#0A2540] hover:shadow-md transition-all duration-300 hover:-translate-y-1"
+                  >
+                    <div className="w-8 h-8 bg-[#0A2540] rounded-full flex items-center justify-center text-white font-bold text-sm group-hover:scale-110 transition-transform duration-300">
+                      1
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-lg font-semibold text-slate-900 group-hover:text-[#0A2540] transition-colors">
+                        Website Development & Hosting
+                      </h3>
+                      <p className="text-slate-600 text-sm">
+                        Modern, scalable websites that give your brand a professional online presence.
+                      </p>
+                    </div>
+                    <div className="text-slate-400 group-hover:text-[#0A2540] group-hover:translate-x-1 transition-all duration-300">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </div>
+                  </a>
+                </MotionStaggerChild>
+
+                {/* 2. Website Upkeep & Support */}
+                <MotionStaggerChild>
+                  <a
+                    href="/services#upkeep-support"
+                    className="group flex items-center gap-4 p-4 bg-white border-2 border-slate-200 rounded-lg hover:border-[#0A2540] hover:shadow-md transition-all duration-300 hover:-translate-y-1"
+                  >
+                    <div className="w-8 h-8 bg-[#0A2540] rounded-full flex items-center justify-center text-white font-bold text-sm group-hover:scale-110 transition-transform duration-300">
+                      2
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-lg font-semibold text-slate-900 group-hover:text-[#0A2540] transition-colors">
+                        Website Upkeep & Support
+                      </h3>
+                      <p className="text-slate-600 text-sm">
+                        Your site should run smoothly without you having to worry.
+                      </p>
+                    </div>
+                    <div className="text-slate-400 group-hover:text-[#0A2540] group-hover:translate-x-1 transition-all duration-300">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </div>
+                  </a>
+                </MotionStaggerChild>
+
+                {/* 3. Search & Visibility Suite */}
+                <MotionStaggerChild>
+                  <a
+                    href="/services#search-visibility"
+                    className="group flex items-center gap-4 p-4 bg-white border-2 border-slate-200 rounded-lg hover:border-[#0A2540] hover:shadow-md transition-all duration-300 hover:-translate-y-1"
+                  >
+                    <div className="w-8 h-8 bg-[#0A2540] rounded-full flex items-center justify-center text-white font-bold text-sm group-hover:scale-110 transition-transform duration-300">
+                      3
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-lg font-semibold text-slate-900 group-hover:text-[#0A2540] transition-colors">
+                        Search & Visibility Suite
+                      </h3>
+                      <p className="text-slate-600 text-sm">
+                        Helping your business get found on search engines — and now through AI tools.
+                      </p>
+                    </div>
+                    <div className="text-slate-400 group-hover:text-[#0A2540] group-hover:translate-x-1 transition-all duration-300">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </div>
+                  </a>
+                </MotionStaggerChild>
+
+                {/* 4. Insight Analytics Pipelines */}
+                <MotionStaggerChild>
+                  <a
+                    href="/services#analytics-pipelines"
+                    className="group flex items-center gap-4 p-4 bg-white border-2 border-slate-200 rounded-lg hover:border-[#0A2540] hover:shadow-md transition-all duration-300 hover:-translate-y-1"
+                  >
+                    <div className="w-8 h-8 bg-[#0A2540] rounded-full flex items-center justify-center text-white font-bold text-sm group-hover:scale-110 transition-transform duration-300">
+                      4
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-lg font-semibold text-slate-900 group-hover:text-[#0A2540] transition-colors">
+                        Insight Analytics Pipelines
+                      </h3>
+                      <p className="text-slate-600 text-sm">
+                        Turn raw data into actionable insights with custom analytics systems.
+                      </p>
+                    </div>
+                    <div className="text-slate-400 group-hover:text-[#0A2540] group-hover:translate-x-1 transition-all duration-300">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </div>
+                  </a>
+                </MotionStaggerChild>
+
+                {/* 5. AI Automation */}
+                <MotionStaggerChild>
+                  <a
+                    href="/services#ai-automation"
+                    className="group flex items-center gap-4 p-4 bg-white border-2 border-slate-200 rounded-lg hover:border-[#0A2540] hover:shadow-md transition-all duration-300 hover:-translate-y-1"
+                  >
+                    <div className="w-8 h-8 bg-[#0A2540] rounded-full flex items-center justify-center text-white font-bold text-sm group-hover:scale-110 transition-transform duration-300">
+                      5
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-lg font-semibold text-slate-900 group-hover:text-[#0A2540] transition-colors">
+                        AI Automation
+                      </h3>
+                      <p className="text-slate-600 text-sm">
+                        Automate, accelerate, and scale your business processes.
+                      </p>
+                    </div>
+                    <div className="text-slate-400 group-hover:text-[#0A2540] group-hover:translate-x-1 transition-all duration-300">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </div>
+                  </a>
+                </MotionStaggerChild>
+              </MotionStagger>
+            </div>
           </div>
         </div>
       </section>
