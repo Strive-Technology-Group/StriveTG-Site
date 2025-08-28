@@ -333,8 +333,9 @@ export default function Home() {
       </section>
 
       {/* Process Section */}
-      <Section background="dark" size="xl">
-        <MotionWrapper direction="fade" className="text-center mb-16">
+      <section className="bg-slate-900 py-24">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <MotionWrapper direction="fade" className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-display font-bold text-white mb-6 tracking-tight">
             How We Work Together
           </h2>
@@ -386,7 +387,8 @@ export default function Home() {
             )
           }
         ]} />
-      </Section>
+        </div>
+      </section>
 
       {/* CTA Section */}
       <Section size="lg">
