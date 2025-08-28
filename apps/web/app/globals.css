@@ -137,63 +137,79 @@ a {
   -webkit-mask-composite: xor;
 }
 
-/* Custom button styles */
+/* Enhanced button animations */
+@keyframes buttonPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(37, 99, 235, 0);
+  }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Clean navy button styles with pill shape */
 .btn-primary {
-  background: linear-gradient(135deg, var(--accent-blue), var(--accent-teal), var(--accent-purple));
-  transition: all 0.3s ease;
+  background: var(--primary);
+  color: white;
+  border: 2px solid var(--primary);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
-}
-
-.btn-primary::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, var(--accent-teal), var(--accent-purple), var(--accent-blue));
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.btn-primary:hover::before {
-  opacity: 1;
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 30px rgba(37, 99, 235, 0.4);
+  box-shadow: 0 8px 25px rgba(10, 37, 64, 0.15);
 }
 
-.btn-primary > * {
-  position: relative;
-  z-index: 1;
+.btn-primary:active {
+  transform: translateY(-1px);
+  transition: all 0.1s ease;
 }
 
-/* Ghost button with gradient */
+.btn-primary:focus {
+  box-shadow: 0 0 0 3px rgba(10, 37, 64, 0.1);
+}
+
+/* Clean ghost button with pill shape */
 .btn-ghost {
   background: transparent;
   border: 2px solid rgba(255, 255, 255, 0.3);
   color: white;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
 }
 
-.btn-ghost::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(255, 255, 255, 0.1);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.btn-ghost:hover::before {
-  opacity: 1;
-}
-
 .btn-ghost:hover {
-  border-color: rgba(255, 255, 255, 0.6);
+  border-color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
+}
+
+.btn-ghost:active {
   transform: translateY(-1px);
-  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.1);
+  transition: all 0.1s ease;
+}
+
+.btn-ghost:focus {
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2);
+}
+
+/* Remove conflicting focus animation */
+
+/* Floating animation for special elements */
+.animate-float {
+  animation: float 6s ease-in-out infinite;
 }
 

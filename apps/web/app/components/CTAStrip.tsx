@@ -58,6 +58,7 @@ export function CTAStrip({
               size="lg" 
               variant={variant === 'gradient' ? 'ghost' : 'primary'}
               className="px-8 py-4"
+              showArrow={true}
             >
               {primaryButton.text}
             </Button>
@@ -68,6 +69,7 @@ export function CTAStrip({
                 size="lg" 
                 variant="outline"
                 className={`px-8 py-4 ${variant === 'gradient' ? 'border-white/30 text-white hover:bg-white/10' : ''}`}
+                showArrow={true}
               >
                 {secondaryButton.text}
               </Button>

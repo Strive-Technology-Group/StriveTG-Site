@@ -62,18 +62,39 @@ function Container({ children }: { children: React.ReactNode }) {
   return <div className="mx-auto max-w-6xl px-4 md:px-6">{children}</div>;
 }
 
-function GradientButton({ href, children, aria }: { href: string; children: React.ReactNode; aria: string }) {
+function CleanButton({ href, children, aria }: { href: string; children: React.ReactNode; aria: string }) {
   return (
     <a
       href={href}
       aria-label={aria}
-      className="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white
-                 bg-gradient-to-r from-indigo-600 to-cyan-400 shadow-md 
-                 hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:scale-105
-                 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400
-                 focus-visible:ring-offset-2"
+      className="group inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-semibold
+                 bg-[#0A2540] border-2 border-[#0A2540] shadow-sm
+                 hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:scale-[1.02]
+                 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0A2540]
+                 focus-visible:ring-offset-2 relative overflow-hidden"
     >
-      {children}
+      {/* Color sweep overlay */}
+      <div className="absolute inset-0 bg-white translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-400 ease-out" />
+      
+      {/* Content with proper color transitions */}
+      <span className="relative z-10 tracking-wide transition-all duration-400 text-white group-hover:text-[#0A2540]">
+        {children}
+      </span>
+      
+      {/* Arrow Icon with color transition */}
+      <svg 
+        className="w-5 h-5 transition-all duration-400 group-hover:translate-x-1 relative z-10 text-white group-hover:text-[#0A2540]" 
+        fill="none" 
+        stroke="currentColor" 
+        viewBox="0 0 24 24"
+      >
+        <path 
+          strokeLinecap="round" 
+          strokeLinejoin="round" 
+          strokeWidth={2} 
+          d="M17 8l4 4m0 0l-4 4m4-4H3" 
+        />
+      </svg>
     </a>
   );
 }
@@ -167,9 +188,9 @@ function ServiceSection({
                 </ul>
 
                 <div className="mt-8">
-                  <GradientButton href={s.cta.href} aria={`Contact about ${s.title}`}>
+                  <CleanButton href={s.cta.href} aria={`Contact about ${s.title}`}>
                     {s.cta.label}
-                  </GradientButton>
+                  </CleanButton>
                 </div>
               </div>
 
@@ -221,9 +242,9 @@ function ServiceSection({
                 </ul>
 
                 <div className="mt-8">
-                  <GradientButton href={s.cta.href} aria={`Contact about ${s.title}`}>
+                  <CleanButton href={s.cta.href} aria={`Contact about ${s.title}`}>
                     {s.cta.label}
-                  </GradientButton>
+                  </CleanButton>
                 </div>
               </div>
 
