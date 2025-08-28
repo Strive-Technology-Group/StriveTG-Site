@@ -49,7 +49,7 @@ export function Navigation() {
           <div className="flex justify-between items-center h-16">
             {/* Logo - Desktop */}
             <div className="hidden md:block">
-              <Logo size="md" showText={true} />
+              <Logo size="lg" showText={true} />
             </div>
             
             {/* Logo - Mobile */}
