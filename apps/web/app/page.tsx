@@ -388,61 +388,69 @@ export default function Home() {
         ]} />
       </Section>
 
-      {/* Trust Section */}
-      <Section size="xl">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-display font-bold text-primary mb-6">
-            Built on Trust & Results
+      {/* CTA Section */}
+      <Section size="lg">
+        <MotionWrapper direction="fade" className="text-center">
+          <h2 className="text-3xl md:text-5xl font-display font-bold text-primary mb-6 tracking-tight">
+            Ready to Transform Your Business?
           </h2>
-          <p className="text-lg text-gray-600 mb-12">
-            Your success is our success. Every solution is designed with your business growth in mind.
+          <p className="text-lg text-gray-600 leading-relaxed mb-8 max-w-3xl mx-auto">
+            Join successful businesses that have scaled smarter with our proven tech solutions. Get your free consultation today.
           </p>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-            <div className="flex items-center justify-center space-x-3 p-4 bg-secondary rounded-lg">
-              <svg className="w-6 h-6 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+            <a
+              href="/consultation"
+              aria-label="Book consultation"
+              className="group inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 font-semibold text-lg
+                       bg-[#0A2540] border-2 border-[#0A2540] text-white focus-visible:ring-[#0A2540] shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:scale-[1.02]
+                       focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 relative overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-white translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-400 ease-out" />
+              <span className="relative z-10 tracking-wide transition-all duration-400 text-white group-hover:text-[#0A2540]">
+                Book Free Consultation
+              </span>
+              <svg 
+                className="w-5 h-5 transition-all duration-400 group-hover:translate-x-1 relative z-10 text-white group-hover:text-[#0A2540]"
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round" 
+                  strokeWidth={2} 
+                  d="M17 8l4 4m0 0l-4 4m4-4H3" 
+                />
               </svg>
-              <span className="font-semibold text-primary">Privacy & Security</span>
-            </div>
-            <div className="flex items-center justify-center space-x-3 p-4 bg-secondary rounded-lg">
-              <svg className="w-6 h-6 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+            </a>
+            <a
+              href="/contact"
+              aria-label="Request a quote"
+              className="group inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 font-semibold text-lg
+                       bg-transparent border-2 border-[#0A2540] text-[#0A2540] focus-visible:ring-[#0A2540] shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:scale-[1.02]
+                       focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 relative overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-[#0A2540] translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-400 ease-out" />
+              <span className="relative z-10 tracking-wide transition-all duration-400 text-[#0A2540] group-hover:text-white">
+                Request a Quote
+              </span>
+              <svg 
+                className="w-5 h-5 transition-all duration-400 group-hover:translate-x-1 relative z-10 text-[#0A2540] group-hover:text-white"
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round" 
+                  strokeWidth={2} 
+                  d="M17 8l4 4m0 0l-4 4m4-4H3" 
+                />
               </svg>
-              <span className="font-semibold text-primary">Quality Guaranteed</span>
-            </div>
-            <div className="flex items-center justify-center space-x-3 p-4 bg-secondary rounded-lg">
-              <svg className="w-6 h-6 text-purple-500" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
-              </svg>
-              <span className="font-semibold text-primary">Dedicated Support</span>
-            </div>
+            </a>
           </div>
-          
-          {/* Testimonials placeholder */}
-          <Card className="max-w-4xl mx-auto p-8 text-center">
-            <p className="text-lg text-gray-600 italic mb-4">
-              "Client testimonials coming soon. Every project starts with understanding your unique business needs and delivering solutions that drive real results."
-            </p>
-            <p className="font-semibold text-primary">Ready to be our next success story?</p>
-          </Card>
-            </div>
-        
-        {/* Mid-page CTA Strip */}
-        <CTAStrip
-          title="Ready to Transform Your Business?"
-          description="Join successful businesses that have scaled smarter with our proven tech solutions. Get your free consultation today."
-          primaryButton={{
-            text: "Book Free Consultation",
-            href: "/consultation"
-          }}
-          secondaryButton={{
-            text: "View Our Pricing",
-            href: "/pricing"
-          }}
-          variant="glass"
-          className="mt-16"
-        />
+        </MotionWrapper>
       </Section>
 
     </>
