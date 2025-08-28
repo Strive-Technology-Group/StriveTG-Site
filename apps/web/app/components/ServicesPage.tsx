@@ -62,28 +62,37 @@ function Container({ children }: { children: React.ReactNode }) {
   return <div className="mx-auto max-w-6xl px-4 md:px-6">{children}</div>;
 }
 
-function CleanButton({ href, children, aria }: { href: string; children: React.ReactNode; aria: string }) {
+function CleanButton({ href, children, aria, isDark = false }: { href: string; children: React.ReactNode; aria: string; isDark?: boolean }) {
+  const buttonClasses = isDark 
+    ? // White button for dark backgrounds
+      "bg-white border-2 border-white text-[#0A2540] focus-visible:ring-white"
+    : // Navy button for light backgrounds  
+      "bg-[#0A2540] border-2 border-[#0A2540] text-white focus-visible:ring-[#0A2540]";
+      
+  const overlayColor = isDark ? "bg-[#0F2A47]" : "bg-white";
+  const textColorClasses = isDark 
+    ? "text-[#0A2540] group-hover:text-white"
+    : "text-white group-hover:text-[#0A2540]";
+
   return (
     <a
       href={href}
       aria-label={aria}
-      className="group inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-semibold
-                 bg-[#0A2540] border-2 border-[#0A2540] shadow-sm
-                 hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:scale-[1.02]
-                 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0A2540]
-                 focus-visible:ring-offset-2 relative overflow-hidden"
+      className={`group inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-semibold
+                 ${buttonClasses} shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:scale-[1.02]
+                 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 relative overflow-hidden`}
     >
       {/* Color sweep overlay */}
-      <div className="absolute inset-0 bg-white translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-400 ease-out" />
+      <div className={`absolute inset-0 ${overlayColor} translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-400 ease-out`} />
       
       {/* Content with proper color transitions */}
-      <span className="relative z-10 tracking-wide transition-all duration-400 text-white group-hover:text-[#0A2540]">
+      <span className={`relative z-10 tracking-wide transition-all duration-400 ${textColorClasses}`}>
         {children}
       </span>
       
       {/* Arrow Icon with color transition */}
       <svg 
-        className="w-5 h-5 transition-all duration-400 group-hover:translate-x-1 relative z-10 text-white group-hover:text-[#0A2540]" 
+        className={`w-5 h-5 transition-all duration-400 group-hover:translate-x-1 relative z-10 ${textColorClasses}`}
         fill="none" 
         stroke="currentColor" 
         viewBox="0 0 24 24"
@@ -188,7 +197,7 @@ function ServiceSection({
                 </ul>
 
                 <div className="mt-8">
-                  <CleanButton href={s.cta.href} aria={`Contact about ${s.title}`}>
+                  <CleanButton href={s.cta.href} aria={`Contact about ${s.title}`} isDark={isDark}>
                     {s.cta.label}
                   </CleanButton>
                 </div>
@@ -242,7 +251,7 @@ function ServiceSection({
                 </ul>
 
                 <div className="mt-8">
-                  <CleanButton href={s.cta.href} aria={`Contact about ${s.title}`}>
+                  <CleanButton href={s.cta.href} aria={`Contact about ${s.title}`} isDark={isDark}>
                     {s.cta.label}
                   </CleanButton>
                 </div>
