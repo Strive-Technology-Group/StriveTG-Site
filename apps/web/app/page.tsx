@@ -12,66 +12,102 @@ export default function Home() {
   return (
     <>
       {/* Hero Section */}
-      <Section background="dark" size="xl" className="bg-gradient-hero relative overflow-hidden py-20 md:py-28 lg:py-32">
-        <div className="text-center animate-fade-in-up relative z-10">
-          <div className="mb-6">
-            <p className="text-lg md:text-xl text-accent-teal font-semibold tracking-wide uppercase">
-              Strive Technology Group
-            </p>
-            <p className="text-sm md:text-base text-gray-400 mt-2 font-medium tracking-wide">
-              Scale Smarter. Compete Bigger.
-            </p>
-          </div>
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-display font-bold tracking-tight mb-8">
-            Transform Your Business{' '}
-            <span className="gradient-text">with Smart Technology</span>
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-200 mb-10 max-w-3xl mx-auto leading-relaxed">
-            Websites, SEO, and tech solutions that make small businesses unstoppable.
-          </p>
-          <p className="text-lg text-gray-400 mb-12 max-w-2xl mx-auto">
-            Get professional tech talent for less than the cost of a minimum-wage employee — Strive Technology Group powers your business operations.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-            <Button href="/consultation" size="lg" variant="primary" className="bg-gradient-primary hover:scale-105 hover:shadow-2xl transition-all duration-300 px-8 py-4 text-lg">
-              Book a Consultation
-            </Button>
-            <Button href="/contact" size="lg" variant="ghost" className="px-8 py-4 text-lg">
-              Request a Quote
-            </Button>
+      <section className="relative bg-[#0E1B2B] text-white overflow-hidden">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="py-20 md:py-28 lg:py-32 pb-32 text-center">
+            <div className="mx-auto max-w-4xl">
+
+              <h1 className="text-6xl md:text-7xl lg:text-8xl font-black tracking-tight text-balance mb-6">
+                Transform Your Business with Smart Technology
+              </h1>
+              <p className="text-xl md:text-2xl text-slate-300 font-light leading-relaxed mb-4">
+                Websites, SEO, and tech solutions that make small businesses unstoppable.
+              </p>
+              <p className="text-lg text-slate-400 leading-relaxed max-w-2xl mx-auto mb-12">
+                Access top-tier tech expertise—without the overhead of hiring in-house.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                <a
+                  href="/consultation"
+                  aria-label="Book consultation"
+                  className="group inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 font-semibold text-lg
+                           bg-white border-2 border-white text-[#0A2540] focus-visible:ring-white shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:scale-[1.02]
+                           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 relative overflow-hidden"
+                >
+                  <div className="absolute inset-0 bg-[#0F2A47] translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-400 ease-out" />
+                  <span className="relative z-10 tracking-wide transition-all duration-400 text-[#0A2540] group-hover:text-white">
+                    Book a Consultation
+                  </span>
+                  <svg 
+                    className="w-5 h-5 transition-all duration-400 group-hover:translate-x-1 relative z-10 text-[#0A2540] group-hover:text-white"
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24"
+                  >
+                    <path 
+                      strokeLinecap="round" 
+                      strokeLinejoin="round" 
+                      strokeWidth={2} 
+                      d="M17 8l4 4m0 0l-4 4m4-4H3" 
+                    />
+                  </svg>
+                </a>
+                <a
+                  href="/contact"
+                  aria-label="Request a quote"
+                  className="group inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 font-semibold text-lg
+                           bg-transparent border-2 border-white text-white focus-visible:ring-white shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:scale-[1.02]
+                           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 relative overflow-hidden"
+                >
+                  <div className="absolute inset-0 bg-white translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-400 ease-out" />
+                  <span className="relative z-10 tracking-wide transition-all duration-400 text-white group-hover:text-[#0A2540]">
+                    Request a Quote
+                  </span>
+                  <svg 
+                    className="w-5 h-5 transition-all duration-400 group-hover:translate-x-1 relative z-10 text-white group-hover:text-[#0A2540]"
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24"
+                  >
+                    <path 
+                      strokeLinecap="round" 
+                      strokeLinejoin="round" 
+                      strokeWidth={2} 
+                      d="M17 8l4 4m0 0l-4 4m4-4H3" 
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
         
-        {/* Enhanced Background decoration */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {/* Radial gradient aura */}
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-gradient-radial from-blue-500/10 via-purple-500/5 to-transparent rounded-full blur-3xl"></div>
-          
-          {/* Floating decorative elements */}
-          <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-accent-blue/10 rounded-full blur-xl animate-float"></div>
-          <div className="absolute top-3/4 right-1/4 w-24 h-24 bg-accent-teal/10 rounded-full blur-xl animate-float" style={{animationDelay: '1s'}}></div>
-          <div className="absolute bottom-1/4 left-1/3 w-20 h-20 bg-accent-purple/10 rounded-full blur-xl animate-float" style={{animationDelay: '2s'}}></div>
-          
-          {/* Subtle grid pattern */}
-          <div className="absolute inset-0 opacity-5">
-            <div className="absolute inset-0" style={{
-              backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
-              backgroundSize: '60px 60px'
-            }}></div>
-          </div>
-        </div>
-      </Section>
+        {/* Wave SVG Divider */}
+        <svg 
+          className="absolute inset-x-0 -bottom-px h-12 w-full text-white" 
+          viewBox="0 0 1440 48" 
+          preserveAspectRatio="none" 
+          aria-hidden="true"
+        >
+          <path 
+            className="fill-white" 
+            d="M0,24 C240,48 480,0 720,24 C960,48 1200,0 1440,24 L1440,48 L0,48 Z"
+          />
+        </svg>
+      </section>
 
       {/* How We Scale Your Operations */}
-      <Section size="xl">
-        <MotionWrapper direction="fade" className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-display font-bold text-primary mb-6 tracking-tight">
-            How We Scale Your Operations
-          </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Four core services that transform how your business operates, attracts customers, and grows revenue.
-          </p>
-        </MotionWrapper>
+      <section className="bg-white">
+        <div className="py-14 md:py-20 border-b border-slate-200">
+          <div className="mx-auto max-w-6xl px-4 md:px-6">
+            <MotionWrapper direction="fade" className="text-center mb-16">
+              <h2 className="text-3xl md:text-5xl font-display font-bold text-slate-900 mb-6 tracking-tight">
+                How We Scale Your Operations
+              </h2>
+              <p className="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
+                Four core services that transform how your business operates, attracts customers, and grows revenue.
+              </p>
+            </MotionWrapper>
         
         <MotionStagger className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <MotionStaggerChild>
@@ -142,24 +178,28 @@ export default function Home() {
             />
           </MotionStaggerChild>
         </MotionStagger>
-      </Section>
+          </div>
+        </div>
+      </section>
 
       {/* Strive Technology Group vs Hiring In-House */}
-      <Section background="gray" size="xl">
-        <MotionWrapper direction="fade" className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-display font-bold text-primary mb-6 tracking-tight">
-            Strive Technology Group vs Hiring In-House
-          </h2>
-          <p className="text-lg text-gray-600 leading-relaxed">
-            Get enterprise-level tech expertise without the overhead costs.
-          </p>
-        </MotionWrapper>
+      <section className="bg-slate-900">
+        <div className="py-14 md:py-20 border-b border-slate-700">
+          <div className="mx-auto max-w-6xl px-4 md:px-6">
+            <MotionWrapper direction="fade" className="text-center mb-16">
+              <h2 className="text-3xl md:text-5xl font-display font-bold text-white mb-6 tracking-tight">
+                Strive Technology Group vs Hiring In-House
+              </h2>
+              <p className="text-lg text-slate-300 leading-relaxed">
+                Get enterprise-level tech expertise without the overhead costs.
+              </p>
+            </MotionWrapper>
         
         <MotionStagger className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
           <MotionStaggerChild>
-            <Card className="p-8 gradient-border relative overflow-hidden group">
+            <Card className="p-8 border-2 border-slate-700 bg-slate-800 relative overflow-hidden group">
               <div className="text-center mb-6">
-                <div className="w-16 h-16 bg-gradient-brand rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
                   <Image 
                     src="/Full logo.svg" 
                     alt="Strive Technology Group Logo" 
@@ -168,33 +208,33 @@ export default function Home() {
                     className="w-10 h-10 filter brightness-0 invert"
                   />
                 </div>
-                <h3 className="text-2xl font-display font-bold text-primary mb-2">Strive Technology Group</h3>
+                <h3 className="text-2xl font-display font-bold text-white mb-2">Strive Technology Group</h3>
                 <p className="text-accent-teal font-semibold">Professional Tech Talent</p>
               </div>
             <ul className="space-y-4">
               <li className="flex items-start space-x-3">
-                <svg className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <svg className="w-5 h-5 text-green-400 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
-                <span><strong>Cost:</strong> Custom pricing (typically $1,500-5,000/month)</span>
+                <span className="text-slate-300"><strong className="text-white">Cost:</strong> Custom pricing (typically $1,500-5,000/month)</span>
               </li>
               <li className="flex items-start space-x-3">
                 <svg className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
-                <span><strong>Skills:</strong> Full-stack development, SEO, analytics, support</span>
+                <span className="text-slate-300"><strong className="text-white">Skills:</strong> Full-stack development, SEO, analytics, support</span>
               </li>
               <li className="flex items-start space-x-3">
-                <svg className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <svg className="w-5 h-5 text-green-400 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
-                <span><strong>Timeline:</strong> Start immediately, rapid deployment</span>
+                <span className="text-slate-300"><strong className="text-white">Timeline:</strong> Start immediately, rapid deployment</span>
               </li>
               <li className="flex items-start space-x-3">
-                <svg className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <svg className="w-5 h-5 text-green-400 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
-                <span><strong>Risk:</strong> No payroll overhead, flexible engagement</span>
+                <span className="text-slate-300"><strong className="text-white">Risk:</strong> No payroll overhead, flexible engagement</span>
               </li>
             </ul>
           </Card>
@@ -241,23 +281,27 @@ export default function Home() {
             </Card>
           </MotionStaggerChild>
         </MotionStagger>
-      </Section>
+          </div>
+        </div>
+      </section>
 
       {/* ROI/Impact Section */}
-      <Section size="xl">
-        <MotionWrapper direction="fade" className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-display font-bold text-primary mb-6 tracking-tight">
-            Measurable Impact on Your Business
-          </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            See how Strive Technology Group's tech solutions directly translate to business growth and operational efficiency.
-          </p>
-        </MotionWrapper>
+      <section className="bg-white">
+        <div className="py-14 md:py-20 border-b border-slate-200">
+          <div className="mx-auto max-w-6xl px-4 md:px-6">
+            <MotionWrapper direction="fade" className="text-center mb-16">
+              <h2 className="text-3xl md:text-5xl font-display font-bold text-slate-900 mb-6 tracking-tight">
+                Measurable Impact on Your Business
+              </h2>
+              <p className="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
+                See how Strive Technology Group's tech solutions directly translate to business growth and operational efficiency.
+              </p>
+            </MotionWrapper>
         
         <MotionStagger className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <MotionStaggerChild>
             <Card variant="feature" className="text-center group">
-              <div className="w-16 h-16 bg-gradient-brand rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+              <div className="w-16 h-16 bg-[#0A2540] rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
                 <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                 </svg>
@@ -270,32 +314,34 @@ export default function Home() {
           
           <MotionStaggerChild>
             <Card variant="feature" className="text-center group">
-              <div className="w-16 h-16 bg-gradient-brand rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+              <div className="w-16 h-16 bg-[#0A2540] rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
                 <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <h3 className="text-2xl font-display font-bold text-primary mb-3">Time Saved</h3>
-              <p className="text-gray-600 mb-4 leading-relaxed">Analytics insights save 10+ hours/week on manual reporting and admin tasks</p>
-              <p className="text-sm text-gray-500">Focus on high-value activities that grow your business</p>
+              <h3 className="text-2xl font-display font-bold text-slate-900 mb-3">Time Saved</h3>
+              <p className="text-slate-600 mb-4 leading-relaxed">Analytics insights save 10+ hours/week on manual reporting and admin tasks</p>
+              <p className="text-sm text-slate-500">Focus on high-value activities that grow your business</p>
             </Card>
           </MotionStaggerChild>
           
           <MotionStaggerChild>
             <Card variant="feature" className="text-center group">
-              <div className="w-16 h-16 bg-gradient-brand rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+              <div className="w-16 h-16 bg-[#0A2540] rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
                 <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                 </svg>
               </div>
-              <h3 className="text-2xl font-display font-bold text-primary mb-3">Better Visibility</h3>
-              <p className="text-gray-600 mb-4 leading-relaxed">Improved Google ranking means more nearby customers discover your business</p>
-              <p className="text-sm text-gray-500">Professional online presence builds trust and credibility</p>
+              <h3 className="text-2xl font-display font-bold text-slate-900 mb-3">Better Visibility</h3>
+              <p className="text-slate-600 mb-4 leading-relaxed">Improved Google ranking means more nearby customers discover your business</p>
+              <p className="text-sm text-slate-500">Professional online presence builds trust and credibility</p>
             </Card>
           </MotionStaggerChild>
         </MotionStagger>
-      </Section>
+          </div>
+        </div>
+      </section>
 
       {/* Process Section */}
       <Section background="gray" size="xl">
