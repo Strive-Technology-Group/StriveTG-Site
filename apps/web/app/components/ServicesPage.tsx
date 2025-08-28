@@ -161,7 +161,9 @@ function ServiceSection({
   const isWebsiteDevelopment = s.id === "website-development";
   const isUpkeepSupport = s.id === "upkeep-support";
   const isSearchVisibility = s.id === "search-visibility";
-  const hasVideo = isWebsiteDevelopment || isUpkeepSupport || isSearchVisibility;
+  const isAnalyticsPipelines = s.id === "analytics-pipelines";
+  const isAIAutomation = s.id === "ai-automation";
+  const hasVideo = isWebsiteDevelopment || isUpkeepSupport || isSearchVisibility || isAnalyticsPipelines || isAIAutomation;
   
   // Professional alternating color scheme
   const isDark = index % 2 === 1; // Alternate: white (0,2,4) -> dark (1,3)
@@ -221,6 +223,12 @@ function ServiceSection({
                   )}
                   {isSearchVisibility && (
                     <source src="/Modern_Search_Engine_Animation.webm" type="video/webm" />
+                  )}
+                  {isAnalyticsPipelines && (
+                    <source src="/Insights Analytics Animation.webm" type="video/webm" />
+                  )}
+                  {isAIAutomation && (
+                    <source src="/AI Automation Animation.webm" type="video/webm" />
                   )}
                   <div className="w-full h-64 bg-gradient-to-br from-slate-50 to-white flex items-center justify-center rounded-2xl">
                     <span className="text-slate-400 text-sm">{s.title} Animation</span>
