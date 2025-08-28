@@ -7,7 +7,7 @@ import { Card } from './components/Card';
 import { MotionWrapper, MotionStagger, MotionStaggerChild } from './components/MotionWrapper';
 import { ProcessTimeline } from './components/ProcessTimeline';
 import { CTAStrip } from './components/CTAStrip';
-import ComparisonSection from './components/ComparisonSection';
+import PremiumCompare from './components/PremiumCompare';
 
 export default function Home() {
   return (
@@ -272,7 +272,7 @@ export default function Home() {
       </section>
 
       {/* Comparison Section */}
-      <ComparisonSection />
+      <PremiumCompare />
 
       {/* ROI/Impact Section */}
       <section className="bg-white">
