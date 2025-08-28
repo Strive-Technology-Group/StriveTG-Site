@@ -329,7 +329,12 @@ export default function TermsOfServicePage() {
                       </div>
                       <div>
                         <p className="text-sm text-slate-500 font-medium">Location</p>
-                        <span className="text-slate-700 font-semibold text-lg">Boston, Massachusetts, USA</span>
+                        <div className="text-slate-700 font-semibold text-lg">
+                          <div>145 Tremont Street</div>
+                          <div>Suite 201-1512</div>
+                          <div>Boston, MA 02111</div>
+                          <div>United States</div>
+                        </div>
                       </div>
                     </div>
                   </div>
