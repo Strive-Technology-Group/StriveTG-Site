@@ -104,10 +104,10 @@ export function Footer() {
               © {currentYear} Strive Technology Group. All rights reserved.
             </p>
             <div className="flex flex-wrap items-center gap-x-6 gap-y-2 mt-4 md:mt-0">
-              <Link href="/privacy" className="text-gray-400 hover:text-accent-teal text-sm transition-colors">
+              <Link href="/privacy" className="text-gray-400 hover:text-white text-sm transition-all duration-200 hover:scale-105">
                 Privacy Policy
               </Link>
-              <Link href="/terms" className="text-gray-400 hover:text-accent-teal text-sm transition-colors">
+              <Link href="/terms" className="text-gray-400 hover:text-white text-sm transition-all duration-200 hover:scale-105">
                 Terms of Service
               </Link>
               <span className="text-gray-500 text-sm hidden md:inline">
