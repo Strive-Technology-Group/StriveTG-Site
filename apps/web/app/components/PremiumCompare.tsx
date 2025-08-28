@@ -337,13 +337,6 @@ export default function PremiumCompare() {
             <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </button>
         </div>
-
-        {/* Footnote */}
-        <div className="mt-12 text-center animate-fade-in-up delay-500">
-          <p className="text-sm text-slate-500">
-            Patterns vary by vendor/team. We scope to your needs.
-          </p>
-        </div>
       </div>
 
       {/* Modal */}
