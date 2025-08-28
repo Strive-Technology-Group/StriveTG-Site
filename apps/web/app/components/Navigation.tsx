@@ -77,7 +77,7 @@ export function Navigation() {
               <Button 
                 href="/consultation" 
                 size="sm" 
-                className="bg-gradient-primary hover:shadow-lg transition-all duration-200"
+                variant="primary"
               >
                 Book Consultation
               </Button>
@@ -150,7 +150,8 @@ export function Navigation() {
                 <Button 
                   href="/consultation" 
                   size="md" 
-                  className="w-full bg-gradient-primary justify-center"
+                  variant="primary"
+                  className="w-full justify-center"
                   onClick={() => setIsOpen(false)}
                 >
                   Book Consultation
