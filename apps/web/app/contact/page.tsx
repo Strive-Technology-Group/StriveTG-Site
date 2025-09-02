@@ -328,55 +328,127 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* Why Choose Us Section - Dark Navy (index 1) */}
+      {/* Why Partner With Us Section - Dark Navy (index 1) */}
       <section className="bg-slate-900">
         <div className="py-14 md:py-20">
           <Container>
-            <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 tracking-tight">
-                Why Choose Strive Technology Group?
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="bg-slate-800 border border-slate-700 rounded-2xl p-6">
-                  <div className="flex items-center space-x-3 mb-4">
-                    <svg className="w-5 h-5 text-[#0A2540]" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+            <div className="max-w-6xl mx-auto">
+              <div className="text-center mb-16">
+                <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 tracking-tight">
+                  Why Partner With Strive Technology Group
+                </h2>
+                <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
+                  We deliver enterprise-grade technology solutions that help small and mid-sized businesses compete at scale.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+                {/* Value Proposition 1 */}
+                <div className="bg-slate-800 border border-slate-700 rounded-2xl p-8 text-center group hover:bg-slate-700 transition-colors duration-300">
+                  <div className="w-16 h-16 bg-[#0A2540] rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                     </svg>
-                    <span className="text-slate-300">Professional tech talent at fraction of in-house cost</span>
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-4 tracking-tight">
+                    Expert Team, Startup Cost
+                  </h3>
+                  <p className="text-slate-300 leading-relaxed mb-4">
+                    Access senior-level developers, strategists, and digital marketers without the $200K+ annual overhead of full-time hires.
+                  </p>
+                  <div className="text-sm text-slate-400">
+                    Save 60-70% compared to in-house teams
                   </div>
                 </div>
-                <div className="bg-slate-800 border border-slate-700 rounded-2xl p-6">
-                  <div className="flex items-center space-x-3 mb-4">
-                    <svg className="w-5 h-5 text-[#0A2540]" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+
+                {/* Value Proposition 2 */}
+                <div className="bg-slate-800 border border-slate-700 rounded-2xl p-8 text-center group hover:bg-slate-700 transition-colors duration-300">
+                  <div className="w-16 h-16 bg-[#0A2540] rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                    <span className="text-slate-300">Custom solutions designed for your specific needs</span>
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-4 tracking-tight">
+                    Proven Track Record
+                  </h3>
+                  <p className="text-slate-300 leading-relaxed mb-4">
+                    We've helped businesses achieve 3-5x more qualified leads through professional websites and strategic SEO optimization.
+                  </p>
+                  <div className="text-sm text-slate-400">
+                    Measurable ROI within 90 days
                   </div>
                 </div>
-                <div className="bg-slate-800 border border-slate-700 rounded-2xl p-6">
-                  <div className="flex items-center space-x-3 mb-4">
-                    <svg className="w-5 h-5 text-[#0A2540]" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+
+                {/* Value Proposition 3 */}
+                <div className="bg-slate-800 border border-slate-700 rounded-2xl p-8 text-center group hover:bg-slate-700 transition-colors duration-300">
+                  <div className="w-16 h-16 bg-[#0A2540] rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                    <span className="text-slate-300">Transparent pricing with no hidden fees</span>
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-4 tracking-tight">
+                    Speed to Market
+                  </h3>
+                  <p className="text-slate-300 leading-relaxed mb-4">
+                    Launch professional solutions in weeks, not months. Our streamlined process gets you operational fast.
+                  </p>
+                  <div className="text-sm text-slate-400">
+                    Most projects live within 2-4 weeks
                   </div>
                 </div>
-                <div className="bg-slate-800 border border-slate-700 rounded-2xl p-6">
-                  <div className="flex items-center space-x-3 mb-4">
-                    <svg className="w-5 h-5 text-[#0A2540]" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                    </svg>
-                    <span className="text-slate-300">Ongoing support and optimization included</span>
+              </div>
+
+              {/* Trust Indicators */}
+              <div className="bg-slate-800 border border-slate-700 rounded-2xl p-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                  <div>
+                    <h3 className="text-2xl font-bold text-white mb-4 tracking-tight">
+                      Built for Business Growth
+                    </h3>
+                    <p className="text-slate-300 leading-relaxed mb-6">
+                      Every solution we build is designed to scale with your business. From startup to enterprise, our technology foundation grows with you.
+                    </p>
+                    <div className="space-y-3">
+                      <div className="flex items-center space-x-3">
+                        <div className="w-2 h-2 bg-[#0A2540] rounded-full"></div>
+                        <span className="text-slate-300">Enterprise-grade security and performance</span>
+                      </div>
+                      <div className="flex items-center space-x-3">
+                        <div className="w-2 h-2 bg-[#0A2540] rounded-full"></div>
+                        <span className="text-slate-300">24/7 monitoring and proactive maintenance</span>
+                      </div>
+                      <div className="flex items-center space-x-3">
+                        <div className="w-2 h-2 bg-[#0A2540] rounded-full"></div>
+                        <span className="text-slate-300">Transparent communication and regular updates</span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="text-center">
+                    <div className="inline-flex items-center justify-center w-24 h-24 bg-[#0A2540] rounded-full mb-6">
+                      <span className="text-white font-bold text-2xl">STG</span>
+                    </div>
+                    <div className="space-y-4">
+                      <div>
+                        <div className="text-3xl font-bold text-white">2-4 weeks</div>
+                        <div className="text-slate-400">Average project timeline</div>
+                      </div>
+                      <div>
+                        <div className="text-3xl font-bold text-white">24/7</div>
+                        <div className="text-slate-400">Support & monitoring</div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
               
-              <div className="mt-12">
+              {/* CTA */}
+              <div className="text-center mt-12">
                 <h3 className="text-2xl font-bold text-white mb-6">
-                  Ready to Transform Your Business?
+                  Ready to Scale Your Business?
                 </h3>
                 <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
-                  Get your free consultation today and discover how we can help you scale smarter.
+                  Join successful businesses that have transformed their operations with our proven technology solutions.
                 </p>
                 <CleanButton href="/consultation" aria="Book free consultation" isDark={true}>
                   Book Free Consultation
