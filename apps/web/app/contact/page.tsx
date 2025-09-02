@@ -1,8 +1,17 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Metadata } from 'next';
 import { MotionWrapper } from '../components/MotionWrapper';
+
+// Declare Calendly global type
+declare global {
+  interface Window {
+    Calendly: {
+      initInlineWidget: (options: { url: string; parentElement: Element }) => void;
+    };
+  }
+}
 
 function Container({ children }: { children: React.ReactNode }) {
   return <div className="mx-auto max-w-6xl px-4 md:px-6">{children}</div>;
@@ -81,9 +90,54 @@ export default function Contact() {
     email: '',
     business: '',
     services: [] as string[],
+    contactMethod: '',
     message: ''
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [showCalendly, setShowCalendly] = useState(false);
+
+  // Load Calendly script
+  useEffect(() => {
+    const existingScript = document.querySelector('script[src="https://assets.calendly.com/assets/external/widget.js"]');
+    
+    if (!existingScript) {
+      const script = document.createElement('script');
+      script.src = 'https://assets.calendly.com/assets/external/widget.js';
+      script.async = true;
+      document.body.appendChild(script);
+    }
+
+    return () => {
+      // Cleanup script on unmount
+      const scriptToRemove = document.querySelector('script[src="https://assets.calendly.com/assets/external/widget.js"]');
+      if (scriptToRemove) {
+        document.body.removeChild(scriptToRemove);
+      }
+    };
+  }, []);
+
+  // Initialize Calendly widget when modal opens
+  useEffect(() => {
+    if (showCalendly) {
+      // Wait for script to load and DOM to be ready
+      const initWidget = () => {
+        const widget = document.querySelector('#calendly-widget-contact');
+        if (widget && window.Calendly) {
+          // Clear any existing content
+          widget.innerHTML = '';
+          window.Calendly.initInlineWidget({
+            url: 'https://calendly.com/contact-strivetg/30min?hide_event_type_details=1&hide_gdpr_banner=1',
+            parentElement: widget
+          });
+        } else if (widget) {
+          // If Calendly script isn't loaded yet, try again
+          setTimeout(initWidget, 200);
+        }
+      };
+      
+      setTimeout(initWidget, 100);
+    }
+  }, [showCalendly]);
 
   const services = [
     'Website Development & Hosting',
@@ -102,8 +156,24 @@ export default function Contact() {
     }));
   };
 
+  const handleContactMethodChange = (method: string) => {
+    setFormData(prev => ({ ...prev, contactMethod: method }));
+    
+    // Show Calendly popup immediately for phone call or meeting
+    if (method === 'phone' || method === 'meeting') {
+      setShowCalendly(true);
+    }
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Validate required fields
+    if (!formData.contactMethod) {
+      alert('Please select a preferred contact method.');
+      return;
+    }
+    
     // Here you would typically send the form data to your backend
     console.log('Form submitted:', formData);
     setIsSubmitted(true);
@@ -234,6 +304,47 @@ export default function Contact() {
                         className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#0A2540] focus:border-transparent transition-colors bg-white"
                         placeholder="ABC Company"
                       />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-slate-700 mb-3">
+                        Preferred Contact Method *
+                      </label>
+                      <div className="space-y-3">
+                        <label className="flex items-center space-x-3 cursor-pointer">
+                          <input
+                            type="radio"
+                            name="contactMethod"
+                            value="email"
+                            checked={formData.contactMethod === 'email'}
+                            onChange={(e) => handleContactMethodChange(e.target.value)}
+                            className="w-4 h-4 text-[#0A2540] border-slate-300 focus:ring-[#0A2540]"
+                          />
+                          <span className="text-sm text-slate-700">Email Response</span>
+                        </label>
+                        <label className="flex items-center space-x-3 cursor-pointer">
+                          <input
+                            type="radio"
+                            name="contactMethod"
+                            value="phone"
+                            checked={formData.contactMethod === 'phone'}
+                            onChange={(e) => handleContactMethodChange(e.target.value)}
+                            className="w-4 h-4 text-[#0A2540] border-slate-300 focus:ring-[#0A2540]"
+                          />
+                          <span className="text-sm text-slate-700">Phone Call</span>
+                        </label>
+                        <label className="flex items-center space-x-3 cursor-pointer">
+                          <input
+                            type="radio"
+                            name="contactMethod"
+                            value="meeting"
+                            checked={formData.contactMethod === 'meeting'}
+                            onChange={(e) => handleContactMethodChange(e.target.value)}
+                            className="w-4 h-4 text-[#0A2540] border-slate-300 focus:ring-[#0A2540]"
+                          />
+                          <span className="text-sm text-slate-700">Video Meeting</span>
+                        </label>
+                      </div>
                     </div>
 
                     <div>
@@ -458,6 +569,43 @@ export default function Contact() {
           </Container>
         </div>
       </section>
+
+      {/* Calendly Modal */}
+      {showCalendly && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
+            <div className="flex justify-between items-center p-6 border-b border-slate-200">
+              <h3 className="text-2xl font-bold text-slate-900">Schedule a Call</h3>
+              <button
+                onClick={() => {
+                  setShowCalendly(false);
+                  // Clear the widget content when closing
+                  setTimeout(() => {
+                    const widget = document.querySelector('#calendly-widget-contact');
+                    if (widget) {
+                      widget.innerHTML = '';
+                    }
+                  }, 100);
+                }}
+                className="text-slate-400 hover:text-slate-600 transition-colors"
+                aria-label="Close modal"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            <div className="p-6">
+              <div 
+                id="calendly-widget-contact"
+                className="calendly-inline-widget" 
+                data-url="https://calendly.com/contact-strivetg/30min?hide_event_type_details=1&hide_gdpr_banner=1" 
+                style={{ minWidth: '320px', height: '700px' }}
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 }

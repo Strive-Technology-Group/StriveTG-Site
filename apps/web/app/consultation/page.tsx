@@ -1,8 +1,17 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Metadata } from 'next';
 import { MotionWrapper, MotionStagger, MotionStaggerChild } from '../components/MotionWrapper';
+
+// Declare Calendly global type
+declare global {
+  interface Window {
+    Calendly: {
+      initInlineWidget: (options: { url: string; parentElement: Element }) => void;
+    };
+  }
+}
 
 function Container({ children }: { children: React.ReactNode }) {
   return <div className="mx-auto max-w-6xl px-4 md:px-6">{children}</div>;
@@ -87,6 +96,50 @@ export default function Consultation() {
     message: ''
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [showCalendly, setShowCalendly] = useState(false);
+
+  // Load Calendly script
+  useEffect(() => {
+    const existingScript = document.querySelector('script[src="https://assets.calendly.com/assets/external/widget.js"]');
+    
+    if (!existingScript) {
+      const script = document.createElement('script');
+      script.src = 'https://assets.calendly.com/assets/external/widget.js';
+      script.async = true;
+      document.body.appendChild(script);
+    }
+
+    return () => {
+      // Cleanup script on unmount
+      const scriptToRemove = document.querySelector('script[src="https://assets.calendly.com/assets/external/widget.js"]');
+      if (scriptToRemove) {
+        document.body.removeChild(scriptToRemove);
+      }
+    };
+  }, []);
+
+  // Initialize Calendly widget when modal opens
+  useEffect(() => {
+    if (showCalendly) {
+      // Wait for script to load and DOM to be ready
+      const initWidget = () => {
+        const widget = document.querySelector('#calendly-widget-consultation');
+        if (widget && window.Calendly) {
+          // Clear any existing content
+          widget.innerHTML = '';
+          window.Calendly.initInlineWidget({
+            url: 'https://calendly.com/contact-strivetg/30min?hide_event_type_details=1&hide_gdpr_banner=1',
+            parentElement: widget
+          });
+        } else if (widget) {
+          // If Calendly script isn't loaded yet, try again
+          setTimeout(initWidget, 200);
+        }
+      };
+      
+      setTimeout(initWidget, 100);
+    }
+  }, [showCalendly]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -190,7 +243,10 @@ export default function Consultation() {
                         ? 'ring-2 ring-[#0A2540] border-[#0A2540]' 
                         : 'border-slate-200 hover:shadow-lg hover:-translate-y-1'
                     }`}
-                    onClick={() => setSelectedOption('meeting')}
+                    onClick={() => {
+                      setSelectedOption('meeting');
+                      setShowCalendly(true);
+                    }}
                   >
                     <div className="text-center relative z-10">
                       <div className="w-16 h-16 bg-[#0A2540] rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
@@ -479,6 +535,43 @@ export default function Consultation() {
           </Container>
         </div>
       </section>
+
+      {/* Calendly Modal */}
+      {showCalendly && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
+            <div className="flex justify-between items-center p-6 border-b border-slate-200">
+              <h3 className="text-2xl font-bold text-slate-900">Schedule Your Consultation</h3>
+              <button
+                onClick={() => {
+                  setShowCalendly(false);
+                  // Clear the widget content when closing
+                  setTimeout(() => {
+                    const widget = document.querySelector('#calendly-widget-consultation');
+                    if (widget) {
+                      widget.innerHTML = '';
+                    }
+                  }, 100);
+                }}
+                className="text-slate-400 hover:text-slate-600 transition-colors"
+                aria-label="Close modal"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            <div className="p-6">
+              <div 
+                id="calendly-widget-consultation"
+                className="calendly-inline-widget" 
+                data-url="https://calendly.com/contact-strivetg/30min?hide_event_type_details=1&hide_gdpr_banner=1" 
+                style={{ minWidth: '320px', height: '700px' }}
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 }
