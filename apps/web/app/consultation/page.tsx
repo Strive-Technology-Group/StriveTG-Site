@@ -286,70 +286,7 @@ export default function Consultation() {
         </div>
       </section>
 
-      {/* What to Expect - Dark Navy (index 1) */}
-      <section className="bg-slate-900">
-        <div className="py-14 md:py-20">
-          <Container>
-            <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 tracking-tight">
-                What to Expect During Your Consultation
-              </h2>
-              
-              <MotionStagger className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <MotionStaggerChild>
-                  <div className="bg-slate-800 border border-slate-700 rounded-2xl p-6 text-center group">
-                    <div className="w-12 h-12 bg-[#0A2540] text-white rounded-full flex items-center justify-center mx-auto mb-4 text-lg font-bold shadow-lg group-hover:scale-110 transition-transform duration-300">
-                      1
-                    </div>
-                    <h3 className="text-lg font-bold text-white mb-3 tracking-tight">
-                      Business Discovery
-                    </h3>
-                    <p className="text-slate-300 text-sm leading-relaxed">
-                      We'll discuss your current business situation, goals, and challenges to understand how technology can help.
-                    </p>
-                  </div>
-                </MotionStaggerChild>
 
-                <MotionStaggerChild>
-                  <div className="bg-slate-800 border border-slate-700 rounded-2xl p-6 text-center group">
-                    <div className="w-12 h-12 bg-[#0A2540] text-white rounded-full flex items-center justify-center mx-auto mb-4 text-lg font-bold shadow-lg group-hover:scale-110 transition-transform duration-300">
-                      2
-                    </div>
-                    <h3 className="text-lg font-bold text-white mb-3 tracking-tight">
-                      Solution Planning
-                    </h3>
-                    <p className="text-slate-300 text-sm leading-relaxed">
-                      We'll explore potential solutions and discuss which services would provide the most value for your business.
-                    </p>
-                  </div>
-                </MotionStaggerChild>
-
-                <MotionStaggerChild>
-                  <div className="bg-slate-800 border border-slate-700 rounded-2xl p-6 text-center group">
-                    <div className="w-12 h-12 bg-[#0A2540] text-white rounded-full flex items-center justify-center mx-auto mb-4 text-lg font-bold shadow-lg group-hover:scale-110 transition-transform duration-300">
-                      3
-                    </div>
-                    <h3 className="text-lg font-bold text-white mb-3 tracking-tight">
-                      Next Steps
-                    </h3>
-                    <p className="text-slate-300 text-sm leading-relaxed">
-                      If it's a good fit, we'll outline next steps including timeline and budget. No pressure - just clear information.
-                    </p>
-                  </div>
-                </MotionStaggerChild>
-              </MotionStagger>
-
-              <MotionWrapper direction="up" delay={0.3}>
-                <div className="mt-8 bg-slate-800 border border-slate-700 rounded-2xl p-6">
-                  <p className="text-slate-300 font-medium leading-relaxed">
-                    <strong className="text-white">Remember:</strong> This is a consultation, not a sales call. Our goal is to understand your needs and provide honest advice about whether we're the right fit for your business.
-                  </p>
-                </div>
-              </MotionWrapper>
-            </div>
-          </Container>
-        </div>
-      </section>
 
 
     </main>
