@@ -85,7 +85,7 @@ function CleanButton({
 }
 
 export default function Consultation() {
-  const [selectedOption, setSelectedOption] = useState<'meeting' | 'phone' | null>(null);
+  const [selectedOption, setSelectedOption] = useState<'meeting' | 'consultation' | null>(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -127,7 +127,7 @@ export default function Consultation() {
           // Clear any existing content
           widget.innerHTML = '';
           window.Calendly.initInlineWidget({
-            url: 'https://calendly.com/contact-strivetg/30min?hide_event_type_details=1&hide_gdpr_banner=1',
+            url: 'https://calendly.com/contact-strivetg/30min?hide_event_type_details=1&hide_gdpr_banner=1&primary_color=0f1c2b',
             parentElement: widget
           });
         } else if (widget) {
@@ -163,7 +163,7 @@ export default function Consultation() {
               <p className="text-lg text-slate-600 mb-6">
                 {selectedOption === 'meeting' 
                   ? "We'll send you a calendar link within the next hour to schedule your free consultation."
-                  : "We'll call you within 24 hours at your preferred time to discuss your tech needs."
+                  : "We'll call you within 24 hours at your preferred time for your 30-minute consultation to discuss your tech needs."
                 }
               </p>
               <p className="text-slate-600 mb-8">
@@ -286,11 +286,11 @@ export default function Consultation() {
                 <MotionStaggerChild>
                   <div 
                     className={`bg-slate-50 border rounded-2xl p-8 cursor-pointer transition-all duration-300 group relative overflow-hidden ${
-                      selectedOption === 'phone' 
+                      selectedOption === 'consultation' 
                         ? 'ring-2 ring-[#0A2540] border-[#0A2540]' 
                         : 'border-slate-200 hover:shadow-lg hover:-translate-y-1'
                     }`}
-                    onClick={() => setSelectedOption('phone')}
+                    onClick={() => setSelectedOption('consultation')}
                   >
                     <div className="text-center relative z-10">
                       <div className="w-16 h-16 bg-[#0A2540] rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
@@ -299,31 +299,31 @@ export default function Consultation() {
                         </svg>
                       </div>
                       <h3 className="text-2xl font-bold text-slate-900 mb-4 tracking-tight">
-                        Request a Phone Call
+                        30 Minute Consultation
                       </h3>
                       <p className="text-slate-600 mb-6 leading-relaxed">
-                        Provide your preferred times and we'll call you within 24 hours.
+                        Schedule a consultation call to discuss your business needs and goals.
                       </p>
                       <ul className="text-sm text-slate-600 text-left space-y-3">
                         <li className="flex items-center space-x-2">
                           <div className="w-1.5 h-1.5 bg-[#0A2540] rounded-full"></div>
-                          <span>Flexible timing to fit your schedule</span>
+                          <span>Dedicated 30-minute consultation</span>
                         </li>
                         <li className="flex items-center space-x-2">
                           <div className="w-1.5 h-1.5 bg-[#0A2540] rounded-full"></div>
-                          <span>No need to download software</span>
+                          <span>Phone or video call options</span>
                         </li>
                         <li className="flex items-center space-x-2">
                           <div className="w-1.5 h-1.5 bg-[#0A2540] rounded-full"></div>
-                          <span>Quick and convenient</span>
+                          <span>Personalized business assessment</span>
                         </li>
                         <li className="flex items-center space-x-2">
                           <div className="w-1.5 h-1.5 bg-[#0A2540] rounded-full"></div>
-                          <span>20-30 minute discussion</span>
+                          <span>Strategic recommendations</span>
                         </li>
                       </ul>
                     </div>
-                    {selectedOption === 'phone' && (
+                    {selectedOption === 'consultation' && (
                       <div className="absolute inset-0 bg-[#0A2540] opacity-5 rounded-2xl"></div>
                     )}
                   </div>
@@ -342,14 +342,14 @@ export default function Consultation() {
                         <div 
                           id="calendly-widget-consultation"
                           className="calendly-inline-widget" 
-                          data-url="https://calendly.com/contact-strivetg/30min?hide_event_type_details=1&hide_gdpr_banner=1" 
+                          data-url="https://calendly.com/contact-strivetg/30min?hide_event_type_details=1&hide_gdpr_banner=1&primary_color=0f1c2b" 
                           style={{ minWidth: '320px', height: '700px' }}
                         />
                       </>
                     ) : (
                       <>
                         <h3 className="text-2xl font-bold text-slate-900 mb-6 tracking-tight">
-                          Phone Call Request Details
+                          30 Minute Consultation Details
                         </h3>
                         <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -399,7 +399,7 @@ export default function Consultation() {
                         />
                       </div>
 
-                      {selectedOption === 'phone' && (
+                      {selectedOption === 'consultation' && (
                         <div>
                           <label htmlFor="phone" className="block text-sm font-medium text-slate-700 mb-2">
                             Phone Number *
@@ -417,7 +417,7 @@ export default function Consultation() {
                       )}
                     </div>
 
-                    {selectedOption === 'phone' && (
+                    {selectedOption === 'consultation' && (
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                           <label htmlFor="preferredTime" className="block text-sm font-medium text-slate-700 mb-2">
@@ -471,7 +471,7 @@ export default function Consultation() {
                     </div>
 
                           <CleanButton type="submit" aria="Submit consultation request" className="w-full">
-                            Request Phone Call
+                            Request 30 Minute Consultation
                           </CleanButton>
                         </form>
                       </>

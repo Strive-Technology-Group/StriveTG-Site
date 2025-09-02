@@ -91,6 +91,7 @@ export default function Contact() {
     business: '',
     services: [] as string[],
     contactMethod: '',
+    phone: '',
     message: ''
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -126,7 +127,7 @@ export default function Contact() {
           // Clear any existing content
           widget.innerHTML = '';
           window.Calendly.initInlineWidget({
-            url: 'https://calendly.com/contact-strivetg/30min?hide_event_type_details=1&hide_gdpr_banner=1',
+            url: 'https://calendly.com/contact-strivetg/30min?hide_event_type_details=1&hide_gdpr_banner=1&primary_color=0f1c2b',
             parentElement: widget
           });
         } else if (widget) {
@@ -159,8 +160,8 @@ export default function Contact() {
   const handleContactMethodChange = (method: string) => {
     setFormData(prev => ({ ...prev, contactMethod: method }));
     
-    // Show Calendly popup immediately for phone call or meeting
-    if (method === 'phone' || method === 'meeting') {
+    // Show Calendly popup immediately for consultation or meeting
+    if (method === 'consultation' || method === 'meeting') {
       setShowCalendly(true);
     }
   };
@@ -171,6 +172,11 @@ export default function Contact() {
     // Validate required fields
     if (!formData.contactMethod) {
       alert('Please select a preferred contact method.');
+      return;
+    }
+    
+    if (formData.contactMethod === 'consultation' && !formData.phone) {
+      alert('Please provide a phone number for the consultation.');
       return;
     }
     
@@ -326,12 +332,12 @@ export default function Contact() {
                           <input
                             type="radio"
                             name="contactMethod"
-                            value="phone"
-                            checked={formData.contactMethod === 'phone'}
+                            value="consultation"
+                            checked={formData.contactMethod === 'consultation'}
                             onChange={(e) => handleContactMethodChange(e.target.value)}
                             className="w-4 h-4 text-[#0A2540] border-slate-300 focus:ring-[#0A2540]"
                           />
-                          <span className="text-sm text-slate-700">Phone Call</span>
+                          <span className="text-sm text-slate-700">30 Minute Consultation</span>
                         </label>
                         <label className="flex items-center space-x-3 cursor-pointer">
                           <input
@@ -346,6 +352,23 @@ export default function Contact() {
                         </label>
                       </div>
                     </div>
+
+                    {formData.contactMethod === 'consultation' && (
+                      <div>
+                        <label htmlFor="phone" className="block text-sm font-medium text-slate-700 mb-2">
+                          Phone Number *
+                        </label>
+                        <input
+                          type="tel"
+                          id="phone"
+                          required
+                          value={formData.phone}
+                          onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
+                          className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#0A2540] focus:border-transparent transition-colors bg-white"
+                          placeholder="(555) 123-4567"
+                        />
+                      </div>
+                    )}
 
                     <div>
                       <label className="block text-sm font-medium text-slate-700 mb-3">
@@ -599,7 +622,7 @@ export default function Contact() {
               <div 
                 id="calendly-widget-contact"
                 className="calendly-inline-widget" 
-                data-url="https://calendly.com/contact-strivetg/30min?hide_event_type_details=1&hide_gdpr_banner=1" 
+                data-url="https://calendly.com/contact-strivetg/30min?hide_event_type_details=1&hide_gdpr_banner=1&primary_color=0f1c2b" 
                 style={{ minWidth: '320px', height: '700px' }}
               />
             </div>
