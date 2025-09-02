@@ -90,8 +90,6 @@ export default function Contact() {
     email: '',
     business: '',
     services: [] as string[],
-    contactMethod: '',
-    phone: '',
     message: ''
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -157,28 +155,8 @@ export default function Contact() {
     }));
   };
 
-  const handleContactMethodChange = (method: string) => {
-    setFormData(prev => ({ ...prev, contactMethod: method }));
-    
-    // Show Calendly popup immediately for consultation or meeting
-    if (method === 'consultation' || method === 'meeting') {
-      setShowCalendly(true);
-    }
-  };
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Validate required fields
-    if (!formData.contactMethod) {
-      alert('Please select a preferred contact method.');
-      return;
-    }
-    
-    if (formData.contactMethod === 'consultation' && !formData.phone) {
-      alert('Please provide a phone number for the consultation.');
-      return;
-    }
     
     // Here you would typically send the form data to your backend
     console.log('Form submitted:', formData);
@@ -265,7 +243,7 @@ export default function Contact() {
                 {/* Contact Form */}
                 <div className="bg-slate-50 border border-slate-200 rounded-2xl p-8">
                   <h2 className="text-2xl font-bold text-slate-900 mb-6 tracking-tight">
-                    Request a Quote
+                    Send Us a Message
                   </h2>
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
@@ -312,63 +290,7 @@ export default function Contact() {
                       />
                     </div>
 
-                    <div>
-                      <label className="block text-sm font-medium text-slate-700 mb-3">
-                        Preferred Contact Method *
-                      </label>
-                      <div className="space-y-3">
-                        <label className="flex items-center space-x-3 cursor-pointer">
-                          <input
-                            type="radio"
-                            name="contactMethod"
-                            value="email"
-                            checked={formData.contactMethod === 'email'}
-                            onChange={(e) => handleContactMethodChange(e.target.value)}
-                            className="w-4 h-4 text-[#0A2540] border-slate-300 focus:ring-[#0A2540]"
-                          />
-                          <span className="text-sm text-slate-700">Email Response</span>
-                        </label>
-                        <label className="flex items-center space-x-3 cursor-pointer">
-                          <input
-                            type="radio"
-                            name="contactMethod"
-                            value="consultation"
-                            checked={formData.contactMethod === 'consultation'}
-                            onChange={(e) => handleContactMethodChange(e.target.value)}
-                            className="w-4 h-4 text-[#0A2540] border-slate-300 focus:ring-[#0A2540]"
-                          />
-                          <span className="text-sm text-slate-700">30 Minute Consultation</span>
-                        </label>
-                        <label className="flex items-center space-x-3 cursor-pointer">
-                          <input
-                            type="radio"
-                            name="contactMethod"
-                            value="meeting"
-                            checked={formData.contactMethod === 'meeting'}
-                            onChange={(e) => handleContactMethodChange(e.target.value)}
-                            className="w-4 h-4 text-[#0A2540] border-slate-300 focus:ring-[#0A2540]"
-                          />
-                          <span className="text-sm text-slate-700">Video Meeting</span>
-                        </label>
-                      </div>
-                    </div>
 
-                    {formData.contactMethod === 'consultation' && (
-                      <div>
-                        <label htmlFor="phone" className="block text-sm font-medium text-slate-700 mb-2">
-                          Phone Number *
-                        </label>
-                        <input
-                          type="tel"
-                          id="phone"
-                          required
-                          value={formData.phone}
-                          onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
-                          className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#0A2540] focus:border-transparent transition-colors bg-white"
-                          placeholder="(555) 123-4567"
-                        />
-                      </div>
-                    )}
 
                     <div>
                       <label className="block text-sm font-medium text-slate-700 mb-3">
@@ -405,7 +327,7 @@ export default function Contact() {
                     </div>
 
                     <CleanButton type="submit" aria="Submit contact form" className="w-full">
-                      Request Quote
+                      Send Message
                     </CleanButton>
                   </form>
                 </div>
@@ -414,16 +336,20 @@ export default function Contact() {
                 <div className="space-y-8">
                   <div className="bg-slate-50 border border-slate-200 rounded-2xl p-8">
                     <h3 className="text-2xl font-bold text-slate-900 mb-6 tracking-tight">
-                      Prefer a Direct Conversation?
+                      Ready to Get Started?
                     </h3>
                     <p className="text-slate-600 mb-6">
-                      Sometimes it's easier to talk through your needs. Schedule a free consultation call to discuss your project in detail.
+                      Skip the form and book a 30-minute consultation directly. We'll discuss your needs and provide a custom solution.
                     </p>
-                    <CleanButton href="/consultation" aria="Book free consultation" className="w-full mb-4">
-                      Book Free Consultation
+                    <CleanButton 
+                      onClick={() => setShowCalendly(true)} 
+                      aria="Book consultation" 
+                      className="w-full mb-4"
+                    >
+                      Book 30 Min Consultation
                     </CleanButton>
                     <p className="text-sm text-slate-500 text-center">
-                      No sales pressure. Just honest advice about what's best for your business.
+                      Or fill out the form if you prefer to start with a message.
                     </p>
                   </div>
 

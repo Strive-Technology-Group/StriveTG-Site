@@ -85,16 +85,6 @@ function CleanButton({
 }
 
 export default function Consultation() {
-  const [selectedOption, setSelectedOption] = useState<'meeting' | 'consultation' | null>(null);
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    business: '',
-    phone: '',
-    preferredTime: '',
-    timezone: '',
-    message: ''
-  });
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   // Load Calendly script
@@ -117,34 +107,26 @@ export default function Consultation() {
     };
   }, []);
 
-  // Initialize Calendly widget when meeting option is selected
+  // Initialize Calendly widget on page load
   useEffect(() => {
-    if (selectedOption === 'meeting') {
-      // Wait for script to load and DOM to be ready
-      const initWidget = () => {
-        const widget = document.querySelector('#calendly-widget-consultation');
-        if (widget && window.Calendly) {
-          // Clear any existing content
-          widget.innerHTML = '';
-          window.Calendly.initInlineWidget({
-            url: 'https://calendly.com/contact-strivetg/30min?hide_event_type_details=1&hide_gdpr_banner=1&primary_color=0f1c2b',
-            parentElement: widget
-          });
-        } else if (widget) {
-          // If Calendly script isn't loaded yet, try again
-          setTimeout(initWidget, 200);
-        }
-      };
-      
-      setTimeout(initWidget, 100);
-    }
-  }, [selectedOption]);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Consultation request:', { option: selectedOption, ...formData });
-    setIsSubmitted(true);
-  };
+    // Wait for script to load and DOM to be ready
+    const initWidget = () => {
+      const widget = document.querySelector('#calendly-widget-consultation');
+      if (widget && window.Calendly) {
+        // Clear any existing content
+        widget.innerHTML = '';
+        window.Calendly.initInlineWidget({
+          url: 'https://calendly.com/contact-strivetg/30min?hide_event_type_details=1&hide_gdpr_banner=1&primary_color=0f1c2b',
+          parentElement: widget
+        });
+      } else if (widget) {
+        // If Calendly script isn't loaded yet, try again
+        setTimeout(initWidget, 200);
+      }
+    };
+    
+    setTimeout(initWidget, 100);
+  }, []);
 
   if (isSubmitted) {
     return (
@@ -161,10 +143,7 @@ export default function Consultation() {
                 Consultation Request Received!
               </h2>
               <p className="text-lg text-slate-600 mb-6">
-                {selectedOption === 'meeting' 
-                  ? "We'll send you a calendar link within the next hour to schedule your free consultation."
-                  : "We'll call you within 24 hours at your preferred time for your 30-minute consultation to discuss your tech needs."
-                }
+                Thank you for booking your consultation! You should receive a confirmation email shortly with all the details for your upcoming meeting.
               </p>
               <p className="text-slate-600 mb-8">
                 Come prepared to discuss your business goals, current challenges, and what success looks like for your company.
@@ -220,265 +199,88 @@ export default function Consultation() {
         </svg>
       </section>
 
-      {/* Consultation Options - White (index 0) */}
+      {/* Book Consultation - White (index 0) */}
       <section className="bg-white">
         <div className="py-14 md:py-20 border-b border-slate-200">
           <Container>
             <div className="max-w-4xl mx-auto">
               <div className="text-center mb-12">
                 <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6 tracking-tight">
-                  Choose Your Preferred Method
+                  Schedule Your Free Consultation
                 </h2>
-                <p className="text-xl text-slate-600">
-                  Pick the option that works best for your schedule.
+                <p className="text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
+                  Book a 30-minute consultation to discuss your business goals and discover how we can help you scale with the right technology solutions.
                 </p>
               </div>
 
-              <MotionStagger className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-                <MotionStaggerChild>
-                  <div 
-                    className={`bg-slate-50 border rounded-2xl p-8 cursor-pointer transition-all duration-300 group relative overflow-hidden ${
-                      selectedOption === 'meeting' 
-                        ? 'ring-2 ring-[#0A2540] border-[#0A2540]' 
-                        : 'border-slate-200 hover:shadow-lg hover:-translate-y-1'
-                    }`}
-                    onClick={() => {
-                      setSelectedOption('meeting');
-                    }}
-                  >
-                    <div className="text-center relative z-10">
-                      <div className="w-16 h-16 bg-[#0A2540] rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                        <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                        </svg>
-                      </div>
-                      <h3 className="text-2xl font-bold text-slate-900 mb-4 tracking-tight">
-                        Book a Meeting
+              <MotionWrapper direction="up">
+                <div className="bg-slate-50 border border-slate-200 rounded-2xl p-8 shadow-lg">
+                  <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
+                    {/* Benefits Column */}
+                    <div className="lg:col-span-2 space-y-6">
+                      <h3 className="text-xl font-bold text-slate-900 mb-4 tracking-tight">
+                        What You'll Get:
                       </h3>
-                      <p className="text-slate-600 mb-6 leading-relaxed">
-                        Schedule a video call at your convenience using our online calendar.
-                      </p>
-                      <ul className="text-sm text-slate-600 text-left space-y-3">
-                        <li className="flex items-center space-x-2">
-                          <div className="w-1.5 h-1.5 bg-[#0A2540] rounded-full"></div>
-                          <span>Choose from available time slots</span>
+                      <ul className="space-y-4">
+                        <li className="flex items-start space-x-3">
+                          <div className="w-6 h-6 bg-[#0A2540] rounded-full flex items-center justify-center mt-0.5">
+                            <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                            </svg>
+                          </div>
+                          <div>
+                            <span className="font-semibold text-slate-900">Business Assessment</span>
+                            <p className="text-sm text-slate-600 mt-1">Comprehensive review of your current tech setup and business goals</p>
+                          </div>
                         </li>
-                        <li className="flex items-center space-x-2">
-                          <div className="w-1.5 h-1.5 bg-[#0A2540] rounded-full"></div>
-                          <span>Automatic calendar reminders</span>
+                        <li className="flex items-start space-x-3">
+                          <div className="w-6 h-6 bg-[#0A2540] rounded-full flex items-center justify-center mt-0.5">
+                            <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                            </svg>
+                          </div>
+                          <div>
+                            <span className="font-semibold text-slate-900">Strategic Roadmap</span>
+                            <p className="text-sm text-slate-600 mt-1">Clear next steps and recommendations for your business</p>
+                          </div>
                         </li>
-                        <li className="flex items-center space-x-2">
-                          <div className="w-1.5 h-1.5 bg-[#0A2540] rounded-full"></div>
-                          <span>Video call via Zoom or Google Meet</span>
+                        <li className="flex items-start space-x-3">
+                          <div className="w-6 h-6 bg-[#0A2540] rounded-full flex items-center justify-center mt-0.5">
+                            <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                            </svg>
+                          </div>
+                          <div>
+                            <span className="font-semibold text-slate-900">Custom Proposal</span>
+                            <p className="text-sm text-slate-600 mt-1">Tailored solution with transparent pricing and timeline</p>
+                          </div>
                         </li>
-                        <li className="flex items-center space-x-2">
-                          <div className="w-1.5 h-1.5 bg-[#0A2540] rounded-full"></div>
-                          <span>30-45 minute discussion</span>
+                        <li className="flex items-start space-x-3">
+                          <div className="w-6 h-6 bg-[#0A2540] rounded-full flex items-center justify-center mt-0.5">
+                            <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                            </svg>
+                          </div>
+                          <div>
+                            <span className="font-semibold text-slate-900">No Pressure</span>
+                            <p className="text-sm text-slate-600 mt-1">Honest advice about what's best for your business</p>
+                          </div>
                         </li>
                       </ul>
                     </div>
-                    {selectedOption === 'meeting' && (
-                      <div className="absolute inset-0 bg-[#0A2540] opacity-5 rounded-2xl"></div>
-                    )}
-                  </div>
-                </MotionStaggerChild>
 
-                <MotionStaggerChild>
-                  <div 
-                    className={`bg-slate-50 border rounded-2xl p-8 cursor-pointer transition-all duration-300 group relative overflow-hidden ${
-                      selectedOption === 'consultation' 
-                        ? 'ring-2 ring-[#0A2540] border-[#0A2540]' 
-                        : 'border-slate-200 hover:shadow-lg hover:-translate-y-1'
-                    }`}
-                    onClick={() => setSelectedOption('consultation')}
-                  >
-                    <div className="text-center relative z-10">
-                      <div className="w-16 h-16 bg-[#0A2540] rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                        <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                        </svg>
-                      </div>
-                      <h3 className="text-2xl font-bold text-slate-900 mb-4 tracking-tight">
-                        30 Minute Consultation
-                      </h3>
-                      <p className="text-slate-600 mb-6 leading-relaxed">
-                        Schedule a consultation call to discuss your business needs and goals.
-                      </p>
-                      <ul className="text-sm text-slate-600 text-left space-y-3">
-                        <li className="flex items-center space-x-2">
-                          <div className="w-1.5 h-1.5 bg-[#0A2540] rounded-full"></div>
-                          <span>Dedicated 30-minute consultation</span>
-                        </li>
-                        <li className="flex items-center space-x-2">
-                          <div className="w-1.5 h-1.5 bg-[#0A2540] rounded-full"></div>
-                          <span>Phone or video call options</span>
-                        </li>
-                        <li className="flex items-center space-x-2">
-                          <div className="w-1.5 h-1.5 bg-[#0A2540] rounded-full"></div>
-                          <span>Personalized business assessment</span>
-                        </li>
-                        <li className="flex items-center space-x-2">
-                          <div className="w-1.5 h-1.5 bg-[#0A2540] rounded-full"></div>
-                          <span>Strategic recommendations</span>
-                        </li>
-                      </ul>
-                    </div>
-                    {selectedOption === 'consultation' && (
-                      <div className="absolute inset-0 bg-[#0A2540] opacity-5 rounded-2xl"></div>
-                    )}
-                  </div>
-                </MotionStaggerChild>
-              </MotionStagger>
-
-              {/* Form or Calendly Widget */}
-              {selectedOption && (
-                <MotionWrapper direction="up">
-                  <div className="bg-slate-50 border border-slate-200 rounded-2xl p-8 shadow-lg">
-                    {selectedOption === 'meeting' ? (
-                      <>
-                        <h3 className="text-2xl font-bold text-slate-900 mb-6 tracking-tight">
-                          Schedule Your Meeting
-                        </h3>
-                        <div 
-                          id="calendly-widget-consultation"
-                          className="calendly-inline-widget" 
-                          data-url="https://calendly.com/contact-strivetg/30min?hide_event_type_details=1&hide_gdpr_banner=1&primary_color=0f1c2b" 
-                          style={{ minWidth: '320px', height: '700px' }}
-                        />
-                      </>
-                    ) : (
-                      <>
-                        <h3 className="text-2xl font-bold text-slate-900 mb-6 tracking-tight">
-                          30 Minute Consultation Details
-                        </h3>
-                        <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div>
-                        <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-2">
-                          Full Name *
-                        </label>
-                        <input
-                          type="text"
-                          id="name"
-                          required
-                          value={formData.name}
-                          onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-                          className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#0A2540] focus:border-transparent transition-colors bg-white"
-                          placeholder="John Smith"
-                        />
-                      </div>
-
-                      <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-2">
-                          Email Address *
-                        </label>
-                        <input
-                          type="email"
-                          id="email"
-                          required
-                          value={formData.email}
-                          onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-                          className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#0A2540] focus:border-transparent transition-colors bg-white"
-                          placeholder="john@company.com"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div>
-                        <label htmlFor="business" className="block text-sm font-medium text-slate-700 mb-2">
-                          Business Name
-                        </label>
-                        <input
-                          type="text"
-                          id="business"
-                          value={formData.business}
-                          onChange={(e) => setFormData(prev => ({ ...prev, business: e.target.value }))}
-                          className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#0A2540] focus:border-transparent transition-colors bg-white"
-                          placeholder="ABC Company"
-                        />
-                      </div>
-
-                      {selectedOption === 'consultation' && (
-                        <div>
-                          <label htmlFor="phone" className="block text-sm font-medium text-slate-700 mb-2">
-                            Phone Number *
-                          </label>
-                          <input
-                            type="tel"
-                            id="phone"
-                            required
-                            value={formData.phone}
-                            onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
-                            className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#0A2540] focus:border-transparent transition-colors bg-white"
-                            placeholder="(555) 123-4567"
-                          />
-                        </div>
-                      )}
-                    </div>
-
-                    {selectedOption === 'consultation' && (
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                          <label htmlFor="preferredTime" className="block text-sm font-medium text-slate-700 mb-2">
-                            Preferred Call Time
-                          </label>
-                          <select
-                            id="preferredTime"
-                            value={formData.preferredTime}
-                            onChange={(e) => setFormData(prev => ({ ...prev, preferredTime: e.target.value }))}
-                            className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#0A2540] focus:border-transparent transition-colors bg-white"
-                          >
-                            <option value="">Select preferred time</option>
-                            <option value="morning">Morning (9AM - 12PM)</option>
-                            <option value="afternoon">Afternoon (12PM - 5PM)</option>
-                            <option value="evening">Evening (5PM - 8PM)</option>
-                          </select>
-                        </div>
-
-                        <div>
-                          <label htmlFor="timezone" className="block text-sm font-medium text-slate-700 mb-2">
-                            Timezone
-                          </label>
-                          <select
-                            id="timezone"
-                            value={formData.timezone}
-                            onChange={(e) => setFormData(prev => ({ ...prev, timezone: e.target.value }))}
-                            className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#0A2540] focus:border-transparent transition-colors bg-white"
-                          >
-                            <option value="">Select timezone</option>
-                            <option value="EST">Eastern (EST/EDT)</option>
-                            <option value="CST">Central (CST/CDT)</option>
-                            <option value="MST">Mountain (MST/MDT)</option>
-                            <option value="PST">Pacific (PST/PDT)</option>
-                          </select>
-                        </div>
-                      </div>
-                    )}
-
-                    <div>
-                      <label htmlFor="message" className="block text-sm font-medium text-slate-700 mb-2">
-                        Brief Description of Your Needs
-                      </label>
-                      <textarea
-                        id="message"
-                        rows={4}
-                        value={formData.message}
-                        onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
-                        className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#0A2540] focus:border-transparent transition-colors resize-vertical bg-white"
-                        placeholder="Tell us about your business goals and what you're hoping to achieve..."
+                    {/* Calendly Widget Column */}
+                    <div className="lg:col-span-3">
+                      <div 
+                        id="calendly-widget-consultation"
+                        className="calendly-inline-widget" 
+                        data-url="https://calendly.com/contact-strivetg/30min?hide_event_type_details=1&hide_gdpr_banner=1&primary_color=0f1c2b" 
+                        style={{ minWidth: '320px', height: '600px' }}
                       />
                     </div>
-
-                          <CleanButton type="submit" aria="Submit consultation request" className="w-full">
-                            Request 30 Minute Consultation
-                          </CleanButton>
-                        </form>
-                      </>
-                    )}
                   </div>
-                </MotionWrapper>
-              )}
+                </div>
+              </MotionWrapper>
             </div>
           </Container>
         </div>
