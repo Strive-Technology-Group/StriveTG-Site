@@ -143,7 +143,7 @@ export default function Consultation() {
                 Consultation Request Received!
               </h2>
               <p className="text-lg text-slate-600 mb-6">
-                Thank you for booking your consultation! You should receive a confirmation email shortly with all the details for your upcoming meeting.
+                Thank you for booking your consultation! You should receive a confirmation email shortly with all the details for your upcoming phone call.
               </p>
               <p className="text-slate-600 mb-8">
                 Come prepared to discuss your business goals, current challenges, and what success looks like for your company.
@@ -209,7 +209,7 @@ export default function Consultation() {
                   Schedule Your Free Consultation
                 </h2>
                 <p className="text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
-                  Book a 30-minute consultation to discuss your business goals and discover how we can help you scale with the right technology solutions.
+                  Book a 30-minute phone consultation to discuss your business goals and discover how we can help you scale with the right technology solutions.
                 </p>
               </div>
 

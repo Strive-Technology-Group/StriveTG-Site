@@ -342,7 +342,7 @@ export default function Contact() {
                       Ready to Get Started?
                     </h3>
                     <p className="text-slate-600 mb-6">
-                      Skip the form and book a 30-minute consultation directly. We'll discuss your needs and provide a custom solution.
+                      Skip the form and book a 30-minute phone consultation directly. We'll discuss your needs and provide a custom solution.
                     </p>
                     <CleanButton 
                       href="/consultation" 
@@ -531,7 +531,7 @@ export default function Contact() {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
             <div className="flex justify-between items-center p-6 border-b border-slate-200">
-              <h3 className="text-2xl font-bold text-slate-900">Book Your 30 Min Consultation</h3>
+              <h3 className="text-2xl font-bold text-slate-900">Book Your 30 Min Phone Consultation</h3>
               <button
                 onClick={() => {
                   setShowCalendly(false);
