@@ -184,7 +184,10 @@ export default function Contact() {
                 In the meantime, feel free to check out our services or schedule a free consultation call.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <CleanButton href="/consultation" aria="Book free consultation">
+                <CleanButton 
+                  onClick={() => setShowCalendly(true)} 
+                  aria="Book free consultation"
+                >
                   Book Free Consultation
                 </CleanButton>
                 <CleanButton href="/services" aria="View our services">
@@ -342,7 +345,7 @@ export default function Contact() {
                       Skip the form and book a 30-minute consultation directly. We'll discuss your needs and provide a custom solution.
                     </p>
                     <CleanButton 
-                      onClick={() => setShowCalendly(true)} 
+                      href="/consultation" 
                       aria="Book consultation" 
                       className="w-full mb-4"
                     >
@@ -510,7 +513,11 @@ export default function Contact() {
                 <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
                   Join successful businesses that have transformed their operations with our proven technology solutions.
                 </p>
-                <CleanButton href="/consultation" aria="Book free consultation" isDark={true}>
+                <CleanButton 
+                  onClick={() => setShowCalendly(true)} 
+                  aria="Book free consultation" 
+                  isDark={true}
+                >
                   Book Free Consultation
                 </CleanButton>
               </div>
@@ -524,7 +531,7 @@ export default function Contact() {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
             <div className="flex justify-between items-center p-6 border-b border-slate-200">
-              <h3 className="text-2xl font-bold text-slate-900">Schedule a Call</h3>
+              <h3 className="text-2xl font-bold text-slate-900">Book Your 30 Min Consultation</h3>
               <button
                 onClick={() => {
                   setShowCalendly(false);
