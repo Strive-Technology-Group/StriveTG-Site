@@ -96,7 +96,6 @@ export default function Consultation() {
     message: ''
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [showCalendly, setShowCalendly] = useState(false);
 
   // Load Calendly script
   useEffect(() => {
@@ -118,9 +117,9 @@ export default function Consultation() {
     };
   }, []);
 
-  // Initialize Calendly widget when modal opens
+  // Initialize Calendly widget when meeting option is selected
   useEffect(() => {
-    if (showCalendly) {
+    if (selectedOption === 'meeting') {
       // Wait for script to load and DOM to be ready
       const initWidget = () => {
         const widget = document.querySelector('#calendly-widget-consultation');
@@ -139,7 +138,7 @@ export default function Consultation() {
       
       setTimeout(initWidget, 100);
     }
-  }, [showCalendly]);
+  }, [selectedOption]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -245,7 +244,6 @@ export default function Consultation() {
                     }`}
                     onClick={() => {
                       setSelectedOption('meeting');
-                      setShowCalendly(true);
                     }}
                   >
                     <div className="text-center relative z-10">
@@ -332,15 +330,28 @@ export default function Consultation() {
                 </MotionStaggerChild>
               </MotionStagger>
 
-              {/* Form */}
+              {/* Form or Calendly Widget */}
               {selectedOption && (
                 <MotionWrapper direction="up">
                   <div className="bg-slate-50 border border-slate-200 rounded-2xl p-8 shadow-lg">
-                    <h3 className="text-2xl font-bold text-slate-900 mb-6 tracking-tight">
-                      {selectedOption === 'meeting' ? 'Meeting Request Details' : 'Phone Call Request Details'}
-                    </h3>
-                  
-                  <form onSubmit={handleSubmit} className="space-y-6">
+                    {selectedOption === 'meeting' ? (
+                      <>
+                        <h3 className="text-2xl font-bold text-slate-900 mb-6 tracking-tight">
+                          Schedule Your Meeting
+                        </h3>
+                        <div 
+                          id="calendly-widget-consultation"
+                          className="calendly-inline-widget" 
+                          data-url="https://calendly.com/contact-strivetg/30min?hide_event_type_details=1&hide_gdpr_banner=1" 
+                          style={{ minWidth: '320px', height: '700px' }}
+                        />
+                      </>
+                    ) : (
+                      <>
+                        <h3 className="text-2xl font-bold text-slate-900 mb-6 tracking-tight">
+                          Phone Call Request Details
+                        </h3>
+                        <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
                         <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-2">
@@ -459,10 +470,12 @@ export default function Consultation() {
                       />
                     </div>
 
-                    <CleanButton type="submit" aria="Submit consultation request" className="w-full">
-                      {selectedOption === 'meeting' ? 'Request Meeting Link' : 'Request Phone Call'}
-                    </CleanButton>
-                  </form>
+                          <CleanButton type="submit" aria="Submit consultation request" className="w-full">
+                            Request Phone Call
+                          </CleanButton>
+                        </form>
+                      </>
+                    )}
                   </div>
                 </MotionWrapper>
               )}
@@ -536,42 +549,7 @@ export default function Consultation() {
         </div>
       </section>
 
-      {/* Calendly Modal */}
-      {showCalendly && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
-            <div className="flex justify-between items-center p-6 border-b border-slate-200">
-              <h3 className="text-2xl font-bold text-slate-900">Schedule Your Consultation</h3>
-              <button
-                onClick={() => {
-                  setShowCalendly(false);
-                  // Clear the widget content when closing
-                  setTimeout(() => {
-                    const widget = document.querySelector('#calendly-widget-consultation');
-                    if (widget) {
-                      widget.innerHTML = '';
-                    }
-                  }, 100);
-                }}
-                className="text-slate-400 hover:text-slate-600 transition-colors"
-                aria-label="Close modal"
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
-            <div className="p-6">
-              <div 
-                id="calendly-widget-consultation"
-                className="calendly-inline-widget" 
-                data-url="https://calendly.com/contact-strivetg/30min?hide_event_type_details=1&hide_gdpr_banner=1" 
-                style={{ minWidth: '320px', height: '700px' }}
-              />
-            </div>
-          </div>
-        </div>
-      )}
+
     </main>
   );
 }
