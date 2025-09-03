@@ -287,8 +287,8 @@ export default function About() {
                 <CleanButton href="/consultation" aria="Book free consultation" isDark={true}>
                   Book Free Consultation
                 </CleanButton>
-                <CleanButton href="/contact" aria="Send us a message" isDark={true}>
-                  Send Us a Message
+                <CleanButton href="/contact" aria="Contact us" isDark={true}>
+                  Contact Us
                 </CleanButton>
               </div>
             </div>

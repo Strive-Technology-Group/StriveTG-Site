@@ -286,7 +286,7 @@ export default function Consultation() {
         </div>
       </section>
 
-      {/* Request a Quote Section - Light Gray (index 1) */}
+      {/* Get In Touch Section - Light Gray (index 1) */}
       <section className="bg-slate-100">
         <div className="py-14 md:py-20">
           <Container>

@@ -62,7 +62,7 @@ export default function Home() {
                 >
                   <div className="absolute inset-0 bg-white translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-400 ease-out" />
                   <span className="relative z-10 tracking-wide transition-all duration-400 text-white group-hover:text-[#0A2540]">
-                    Request a Quote
+                    Get In Touch
                   </span>
                   <svg 
                     className="w-5 h-5 transition-all duration-400 group-hover:translate-x-1 relative z-10 text-white group-hover:text-[#0A2540]"
@@ -428,14 +428,14 @@ export default function Home() {
             </a>
             <a
               href="/contact"
-              aria-label="Request a quote"
+              aria-label="Contact us"
               className="group inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 font-semibold text-lg
                        bg-transparent border-2 border-[#0A2540] text-[#0A2540] focus-visible:ring-[#0A2540] shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:scale-[1.02]
                        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 relative overflow-hidden"
             >
               <div className="absolute inset-0 bg-[#0A2540] translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-400 ease-out" />
               <span className="relative z-10 tracking-wide transition-all duration-400 text-[#0A2540] group-hover:text-white">
-                Request a Quote
+                Contact Us
               </span>
               <svg 
                 className="w-5 h-5 transition-all duration-400 group-hover:translate-x-1 relative z-10 text-[#0A2540] group-hover:text-white"
