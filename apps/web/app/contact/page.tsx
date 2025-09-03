@@ -85,13 +85,6 @@ function CleanButton({
 }
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    business: '',
-    services: [] as string[],
-    message: ''
-  });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [showCalendly, setShowCalendly] = useState(false);
 
@@ -138,30 +131,7 @@ export default function Contact() {
     }
   }, [showCalendly]);
 
-  const services = [
-    'Website Development & Hosting',
-    'Website Upkeep & Support',
-    'Search & Visibility Suite',
-    'Insight Analytics Pipelines',
-    'AI Automation'
-  ];
 
-  const handleServiceChange = (service: string) => {
-    setFormData(prev => ({
-      ...prev,
-      services: prev.services.includes(service)
-        ? prev.services.filter(s => s !== service)
-        : [...prev.services, service]
-    }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    // Here you would typically send the form data to your backend
-    console.log('Form submitted:', formData);
-    setIsSubmitted(true);
-  };
 
   if (isSubmitted) {
     return (
@@ -243,96 +213,77 @@ export default function Contact() {
           <Container>
             <div className="max-w-5xl mx-auto">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                {/* Contact Form */}
+                {/* Email Contact Information */}
                 <div className="bg-slate-50 border border-slate-200 rounded-2xl p-8">
                   <h2 className="text-2xl font-bold text-slate-900 mb-6 tracking-tight">
-                    Send Us a Message
+                    Get In Touch
                   </h2>
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-2">
-                        Full Name *
-                      </label>
-                      <input
-                        type="text"
-                        id="name"
-                        required
-                        value={formData.name}
-                        onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-                        className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#0A2540] focus:border-transparent transition-colors bg-white"
-                        placeholder="John Smith"
-                      />
-                    </div>
-
-                    <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-2">
-                        Email Address *
-                      </label>
-                      <input
-                        type="email"
-                        id="email"
-                        required
-                        value={formData.email}
-                        onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-                        className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#0A2540] focus:border-transparent transition-colors bg-white"
-                        placeholder="john@company.com"
-                      />
-                    </div>
-
-                    <div>
-                      <label htmlFor="business" className="block text-sm font-medium text-slate-700 mb-2">
-                        Business Name
-                      </label>
-                      <input
-                        type="text"
-                        id="business"
-                        value={formData.business}
-                        onChange={(e) => setFormData(prev => ({ ...prev, business: e.target.value }))}
-                        className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#0A2540] focus:border-transparent transition-colors bg-white"
-                        placeholder="ABC Company"
-                      />
-                    </div>
-
-
-
-                    <div>
-                      <label className="block text-sm font-medium text-slate-700 mb-3">
-                        Services Interested In
-                      </label>
-                      <div className="space-y-3">
-                        {services.map((service) => (
-                          <label key={service} className="flex items-center space-x-3 cursor-pointer">
-                            <input
-                              type="checkbox"
-                              checked={formData.services.includes(service)}
-                              onChange={() => handleServiceChange(service)}
-                              className="w-4 h-4 text-[#0A2540] border-slate-300 rounded focus:ring-[#0A2540]"
-                            />
-                            <span className="text-sm text-slate-700">{service}</span>
-                          </label>
-                        ))}
+                  <p className="text-lg text-slate-600 mb-8 leading-relaxed">
+                    Ready to discuss your project? Email us directly at{' '}
+                    <a 
+                      href="mailto:contact@strivetg.com" 
+                      className="font-semibold text-[#0A2540] hover:text-[#0E1B2B] transition-colors underline decoration-2 underline-offset-2"
+                    >
+                      contact@strivetg.com
+                    </a>
+                  </p>
+                  
+                  <div className="space-y-6 mb-8">
+                    <div className="flex items-start space-x-4">
+                      <div className="w-8 h-8 bg-[#0A2540] rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                        <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-slate-900 mb-2">Email Us</h3>
+                        <p className="text-slate-600 mb-3">Send us your project details, questions, or schedule a call.</p>
+                        <a
+                          href="mailto:contact@strivetg.com?subject=Project Inquiry&body=Hi! I'd like to discuss a project with you.%0A%0ABusiness Name:%0AIndustry:%0AProject Description:%0AServices Needed:%0ATimeline:"
+                          className="inline-flex items-center gap-2 text-[#0A2540] hover:text-[#0E1B2B] font-medium transition-colors"
+                        >
+                          <span>contact@strivetg.com</span>
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </a>
                       </div>
                     </div>
 
-                    <div>
-                      <label htmlFor="message" className="block text-sm font-medium text-slate-700 mb-2">
-                        Project Details *
-                      </label>
-                      <textarea
-                        id="message"
-                        required
-                        rows={5}
-                        value={formData.message}
-                        onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
-                        className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#0A2540] focus:border-transparent transition-colors resize-vertical bg-white"
-                        placeholder="Tell us about your business goals, current challenges, and what you're looking to achieve..."
-                      />
+                    <div className="flex items-start space-x-4">
+                      <div className="w-8 h-8 bg-[#0A2540] rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                        <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-slate-900 mb-2">Response Time</h3>
+                        <p className="text-slate-600">We typically respond within 24 hours during business days.</p>
+                      </div>
                     </div>
+                  </div>
 
-                    <CleanButton type="submit" aria="Submit contact form" className="w-full">
-                      Send Message
-                    </CleanButton>
-                  </form>
+                  <div className="bg-white rounded-lg p-6 border border-slate-200">
+                    <h4 className="font-semibold text-slate-900 mb-3">Include in your message:</h4>
+                    <ul className="space-y-2 text-sm text-slate-600">
+                      <li className="flex items-center space-x-2">
+                        <div className="w-1.5 h-1.5 bg-[#0A2540] rounded-full"></div>
+                        <span>Your business name and industry</span>
+                      </li>
+                      <li className="flex items-center space-x-2">
+                        <div className="w-1.5 h-1.5 bg-[#0A2540] rounded-full"></div>
+                        <span>Services you're interested in</span>
+                      </li>
+                      <li className="flex items-center space-x-2">
+                        <div className="w-1.5 h-1.5 bg-[#0A2540] rounded-full"></div>
+                        <span>Project goals and timeline</span>
+                      </li>
+                      <li className="flex items-center space-x-2">
+                        <div className="w-1.5 h-1.5 bg-[#0A2540] rounded-full"></div>
+                        <span>Budget range (if known)</span>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
 
                 {/* Contact Info & CTA */}
@@ -342,7 +293,7 @@ export default function Contact() {
                       Ready to Get Started?
                     </h3>
                     <p className="text-slate-600 mb-6">
-                      Skip the form and book a 30-minute phone consultation directly. We'll discuss your needs and provide a custom solution.
+                      Book a 30-minute phone consultation to discuss your needs and get a custom solution tailored to your business.
                     </p>
                     <CleanButton 
                       href="/consultation" 
@@ -352,7 +303,7 @@ export default function Contact() {
                       Book 30 Min Consultation
                     </CleanButton>
                     <p className="text-sm text-slate-500 text-center">
-                      Or fill out the form if you prefer to start with a message.
+                      Or send us an email if you prefer to start with a message.
                     </p>
                   </div>
 

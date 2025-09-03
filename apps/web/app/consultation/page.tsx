@@ -286,9 +286,177 @@ export default function Consultation() {
         </div>
       </section>
 
+      {/* Request a Quote Section - Light Gray (index 1) */}
+      <section className="bg-slate-100">
+        <div className="py-14 md:py-20">
+          <Container>
+            <div className="max-w-4xl mx-auto">
+              <div className="text-center mb-12">
+                <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6 tracking-tight">
+                  Prefer to Start with a Quote?
+                </h2>
+                <p className="text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
+                  Get a detailed project estimate and timeline without a consultation call. Perfect for well-defined projects or formal procurement processes.
+                </p>
+              </div>
 
+              <MotionWrapper direction="up">
+                <div className="bg-white border border-slate-200 rounded-2xl shadow-lg overflow-hidden">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+                    {/* Email Contact Section */}
+                    <div className="p-8 flex flex-col justify-center">
+                      <h3 className="text-2xl font-bold text-slate-900 mb-6 tracking-tight">
+                        Request Your Quote via Email
+                      </h3>
+                      <p className="text-lg text-slate-600 mb-8 leading-relaxed">
+                        For a detailed project quote, please email us at{' '}
+                        <a 
+                          href="mailto:contact@strivetg.com" 
+                          className="font-semibold text-[#0A2540] hover:text-[#0E1B2B] transition-colors underline decoration-2 underline-offset-2"
+                        >
+                          contact@strivetg.com
+                        </a>{' '}
+                        with your project details.
+                      </p>
+                      
+                      <div className="bg-slate-50 rounded-lg p-6 mb-8">
+                        <h4 className="font-semibold text-slate-900 mb-4">Please include in your email:</h4>
+                        <ul className="space-y-3 text-slate-600">
+                          <li className="flex items-start space-x-3">
+                            <div className="w-5 h-5 bg-[#0A2540] rounded-full flex items-center justify-center mt-0.5 flex-shrink-0">
+                              <span className="text-white text-xs font-bold">1</span>
+                            </div>
+                            <span>Your business name and industry</span>
+                          </li>
+                          <li className="flex items-start space-x-3">
+                            <div className="w-5 h-5 bg-[#0A2540] rounded-full flex items-center justify-center mt-0.5 flex-shrink-0">
+                              <span className="text-white text-xs font-bold">2</span>
+                            </div>
+                            <span>Which services you're interested in</span>
+                          </li>
+                          <li className="flex items-start space-x-3">
+                            <div className="w-5 h-5 bg-[#0A2540] rounded-full flex items-center justify-center mt-0.5 flex-shrink-0">
+                              <span className="text-white text-xs font-bold">3</span>
+                            </div>
+                            <span>Project goals and requirements</span>
+                          </li>
+                          <li className="flex items-start space-x-3">
+                            <div className="w-5 h-5 bg-[#0A2540] rounded-full flex items-center justify-center mt-0.5 flex-shrink-0">
+                              <span className="text-white text-xs font-bold">4</span>
+                            </div>
+                            <span>Budget range and timeline (if known)</span>
+                          </li>
+                        </ul>
+                      </div>
 
+                      <div className="flex flex-col sm:flex-row gap-4">
+                        <a
+                          href="mailto:contact@strivetg.com?subject=Quote Request&body=Hi! I'd like to request a quote for my project.%0A%0ABusiness Name:%0AIndustry:%0AServices Interested In:%0AProject Description:%0ABudget Range:%0ATimeline:"
+                          className="group inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 font-semibold text-lg
+                                   bg-[#0A2540] border-2 border-[#0A2540] text-white focus-visible:ring-[#0A2540] shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:scale-[1.02]
+                                   focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 relative overflow-hidden"
+                        >
+                          <div className="absolute inset-0 bg-white translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-400 ease-out" />
+                          <span className="relative z-10 tracking-wide transition-all duration-400 text-white group-hover:text-[#0A2540]">
+                            Send Email
+                          </span>
+                          <svg 
+                            className="w-5 h-5 transition-all duration-400 group-hover:translate-x-1 relative z-10 text-white group-hover:text-[#0A2540]"
+                            fill="none" 
+                            stroke="currentColor" 
+                            viewBox="0 0 24 24"
+                          >
+                            <path 
+                              strokeLinecap="round" 
+                              strokeLinejoin="round" 
+                              strokeWidth={2} 
+                              d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" 
+                            />
+                          </svg>
+                        </a>
+                        <CleanButton href="/contact" aria="Contact us for more information">
+                          More Contact Options
+                        </CleanButton>
+                      </div>
+                    </div>
 
+                    {/* Quote Benefits */}
+                    <div className="bg-slate-50 p-8 flex flex-col justify-center">
+                      <h3 className="text-xl font-bold text-slate-900 mb-6 tracking-tight">
+                        What You'll Receive:
+                      </h3>
+                      <ul className="space-y-4">
+                        <li className="flex items-start space-x-3">
+                          <div className="w-6 h-6 bg-[#0A2540] rounded-full flex items-center justify-center mt-0.5">
+                            <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                            </svg>
+                          </div>
+                          <div>
+                            <span className="font-semibold text-slate-900">Detailed Scope Document</span>
+                            <p className="text-sm text-slate-600 mt-1">Comprehensive breakdown of deliverables and requirements</p>
+                          </div>
+                        </li>
+                        <li className="flex items-start space-x-3">
+                          <div className="w-6 h-6 bg-[#0A2540] rounded-full flex items-center justify-center mt-0.5">
+                            <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                            </svg>
+                          </div>
+                          <div>
+                            <span className="font-semibold text-slate-900">Fixed-Price Estimate</span>
+                            <p className="text-sm text-slate-600 mt-1">Transparent pricing with no hidden costs or surprises</p>
+                          </div>
+                        </li>
+                        <li className="flex items-start space-x-3">
+                          <div className="w-6 h-6 bg-[#0A2540] rounded-full flex items-center justify-center mt-0.5">
+                            <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                            </svg>
+                          </div>
+                          <div>
+                            <span className="font-semibold text-slate-900">Project Timeline</span>
+                            <p className="text-sm text-slate-600 mt-1">Realistic milestones and delivery schedule</p>
+                          </div>
+                        </li>
+                        <li className="flex items-start space-x-3">
+                          <div className="w-6 h-6 bg-[#0A2540] rounded-full flex items-center justify-center mt-0.5">
+                            <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                            </svg>
+                          </div>
+                          <div>
+                            <span className="font-semibold text-slate-900">Technical Architecture</span>
+                            <p className="text-sm text-slate-600 mt-1">High-level system design and technology recommendations</p>
+                          </div>
+                        </li>
+                        <li className="flex items-start space-x-3">
+                          <div className="w-6 h-6 bg-[#0A2540] rounded-full flex items-center justify-center mt-0.5">
+                            <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                            </svg>
+                          </div>
+                          <div>
+                            <span className="font-semibold text-slate-900">Risk Assessment</span>
+                            <p className="text-sm text-slate-600 mt-1">Potential challenges and mitigation strategies</p>
+                          </div>
+                        </li>
+                      </ul>
+
+                      <div className="mt-8 p-4 bg-white rounded-lg border border-slate-200">
+                        <p className="text-sm text-slate-600 text-center">
+                          <span className="font-semibold text-slate-900">Typical Response Time:</span><br />
+                          2-3 business days for comprehensive quotes
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </MotionWrapper>
+            </div>
+          </Container>
+        </div>
+      </section>
     </main>
   );
 }
