@@ -353,16 +353,7 @@ export default function PremiumCompare() {
           </div>
         </div>
 
-        {/* Progressive Disclosure Link */}
-        <div className="text-center animate-fade-in-up delay-400">
-          <button
-            onClick={() => setIsModalOpen(true)}
-            className="group inline-flex items-center gap-2 text-slate-400 hover:text-white transition-colors duration-200 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-white/20 rounded-lg px-3 py-2"
-          >
-            See full comparison
-            <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </button>
-        </div>
+
       </div>
 
       {/* Modal */}
