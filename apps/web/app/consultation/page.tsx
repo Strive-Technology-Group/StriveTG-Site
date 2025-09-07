@@ -349,35 +349,6 @@ export default function Consultation() {
                         </ul>
                       </div>
 
-                      <div className="flex flex-col sm:flex-row gap-4">
-                        <a
-                          href="mailto:contact@strivetg.com?subject=Quote Request&body=Hi! I'd like to request a quote for my project.%0A%0ABusiness Name:%0AIndustry:%0AServices Interested In:%0AProject Description:%0ABudget Range:%0ATimeline:"
-                          className="group inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 font-semibold text-lg
-                                   bg-[#0A2540] border-2 border-[#0A2540] text-white focus-visible:ring-[#0A2540] shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:scale-[1.02]
-                                   focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 relative overflow-hidden"
-                        >
-                          <div className="absolute inset-0 bg-white translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-400 ease-out" />
-                          <span className="relative z-10 tracking-wide transition-all duration-400 text-white group-hover:text-[#0A2540]">
-                            Send Email
-                          </span>
-                          <svg 
-                            className="w-5 h-5 transition-all duration-400 group-hover:translate-x-1 relative z-10 text-white group-hover:text-[#0A2540]"
-                            fill="none" 
-                            stroke="currentColor" 
-                            viewBox="0 0 24 24"
-                          >
-                            <path 
-                              strokeLinecap="round" 
-                              strokeLinejoin="round" 
-                              strokeWidth={2} 
-                              d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" 
-                            />
-                          </svg>
-                        </a>
-                        <CleanButton href="/contact" aria="Contact us for more information">
-                          More Contact Options
-                        </CleanButton>
-                      </div>
                     </div>
 
                     {/* Quote Benefits */}
