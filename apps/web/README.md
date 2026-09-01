@@ -1,51 +1,18 @@
-# Strive Technology Group Website
+# Strive web application
 
-Professional marketing website for Strive Technology Group - providing tech solutions for small and mid-sized businesses.
+The public Strive Technology Group marketing site is a statically rendered Next.js App Router application. It serves `/`, `/services`, `/work`, `/about`, `/faq`, `/contact`, `/consultation`, `/privacy`, and `/terms`, plus generated `/sitemap.xml`, `/robots.txt`, and Open Graph image output.
 
-## Features
-
-- **Modern Design**: Built with Next.js 15, Tailwind CSS v3, and TypeScript
-- **Responsive**: Mobile-first design that works on all devices  
-- **Performance**: Optimized for speed with SSG and modern best practices
-- **SEO Optimized**: Proper meta tags, structured data, and semantic HTML
-- **Professional**: Clean, modern design inspired by leading tech companies
-
-## Tech Stack
-
-- **Framework**: Next.js 15 (App Router)
-- **Styling**: Tailwind CSS v3
-- **Language**: TypeScript
-- **Fonts**: Inter & Poppins (Google Fonts)
-- **Package Manager**: pnpm
-- **Monorepo**: Turborepo
-
-## Development
+From the repository root:
 
 ```bash
-# Install dependencies
-pnpm install
-
-# Start development server
-pnpm dev
-
-# Build for production
-pnpm build
-
-# Start production server
-pnpm start
+pnpm --filter web dev
+pnpm --filter web lint
+pnpm --filter web check-types
+pnpm --filter web build
+pnpm --filter web check:assets
+pnpm --filter web test
 ```
 
-## Pages
+Shared facts and reusable public claims live in `app/lib/company.ts`. The navigation and Calendly dialog are the only primary client-interactive components. Calendly is click-to-load; email remains available when a visitor does not want to load the third-party scheduler.
 
-- `/` - Homepage with hero, services, and comparison
-- `/about` - Company mission and team information
-- `/services` - Detailed service offerings
-- `/pricing` - Custom pricing information
-- `/portfolio` - Case studies and examples
-- `/contact` - Contact form and information
-- `/consultation` - Booking page for consultations
-- `/blog` - Resources and insights
-
-## Contact
-
-For questions about this website or our services, visit [our contact page](http://localhost:3000/contact) or book a [free consultation](http://localhost:3000/consultation).
+See the root [`README.md`](../../README.md), [`CONTENT_REQUIRED.md`](../../CONTENT_REQUIRED.md), [`LEGAL_REVIEW_REQUIRED.md`](../../LEGAL_REVIEW_REQUIRED.md), and [`WEBSITE_AUDIT_AND_REDESIGN_REPORT.md`](../../WEBSITE_AUDIT_AND_REDESIGN_REPORT.md) for architecture, release gates, owner inputs, legal holds, and audit evidence.

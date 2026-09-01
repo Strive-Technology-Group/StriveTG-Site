@@ -1,197 +1,113 @@
 # Strive Technology Group Website
 
-> Professional marketing website for Strive Technology Group - Empowering small and mid-sized businesses with smart technology solutions.
+This repository contains the public marketing website for Strive Technology Group, a founder-led technology partner for growing service businesses. The site explains three connected outcomes: helping a business get found and convert, understand what is working, and remove repetitive work.
 
-## 🚀 About
+The public copy intentionally avoids unverified client results, testimonials, certifications, guarantees, pricing, support promises, and team claims. See [`CONTENT_REQUIRED.md`](./CONTENT_REQUIRED.md) for facts and proof the owner still needs to approve, and [`LEGAL_REVIEW_REQUIRED.md`](./LEGAL_REVIEW_REQUIRED.md) before treating the policy drafts as final.
 
-Strive Technology Group specializes in providing enterprise-grade technology solutions tailored for small and mid-sized businesses. Our website showcases our comprehensive service offerings and makes it easy for potential clients to get in touch.
+## What is implemented
 
-## 📋 Services Offered
+- Nine statically rendered public routes: `/`, `/services`, `/work`, `/about`, `/faq`, `/contact`, `/consultation`, `/privacy`, and `/terms`
+- A custom not-found page, generated sitemap and robots rules
+- Route-specific metadata, canonical URLs, Open Graph/Twitter metadata, and a generated social image
+- Truth-based Organization, Service, and FAQ structured data
+- One responsive design system built with React, Next.js, and CSS
+- Accessible desktop/mobile navigation, skip navigation, visible focus styles, and reduced-motion handling
+- A click-to-load Calendly dialog with keyboard containment, Escape close, focus restoration, origin-validated completion handling, and an email fallback
+- Automated route, link, accessibility, interaction, overflow, reduced-motion, and asset-budget checks
+- Security headers and a production dependency set with no known audit findings at the time of this handoff
 
-- **Website Development & Hosting** - Modern, scalable websites with subscription-based hosting
-- **Website Upkeep & Support** - Ongoing maintenance, monitoring, and dedicated support
-- **Search & Visibility Suite** - SEO optimization and AI search visibility (LLM Surge Service)
-- **Insight Analytics Pipelines** - Custom dashboards and business intelligence
-- **AI Automation** - Chatbots, workflow automation, and predictive insights
+The application does **not** include a CMS, database, authentication, customer portal, analytics tracker, first-party contact form, payment system, or background API. Email and Calendly are the only lead paths.
 
-## 🛠 Tech Stack
+## Technology
 
-### Frontend
-- **Framework**: Next.js 15 (App Router)
-- **Language**: TypeScript 5.9
-- **Styling**: Tailwind CSS v3
-- **Animations**: Framer Motion
-- **Icons**: Lucide React
-- **Fonts**: Inter & Poppins (Google Fonts)
+- Next.js 15.5.24, App Router
+- React and React DOM 19.1.9
+- TypeScript 5.9
+- Plain global CSS with a small token/component system
+- Turborepo and pnpm 9
+- ESLint 9
+- Playwright 1.62 and Axe for browser/accessibility tests
 
-### Development
-- **Monorepo**: Turborepo
-- **Package Manager**: pnpm
-- **Linting**: ESLint with custom configurations
-- **Type Checking**: TypeScript strict mode
+The site uses a system font stack and does not make a browser request to Google Fonts. The only intentional third-party browser integration is Calendly, and it loads after the visitor chooses to open the scheduler.
 
-### Architecture
-- **Rendering**: Static Site Generation (SSG) + Server-Side Rendering (SSR)
-- **Performance**: Optimized with Next.js Image, Font optimization, and Code splitting
-- **SEO**: Structured data, meta tags, and semantic HTML
-- **Accessibility**: WCAG 2.1 compliant with proper ARIA attributes
+## Repository structure
 
-## 📁 Project Structure
-
-```
+```text
 strivetg/
 ├── apps/
-│   └── web/                 # Main Next.js application
-│       ├── app/
-│       │   ├── components/  # Reusable React components
-│       │   ├── about/       # About page
-│       │   ├── services/    # Services page
-│       │   ├── contact/     # Contact page
-│       │   ├── consultation/ # Consultation booking
-│       │   ├── faq/         # FAQ page
-│       │   ├── pricing/     # Pricing information
-│       │   ├── portfolio/   # Portfolio showcase
-│       │   ├── blog/        # Blog/resources
-│       │   ├── privacy/     # Privacy policy
-│       │   ├── terms/       # Terms of service
-│       │   └── globals.css  # Global styles
-│       └── public/          # Static assets
+│   └── web/
+│       ├── app/                  # Routes, server components, and design system
+│       │   ├── components/       # Shared UI and isolated Calendly client component
+│       │   ├── lib/company.ts    # Canonical public company facts and reusable claims
+│       │   └── ...               # Public routes and SEO generators
+│       ├── public/               # Intentional light/dark logo variants and favicon
+│       ├── scripts/              # Asset-budget check
+│       └── tests/                # Playwright and Axe release checks
 ├── packages/
-│   ├── ui/                  # Shared UI components
-│   ├── eslint-config/       # ESLint configurations
-│   └── typescript-config/   # TypeScript configurations
-└── turbo.json              # Turborepo configuration
+│   ├── eslint-config/            # Shared lint configuration
+│   └── typescript-config/        # Shared TypeScript configuration
+├── docs/redesign/                # Before/after and route/viewport visual evidence
+├── CONTENT_REQUIRED.md           # Owner-supplied facts and proof still needed
+├── LEGAL_REVIEW_REQUIRED.md      # Policy decisions requiring counsel/owner approval
+└── WEBSITE_AUDIT_AND_REDESIGN_REPORT.md
 ```
 
-## 🚦 Getting Started
+## Local development
 
-### Prerequisites
-- Node.js 18+ 
-- pnpm (recommended) or npm
-
-### Installation
+Requirements: Node.js 20.9 or newer and pnpm 9.
 
 ```bash
-# Clone the repository
-git clone <repository-url>
-cd strivetg
-
-# Install dependencies
-pnpm install
-
-# Start development server
+pnpm install --frozen-lockfile
 pnpm dev
-
-# Open http://localhost:3000 in your browser
 ```
 
-### Development Commands
+The web application is available at `http://localhost:3000`.
+
+Useful commands:
 
 ```bash
-# Development
-pnpm dev                    # Start development server with Turbopack
-pnpm dev --filter=web       # Start only the web app
-
-# Building
-pnpm build                  # Build all packages
-pnpm build --filter=web     # Build only the web app
-
-# Linting & Type Checking
-pnpm lint                   # Run ESLint
-pnpm check-types           # Run TypeScript type checking
-
-# Production
-pnpm start                  # Start production server
+pnpm lint          # ESLint; warnings fail the gate
+pnpm check-types   # TypeScript without output
+pnpm build         # Production build
+pnpm check:assets  # Public-asset budget and forbidden-video check
+pnpm test          # Playwright route, link, Axe, interaction, and layout checks
+pnpm audit --prod  # Production dependency advisories
+pnpm verify        # Run every release gate above
 ```
 
-## 📱 Features
+Run `pnpm exec playwright install chromium` once if the Playwright browser is not already installed.
 
-### Design & UX
-- **Responsive Design**: Mobile-first approach with seamless desktop experience
-- **Professional Aesthetics**: Clean, modern design inspired by leading tech companies
-- **Smooth Animations**: Framer Motion powered transitions and micro-interactions
-- **Accessibility**: WCAG 2.1 AA compliant with proper focus management
+## Content architecture
 
-### Performance
-- **Core Web Vitals Optimized**: Excellent Lighthouse scores
-- **Image Optimization**: Next.js Image component with WebP support
-- **Font Optimization**: Google Fonts with display swap
-- **Code Splitting**: Automatic route-based code splitting
+Public company facts, navigation, service pillars, engagement steps, trust commitments, and FAQ answers are centralized in `apps/web/app/lib/company.ts`. Change shared claims there so pages and structured data remain consistent.
 
-### SEO & Analytics
-- **Meta Tags**: Dynamic meta tags for each page
-- **Structured Data**: JSON-LD schema markup
-- **Sitemap**: Auto-generated XML sitemap
-- **Open Graph**: Social media sharing optimization
+Static route content stays server-rendered. Client-side JavaScript is limited to interactions that need it: the responsive navigation and Calendly dialog.
 
-## 📞 Contact & Lead Generation
+## Contact and booking behavior
 
-The website uses a streamlined email-based contact system:
+- `contact@strivetg.com` is rendered as a direct `mailto:` path.
+- The site deliberately does not ship a nonfunctional contact form.
+- Calendly is not loaded globally. The iframe is inserted only after booking intent.
+- Loading Calendly introduces Calendly's own privacy, cookie, and subprocessor behavior; the page offers email as an alternative.
+- The site does not state a response-time guarantee.
 
-- **Primary Contact**: contact@strivetg.com
-- **Consultation Booking**: Calendly integration for 30-minute consultations
-- **Pre-filled Email Templates**: Professional email templates for different inquiries
-- **Response Time**: 24-hour response commitment during business days
+## Security and release notes
 
-## 🔧 Customization
+The application defines a Content Security Policy and other browser security headers in `apps/web/next.config.js`. The policy allows Calendly frames only from the required origins. Strict Transport Security is intentionally not enabled in repository configuration until HTTPS behavior for the production hostname and all relevant subdomains is confirmed.
 
-### Brand Colors
-```css
-:root {
-  --primary: #0A2540;      /* Navy Blue */
-  --secondary: #F5F5F7;    /* Light Gray */
-  --accent-blue: #2563EB;  /* Blue */
-  --accent-teal: #14B8A6;  /* Teal */
-  --accent-purple: #7C3AED; /* Purple */
-}
-```
+Do not infer formal compliance, penetration testing, uptime guarantees, Core Web Vitals results, or a Lighthouse score from the automated checks in this repository.
 
-### Typography
-- **Primary Font**: Inter (UI text, body content)
-- **Display Font**: Poppins (headings, emphasis)
-- **Font Weights**: 400, 500, 600, 700, 800
+## Deployment checklist
 
-## 🚀 Deployment
+Before production release:
 
-The website is optimized for deployment on:
-- **Vercel** (recommended for Next.js)
-- **Netlify**
-- **AWS Amplify**
-- **Traditional hosting** (with Node.js support)
+1. Review and approve every item in `CONTENT_REQUIRED.md`.
+2. Have qualified counsel review `LEGAL_REVIEW_REQUIRED.md`, `/privacy`, and `/terms`.
+3. Confirm the canonical production hostname is `https://strivetg.com` and decide whether `www` redirects to it.
+4. Confirm `contact@strivetg.com` and the configured Calendly event are controlled, monitored, and correct.
+5. Re-run `pnpm install --frozen-lockfile` and `pnpm verify` on the release commit.
+6. Preview the production deployment and check all nine routes, the 404, email links, sitemap, robots file, social image, and Calendly booking path.
+7. Confirm security headers in the deployed response and add HSTS only after HTTPS/subdomain readiness is verified.
+8. Obtain explicit owner approval before publishing any biography, portrait, testimonial, case study, metric, pricing, office location, phone number, or external profile.
 
-### Build Output
-- Static pages where possible
-- Server-side rendering for dynamic content
-- Optimized assets with automatic compression
-
-## 📈 Performance Metrics
-
-Target metrics:
-- **Lighthouse Performance**: 95+
-- **First Contentful Paint**: < 1.5s
-- **Largest Contentful Paint**: < 2.5s
-- **Cumulative Layout Shift**: < 0.1
-
-## 🤝 Contributing
-
-This is a private business website. For internal development:
-
-1. Create a feature branch
-2. Make your changes
-3. Run linting and type checking
-4. Test on multiple devices
-5. Submit for review
-
-## 📄 License
-
-Private and proprietary. All rights reserved by Strive Technology Group.
-
-## 📞 Support
-
-For technical questions about this website:
-- **Email**: contact@strivetg.com
-- **Consultation**: [Book a free 30-minute call](https://calendly.com/contact-strivetg/30min)
-
----
-
-**Strive Technology Group** - Transform Your Business with Smart Technology
+This repository is private and proprietary unless the owner documents a different license.
