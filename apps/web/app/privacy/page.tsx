@@ -1,277 +1,159 @@
-import React from 'react';
-import { Metadata } from 'next';
-import { MotionWrapper } from '../components/MotionWrapper';
+import type { Metadata } from "next";
+import { PageHero } from "../components/PageHero";
+import { Section } from "../components/Section";
+import { company } from "../lib/company";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Strive Technology Group",
-  description: "Learn how Strive Technology Group protects and handles your personal information. Our comprehensive privacy policy explains our data collection and usage practices.",
-  keywords: "privacy policy, data protection, information security, Strive Technology Group",
+  title: "Privacy",
+  description:
+    "Working privacy disclosure for the Strive Technology Group website, email contact path, hosting logs, and click-to-load Calendly booking.",
+  alternates: { canonical: "/privacy" },
+  robots: { index: true, follow: true },
 };
 
-export default function PrivacyPolicyPage() {
+export default function PrivacyPage() {
   return (
-    <div className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <section className="relative bg-[#0E1B2B] text-white overflow-hidden">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="py-16 md:py-24 text-center">
-            <div className="mx-auto max-w-4xl">
-              <MotionWrapper direction="fade">
-                <h1 className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tight text-balance mb-6">
-                  Privacy Policy
-                </h1>
-                <p className="text-lg md:text-xl text-slate-300 font-light leading-relaxed mb-4 max-w-2xl mx-auto">
-                  Your privacy matters to us. Learn how we protect and handle your information.
-                </p>
-                <p className="text-sm text-slate-400 leading-relaxed">
-                  Last Updated: August 28, 2025
-                </p>
-              </MotionWrapper>
-            </div>
+    <>
+      <PageHero
+        eyebrow="Privacy"
+        title="A plain-language working privacy draft."
+        intro="This disclosure is written to match the current website behavior. It still requires owner confirmation and professional legal review before production publication."
+      />
+      <Section tone="light">
+        <div className="legal-content">
+          <div className="legal-notice">
+            <strong>Review status:</strong> Working draft dated August 31, 2026.
+            Confirm the legal entity, hosting provider, retention practices,
+            processor terms, and applicable-law requirements with qualified
+            counsel before deployment.
           </div>
+
+          <section>
+            <h2>1. What this site does</h2>
+            <p>
+              This is a public marketing website for {company.name}. It does not
+              currently provide user accounts, a customer portal, online
+              payments, a first-party contact form, advertising pixels, or a
+              first-party analytics product.
+            </p>
+            <p>
+              The site provides two ways to contact Strive: send an email using
+              your own email provider, or choose to load Calendly and book a fit
+              call.
+            </p>
+          </section>
+
+          <section>
+            <h2>2. Information that may be processed</h2>
+            <h3>When you browse</h3>
+            <p>
+              The hosting and network providers that deliver the site may
+              process technical request information such as an IP address,
+              browser or device details, requested pages, timestamps, and
+              security or diagnostic logs. The exact provider and retention
+              settings must be confirmed before deployment.
+            </p>
+            <h3>When you email</h3>
+            <p>
+              If you email Strive, the email address, message, attachments, and
+              any information you choose to include are processed to review and
+              respond to the inquiry and to maintain relevant business records.
+            </p>
+            <h3>When you open the booking scheduler</h3>
+            <p>
+              Calendly is not loaded globally. It loads only after you select
+              “Open secure booking” on the consultation page. Calendly may then
+              process booking details, technical data, and cookies under its own
+              terms and privacy practices. Do not include sensitive information
+              that is not needed to schedule the call.
+            </p>
+          </section>
+
+          <section>
+            <h2>3. Cookies and third parties</h2>
+            <p>
+              The current Strive code does not set a first-party marketing or
+              analytics cookie. The website uses a local/system font stack and
+              does not make a browser request to Google Fonts.
+            </p>
+            <p>
+              If you choose to load the Calendly frame, Calendly may use its own
+              storage, cookies, and subprocessors. Review{" "}
+              <a href="https://calendly.com/privacy">
+                Calendly’s privacy policy
+              </a>{" "}
+              before using the scheduler if you need more detail. You can use
+              email instead.
+            </p>
+          </section>
+
+          <section>
+            <h2>4. How information is used</h2>
+            <ul>
+              <li>To deliver and secure the website</li>
+              <li>To understand and respond to an inquiry you send</li>
+              <li>To schedule and prepare for a call you request</li>
+              <li>
+                To maintain appropriate operational, security, and business
+                records
+              </li>
+              <li>To comply with applicable legal obligations</li>
+            </ul>
+            <p>
+              Strive does not state that visitor information is sold. The owner
+              must confirm actual business practices and applicable legal
+              definitions before this draft is published.
+            </p>
+          </section>
+
+          <section>
+            <h2>5. Retention and safeguards</h2>
+            <p>
+              Information should be kept only as long as reasonably needed for
+              the purpose for which it was collected, legitimate business
+              records, security, dispute handling, or legal obligations.
+              Specific retention schedules have not yet been owner-approved and
+              must be documented before production launch.
+            </p>
+            <p>
+              Reasonable technical and organizational safeguards should be used,
+              but no website, email system, or third-party service can guarantee
+              absolute security.
+            </p>
+          </section>
+
+          <section>
+            <h2>6. Choices and requests</h2>
+            <p>
+              You can avoid loading Calendly by using email. Depending on where
+              you live, you may have rights concerning access, correction,
+              deletion, objection, restriction, or portability. Applicability
+              and identity-verification procedures require legal review.
+            </p>
+            <p>
+              To make a privacy request, email{" "}
+              <a href={`mailto:${company.email}`}>{company.email}</a>. Do not
+              send sensitive identity documents unless Strive has provided a
+              secure and necessary verification method.
+            </p>
+          </section>
+
+          <section>
+            <h2>7. Changes and contact</h2>
+            <p>
+              This disclosure should be updated when the site’s providers, data
+              collection, contact paths, or business practices change. Material
+              runtime behavior should not drift from the published text.
+            </p>
+            <p>
+              Privacy questions can be sent to{" "}
+              <a href={`mailto:${company.email}`}>{company.email}</a>. The owner
+              must provide the legal entity name and any legally required
+              address before deployment.
+            </p>
+          </section>
         </div>
-        
-        {/* Wave SVG Divider */}
-        <svg 
-          className="absolute inset-x-0 -bottom-px h-12 w-full text-white" 
-          viewBox="0 0 1440 48" 
-          preserveAspectRatio="none" 
-          aria-hidden="true"
-        >
-          <path 
-            className="fill-white" 
-            d="M0,24 C240,48 480,0 720,24 C960,48 1200,0 1440,24 L1440,48 L0,48 Z"
-          />
-        </svg>
-      </section>
-
-      {/* Main Content */}
-      <section className="bg-white py-16 md:py-24">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
-            <MotionWrapper direction="fade">
-              {/* Introduction */}
-              <div className="mb-12">
-                <p className="text-lg text-slate-600 leading-relaxed">
-                  Strive Technology Group ("Strive TG," "we," "our," or "us") respects your privacy. 
-                  This Privacy Policy explains how we collect, use, and protect your information.
-                </p>
-              </div>
-
-              {/* Section 1 */}
-              <div className="mb-12">
-                <h2 className="text-2xl md:text-3xl font-bold text-[#0A2540] mb-6 flex items-center">
-                  <span className="w-8 h-8 bg-[#0A2540] rounded-full flex items-center justify-center text-white font-bold text-sm mr-4">
-                    1
-                  </span>
-                  Information We Collect
-                </h2>
-                <div className="space-y-6">
-                  <div className="bg-slate-50 p-6 rounded-lg border-l-4 border-[#0A2540]">
-                    <h3 className="text-lg font-semibold text-slate-900 mb-3">Website Visitors</h3>
-                    <p className="text-slate-600 leading-relaxed">
-                      We do not collect personal data from visitors browsing our website.
-                    </p>
-                  </div>
-                  <div className="bg-slate-50 p-6 rounded-lg border-l-4 border-[#0A2540]">
-                    <h3 className="text-lg font-semibold text-slate-900 mb-3">Clients</h3>
-                    <p className="text-slate-600 leading-relaxed mb-4">
-                      When you engage our services, we may collect limited information necessary to deliver those services, such as:
-                    </p>
-                    <ul className="list-disc list-inside text-slate-600 space-y-2 ml-4">
-                      <li>Name and contact details (email, phone number, business address)</li>
-                      <li>Project requirements and technical specifications</li>
-                      <li>Billing and payment information</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-              {/* Section 2 */}
-              <div className="mb-12">
-                <h2 className="text-2xl md:text-3xl font-bold text-[#0A2540] mb-6 flex items-center">
-                  <span className="w-8 h-8 bg-[#0A2540] rounded-full flex items-center justify-center text-white font-bold text-sm mr-4">
-                    2
-                  </span>
-                  How We Use Information
-                </h2>
-                <div className="bg-slate-50 p-6 rounded-lg border-l-4 border-[#0A2540]">
-                  <p className="text-slate-600 leading-relaxed mb-4">
-                    We use client information only to:
-                  </p>
-                  <ul className="list-disc list-inside text-slate-600 space-y-2 ml-4">
-                    <li>Provide and improve our services</li>
-                    <li>Communicate about projects, invoices, and support</li>
-                    <li>Maintain internal records for business operations and compliance</li>
-                  </ul>
-                </div>
-              </div>
-
-              {/* Section 3 */}
-              <div className="mb-12">
-                <h2 className="text-2xl md:text-3xl font-bold text-[#0A2540] mb-6 flex items-center">
-                  <span className="w-8 h-8 bg-[#0A2540] rounded-full flex items-center justify-center text-white font-bold text-sm mr-4">
-                    3
-                  </span>
-                  Information Sharing
-                </h2>
-                <div className="space-y-4">
-                  <div className="bg-slate-50 p-6 rounded-lg border-l-4 border-[#0A2540]">
-                    <ul className="list-disc list-inside text-slate-600 space-y-3">
-                      <li>We do not sell or rent your information</li>
-                      <li>We may share data only with trusted third parties necessary to operate (e.g., payment processors, hosting providers)</li>
-                      <li>If required by law, we may disclose information in response to legal requests</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-              {/* Section 4 */}
-              <div className="mb-12">
-                <h2 className="text-2xl md:text-3xl font-bold text-[#0A2540] mb-6 flex items-center">
-                  <span className="w-8 h-8 bg-[#0A2540] rounded-full flex items-center justify-center text-white font-bold text-sm mr-4">
-                    4
-                  </span>
-                  Data Security
-                </h2>
-                <div className="bg-slate-50 p-6 rounded-lg border-l-4 border-[#0A2540]">
-                  <p className="text-slate-600 leading-relaxed">
-                    We use reasonable administrative and technical safeguards to protect client information. 
-                    However, no method of transmission or storage is 100% secure.
-                  </p>
-                </div>
-              </div>
-
-              {/* Section 5 */}
-              <div className="mb-12">
-                <h2 className="text-2xl md:text-3xl font-bold text-[#0A2540] mb-6 flex items-center">
-                  <span className="w-8 h-8 bg-[#0A2540] rounded-full flex items-center justify-center text-white font-bold text-sm mr-4">
-                    5
-                  </span>
-                  Your Choices &amp; Rights
-                </h2>
-                <div className="space-y-4">
-                  <div className="bg-slate-50 p-6 rounded-lg border-l-4 border-[#0A2540]">
-                    <ul className="list-disc list-inside text-slate-600 space-y-3">
-                      <li>
-                        Clients may request access to, correction of, or deletion of their information by contacting us at{' '}
-                        <a 
-                          href="mailto:contact@strivetg.com" 
-                          className="text-[#0A2540] hover:underline font-medium"
-                        >
-                          contact@strivetg.com
-                        </a>
-                      </li>
-                      <li>You may opt out of marketing communications at any time</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-              {/* Section 6 */}
-              <div className="mb-12">
-                <h2 className="text-2xl md:text-3xl font-bold text-[#0A2540] mb-6 flex items-center">
-                  <span className="w-8 h-8 bg-[#0A2540] rounded-full flex items-center justify-center text-white font-bold text-sm mr-4">
-                    6
-                  </span>
-                  Policy Updates
-                </h2>
-                <div className="bg-slate-50 p-6 rounded-lg border-l-4 border-[#0A2540]">
-                  <p className="text-slate-600 leading-relaxed">
-                    We may update this Privacy Policy from time to time. Any changes will be posted on this page 
-                    with an updated "Last Updated" date.
-                  </p>
-                </div>
-              </div>
-
-              {/* Section 7 - Contact */}
-              <div className="mb-12">
-                <h2 className="text-2xl md:text-3xl font-bold text-[#0A2540] mb-6 flex items-center">
-                  <span className="w-8 h-8 bg-[#0A2540] rounded-full flex items-center justify-center text-white font-bold text-sm mr-4">
-                    7
-                  </span>
-                  Contact Us
-                </h2>
-                <div className="bg-slate-50 p-8 rounded-lg border-l-4 border-[#0A2540]">
-                  <p className="text-slate-600 leading-relaxed mb-6">
-                    For questions about this policy, please contact us:
-                  </p>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="flex items-center p-4 bg-white rounded-lg border border-slate-200 hover:border-[#0A2540] transition-colors duration-200">
-                      <div className="w-10 h-10 bg-[#0A2540] rounded-full flex items-center justify-center mr-4">
-                        <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                        </svg>
-                      </div>
-                      <div>
-                        <p className="text-sm text-slate-500 font-medium">Email</p>
-                        <a 
-                          href="mailto:contact@strivetg.com" 
-                          className="text-[#0A2540] hover:underline font-semibold text-lg"
-                        >
-                          contact@strivetg.com
-                        </a>
-                      </div>
-                    </div>
-                    <div className="flex items-center p-4 bg-white rounded-lg border border-slate-200">
-                      <div className="w-10 h-10 bg-[#0A2540] rounded-full flex items-center justify-center mr-4">
-                        <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                        </svg>
-                      </div>
-                      <div>
-                        <p className="text-sm text-slate-500 font-medium">Location</p>
-                        <div className="text-slate-700 font-semibold text-lg">
-                          <div>145 Tremont Street</div>
-                          <div>Suite 201-1512</div>
-                          <div>Boston, MA 02111</div>
-                          <div>United States</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* CTA Section */}
-              <div className="bg-[#0A2540] rounded-2xl p-8 md:p-12 text-center text-white">
-                <h3 className="text-2xl md:text-3xl font-bold mb-4">
-                  Questions About Our Privacy Policy?
-                </h3>
-                <p className="text-slate-300 mb-6 text-lg leading-relaxed">
-                  We're here to help clarify any concerns you may have about how we handle your information.
-                </p>
-                <a
-                  href="/contact"
-                  aria-label="Contact us about privacy"
-                  className="group inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 font-semibold text-lg
-                           bg-white border-2 border-white text-[#0A2540] focus-visible:ring-white shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:scale-[1.02]
-                           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 relative overflow-hidden"
-                >
-                  <div className="absolute inset-0 bg-[#0F2A47] translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-400 ease-out" />
-                  <span className="relative z-10 tracking-wide transition-all duration-400 text-[#0A2540] group-hover:text-white">
-                    Contact Us
-                  </span>
-                  <svg 
-                    className="w-5 h-5 transition-all duration-400 group-hover:translate-x-1 relative z-10 text-[#0A2540] group-hover:text-white"
-                    fill="none" 
-                    stroke="currentColor" 
-                    viewBox="0 0 24 24"
-                  >
-                    <path 
-                      strokeLinecap="round" 
-                      strokeLinejoin="round" 
-                      strokeWidth={2} 
-                      d="M17 8l4 4m0 0l-4 4m4-4H3" 
-                    />
-                  </svg>
-                </a>
-              </div>
-            </MotionWrapper>
-          </div>
-        </div>
-      </section>
-    </div>
+      </Section>
+    </>
   );
 }
