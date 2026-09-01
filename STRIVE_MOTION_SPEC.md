@@ -1,0 +1,76 @@
+# Strive Motion Specification
+
+## Purpose
+
+This document translates the motion language observed on the live design reference into an original, restrained system for Strive Technology Group. It records what was observed, what Strive will use, and what is deliberately rejected. The reference behavior is used only as interaction research; its loader, identity, photography, copy, and proprietary assets are not reproduced.
+
+Motion must help a visitor understand hierarchy, sequence, or system relationships. Content remains readable without animation, and every nonessential effect is disabled when `prefers-reduced-motion: reduce` is active.
+
+## Motion constants
+
+| Token | Value | Use |
+| --- | --- | --- |
+| `--motion-fast` | `180ms` | Small color, underline, and icon changes |
+| `--motion-medium` | `360ms` | Navigation and button transitions |
+| `--motion-reveal` | `720ms` | Type, mask, and section reveals |
+| `--motion-diagram` | `820ms` | Diagram line activation |
+| `--ease-editorial` | `cubic-bezier(0.22, 1, 0.36, 1)` | Decisive masked reveals |
+| `--ease-interface` | `cubic-bezier(0.4, 0, 0.2, 1)` | Controls and navigation |
+
+## Reference observations and Strive decisions
+
+Durations marked “observed” were taken from computed styles or time-sampled browser inspection of the live reference on 2026-08-31. Where scroll-linked proprietary choreography made an exact duration indeterminate, the row records the visible behavior and the timing selected for Strive instead of presenting an invented measurement.
+
+| Element | Trigger | Initial state | Final state | Duration | Delay | Stagger | Easing | Origin | Scroll relationship | Mobile behavior | Reduced-motion alternative | Decision |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Reference page loader | Initial page load | Full ink screen with 0% progress | 100%, followed by a large curved wipe into the page | About 4.5s observed end to end | None | Progress steps | Mixed stepped and eased animations observed | Center / expanding mask | None | Same blocking loader | Page appears immediately | **Reject.** It delays Strive’s proposition and adds no trust value. |
+| Strive hero register | Initial page load | Rule scaled to zero; label visible | Rule spans its column | `600ms` | `80ms` | None | Editorial | Left center | None | Same, shorter visual travel | Rule is fully drawn | **Adapt.** Gives the masthead a printed registration moment without a loader. |
+| Reference hero typography | After loader | Lines clipped outside their rows | Four large rows revealed in sequence | Scroll/runtime controlled; exact entry duration not exposed consistently | After loader | Visible row sequencing | Smooth, high-deceleration motion | Bottom left | Initial reveal only | Rows recompose at about 60px and alternate with wide image strips | Type is immediately visible | **Adapt.** Strive uses four clipped text rows, mixed grotesque/serif, `720ms`, `70ms` stagger. |
+| Reference inline media | After loader and periodically while idle | Media masked or showing one documentary frame | Mask clears; some imagery later cycles | `400ms` image translation observed; later cycling continues | Paired with hero | Per tile | `ease-in-out` observed | Left center | No meaningful scroll dependency in hero | Wide image strips between type rows | Static first frame | **Adapt mask; reject cycling.** Strive uses original system fragments with an `820ms` mask reveal and no autoplay changes. |
+| Reference navigation label | Hover / menu state | Default opacity | Changed opacity or visible active state | `300ms` observed | None | None | Interface | Center | Header condenses to a compact brand mark on scroll | Compact wordmark and three-line control | Immediate state change | **Adapt.** Strive keeps its own wordmark and uses rule/underline movement; no copied compact mark. |
+| Strive navigation underline | Hover, focus, current route | `scaleX(0)` | `scaleX(1)` in signal green | `240ms` | None | None | Interface | Left center | None | Current-route state remains visible | Underline appears instantly | **Reproduce as Strive-specific.** |
+| Reference primary CTA | Hover / focus | Resting shadow and arrow | Shadow deepens; arrow/label responds | `300ms ease-in-out` observed | None | None | Interface | Center | None | No hover dependency; pressed state only | Color/focus changes only | **Adapt.** Strive uses a 2px lift, signal-tinted shadow, and 4px arrow travel over `260ms`. |
+| Reference text link | Hover / focus | Short underline/arrow rest position | Underline width and arrow position change | `500ms ease-in-out` observed | None | None | Interface | Left center | None | Tap target remains stable | Underline and focus state appear instantly | **Adapt.** Strive shortens this to `280ms` to keep links responsive. |
+| Strive section micro-label | First entry into viewport | Label visible; adjacent rule at `scaleX(0)` | Rule spans available width | `620ms` | None | None | Editorial | Left center | One-shot at about 15% intersection | Same, with shorter visual travel | Fully drawn | **Adapt.** Provides section punctuation without fading whole sections. |
+| Strive display statement | First entry into viewport | Text clipped by a bottom mask and translated 105% of one line | Text at natural position; mask open | `720ms` | `40ms` | `70ms` between marked lines | Editorial | Bottom left | One-shot | Same transform with smaller distance | Immediately visible | **Adapt.** Used only on major statements, never every heading. |
+| Strive editorial rows | First entry into viewport | Top rule at `scaleX(0)`; content fully readable | Rule draws left to right | `560ms` | By row index | `55ms` | Editorial | Left center | One-shot | Stagger capped at three items | Rules and content shown | **Adapt.** Avoids generic card fades. |
+| Reference dark-section transition | Scroll into section | Light story gives way through a large organic mask/edge | Ink scene occupies viewport | Scroll-linked, proprietary timing | None | None | Smooth transform | Section edge / mask | Strongly scroll-linked | Similar large transition | Hard cut | **Adapt, not copy.** Strive uses a straight inset mask on the statement and a signal rule; no decorative wave boundary. |
+| Strive dark statement | First entry into viewport | Signal rule at zero; statement clipped | Rule extends and statement is revealed | `760ms` | `80ms` | Two statement groups | Editorial | Left center | One-shot at 12% intersection | Same without sticky behavior | Full content displayed | **Adapt.** |
+| Reference diagram/system scene | Scroll through section | Nodes/labels displaced or partially masked | Relationships assemble and labels resolve | Scroll-linked; exact timing indeterminate | Section-dependent | Connection sequence | Smooth transform | Connection start points | Strong scroll relationship | Simplified stacking | Static completed diagram | **Adapt.** Strive activates connectors once over `820ms`; it does not scrub or pin the page. |
+| Strive diagram connectors | Diagram enters viewport | Connection scale is zero; nodes are outlined | Connections extend and node signal dots resolve | `820ms` | `100ms` | `110ms` by connection | Editorial | Top center | One-shot | Shorter connector travel | Completed system map | **Reproduce as original system behavior.** |
+| Reference footer marquee | Footer visible | Repeating “Get in Touch” line | Continuous horizontal movement | `20s linear` observed | None | Continuous | Linear | Center | Runs while visible | Runs on mobile | Static text | **Reject.** Continuous movement distracts from contact information. |
+| Strive consultation band | First entry into viewport | Heading clipped; action rule at zero | Invitation and rule resolve | `720ms` | `60ms` | Heading then actions | Editorial | Bottom left | One-shot | Compact sequence; CTA stays in view | Fully visible | **Adapt.** |
+| Reference scroll indicator | Idle / scroll affordance | Marker at one end of track | Repeating travel along track | `3s ease-in-out` observed | None | Continuous | `ease-in-out` | Center | Decorative | May remain visible | Hidden | **Reject.** The Strive page is already clearly scrollable. |
+| Reference oversized serif swap | Deep-page scroll | One display face/phrase partially transformed | Another display face/phrase becomes dominant | Scroll-linked | None | Phrase sequence | Smooth transform | Center | Strongly scrubbed | Reflowed composition | Final static phrase | **Adapt composition only.** Strive uses mixed serif/grotesque hierarchy without live font morphing. |
+| Strive mobile menu | Menu button activation | Ink panel clipped above viewport; links offset slightly | Panel fills viewport; rules/links resolve | `300ms` panel, `220ms` links | None | `35ms` up to six links | Interface | Top center | Fixed to header, body scroll locked | Primary behavior | Menu opens immediately; focus management unchanged | **Adapt.** Uses Strive navigation, Escape handling, focus restoration, and no reference icon copy. |
+| Focus indication | Keyboard focus | No focus ring | 3px signal outline with 4px offset | Immediate | None | None | None | Element box | None | Same | Same | **Reproduce as accessibility requirement.** |
+
+## Implementation constraints
+
+- The server-rendered page must remain complete and readable if JavaScript fails.
+- The observation script may add motion state, but it must never gate content or navigation.
+- A passive, animation-frame-throttled viewport check is used only for one-shot, element-level line, mask, rule, and diagram activation.
+- No global `fadeInUp` utility is used.
+- No autoplay media, cursor effects, parallax, spring physics, marquee, bouncing, or continuous ambient motion is permitted.
+- Motion must not change document flow, create horizontal overflow, or hide the primary mobile CTA below an animation delay.
+- Hover-only feedback must have an equivalent focus-visible state.
+
+## Reduced motion contract
+
+When `prefers-reduced-motion: reduce` is active:
+
+- scrolling is not smooth;
+- all animation durations and nonessential transition durations resolve to effectively zero;
+- clips, opacity, scale, and transforms resolve to their completed state;
+- the mobile menu retains focus management and visibility state but does not animate;
+- diagrams render as completed diagrams;
+- no content waits on viewport intersection.
+
+## Validation checklist
+
+- Inspect first load at 1440 × 1000 and 390 × 844.
+- Confirm the hero proposition is readable before motion completes.
+- Confirm CTA hover, keyboard focus, text-link underline, navigation state, and mobile menu state.
+- Scroll through service rows, the ink interruption, diagram, consultation band, and footer.
+- Emulate reduced motion and verify completed states plus near-zero computed durations.
+- Verify no horizontal overflow at 1440, 1024, 768, 390, and 375 pixels.

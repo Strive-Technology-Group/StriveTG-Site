@@ -17,7 +17,7 @@ export default function OpenGraphImage() {
           justifyContent: "space-between",
           padding: "72px",
           color: "white",
-          background: "#061826",
+          background: "#121613",
           fontFamily: "Arial, sans-serif",
         }}
       >
@@ -35,7 +35,7 @@ export default function OpenGraphImage() {
               width: 20,
               height: 20,
               borderRadius: 999,
-              background: "#c9f04b",
+              background: "#2bee4b",
             }}
           />
           Strive Technology Group

@@ -1,5 +1,7 @@
 # Strive Editorial Redesign Handoff
 
+> This document records the first editorial implementation. The later color, composition, and motion correction is documented in `FIDELITY_CORRECTION_REPORT.md`; where evidence or counts differ, the corrective report is authoritative.
+
 Date: August 31, 2026  
 Branch: `feat/strive-editorial-design-20260831`  
 Implementation commit: `be3d7ec` (`feat: translate Strive into an editorial design system`)  
@@ -22,8 +24,10 @@ The only runtime source of truth is `apps/web/app/design-tokens.css`. The reposi
 | `--strive-dark`           | `#232924`                         | Secondary dark editorial surface          |
 | `--strive-muted`          | `#516254`                         | Secondary copy on light surfaces          |
 | `--strive-inverse-muted`  | `#c8d2c8`                         | Accessible supporting text on dark fields |
-| `--strive-signal`         | `#c9f04b`                         | Single saturated Strive action color      |
-| `--strive-wash`           | `#e8f2e8`                         | Alternate paper/system-diagram wash       |
+| `--strive-signal`         | `#2bee4b`                         | Single saturated Strive action color      |
+| `--strive-support`        | `#93b799`                         | Supporting diagram information            |
+| `--strive-echo`           | `#c4e4c9`                         | Alternate paper/system-diagram wash       |
+| `--strive-wash`           | `var(--strive-echo)`              | Semantic alias with no duplicate literal  |
 | `--strive-border`         | `rgba(18, 22, 19, 0.24)`          | Hairline structure                        |
 | `--strive-border-inverse` | `rgba(250, 255, 250, 0.26)`       | Hairlines on dark surfaces                |
 | `--strive-signal-shadow`  | green-tinted restrained shadow    | Primary action only                       |
@@ -120,7 +124,7 @@ No wave divider, glassmorphism, generic gradient, floating blob, stock employee,
 - Shared First Load JS: 102 kB.
 - Public asset budget: unchanged at 46,591 bytes.
 - Local emitted font media: approximately 444 kB uncompressed on disk across five subsetted files.
-- No animation library, autoplay media, remote font request, or image payload was added.
+- No animation library, autoplay media, or remote font request was added. The corrective pass adds one original 452-byte paper-texture SVG.
 
 No Lighthouse or real-user Core Web Vitals score was claimed; those require a production-like deployment and measurement environment.
 
@@ -131,8 +135,8 @@ No Lighthouse or real-user Core Web Vitals score was claimed; those require a pr
 | `pnpm lint`         | Pass, zero warnings                     |
 | `pnpm check-types`  | Pass                                    |
 | `pnpm build`        | Pass, all static routes generated       |
-| `pnpm check:assets` | Pass, 4 public files / 46,591 bytes     |
-| `pnpm test`         | Pass, 24 of 24 Playwright tests         |
+| `pnpm check:assets` | Pass, 5 public files / 44,877 bytes     |
+| `pnpm test`         | Pass, 28 of 28 Playwright tests         |
 | Internal links      | Pass                                    |
 | Axe WCAG A/AA sweep | Pass on all public routes               |
 | Responsive overflow | Pass across 45 route/width combinations |
@@ -152,7 +156,7 @@ No fake portrait or placeholder person was used. The existing typographic founde
 
 ## 12. How the result differs from the source reference
 
-- It keeps Strive's real wordmark and existing lime rather than copying the source identity or exact highlighter green.
+- It keeps Strive's real wordmark while applying the exact highlighter baseline through Strive-specific semantics and placement.
 - It uses a technology-system narrative, not investment terminology or the source page sequence.
 - Original diagrams replace source photography and proprietary imagery.
 - Navigation, footer, closing band, monogram treatment, and route mastheads are Strive-specific compositions.

@@ -2,11 +2,14 @@
   /* Canonical Strive editorial colors */
   --strive-canvas: #fafffa;
   --strive-ink: #121613;
+  --strive-true-ink: #000000;
   --strive-dark: #232924;
   --strive-muted: #516254;
   --strive-inverse-muted: #c8d2c8;
-  --strive-signal: #c9f04b;
-  --strive-wash: #e8f2e8;
+  --strive-signal: #2bee4b;
+  --strive-support: #93b799;
+  --strive-echo: #c4e4c9;
+  --strive-wash: var(--strive-echo);
   --strive-border: rgba(18, 22, 19, 0.24);
   --strive-border-inverse: rgba(250, 255, 250, 0.26);
 
@@ -24,7 +27,15 @@
   --strive-rule: 1px solid var(--strive-border);
   --strive-radius: 0.35rem;
   --strive-radius-media: 0.8rem;
-  --strive-signal-shadow: 1px 8px 20px rgba(86, 126, 22, 0.28);
+  --strive-signal-shadow: 1px 8px 20px rgba(16, 94, 29, 0.34);
+
+  /* Motion scale */
+  --motion-fast: 180ms;
+  --motion-medium: 360ms;
+  --motion-reveal: 720ms;
+  --motion-diagram: 820ms;
+  --ease-editorial: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-interface: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 body {

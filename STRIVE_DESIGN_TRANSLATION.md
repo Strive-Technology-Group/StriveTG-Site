@@ -32,11 +32,14 @@ The runtime has one canonical source of truth: `apps/web/app/design-tokens.css`.
 | ----------------- | ------------------------ | ------------------------ | -------------------------------------------------------------------------- |
 | Bone White        | `--strive-canvas`        | `#fafffa`                | Preserved as the paper-like page canvas                                    |
 | Press Black       | `--strive-ink`           | `#121613`                | Primary text and editorial dark surface                                    |
+| True Ink          | `--strive-true-ink`      | `#000000`                | Reserved exact black for high-contrast technical detail                    |
 | Slate Verdant     | `--strive-dark`          | `#232924`                | Secondary ink surface and dark structural detail                           |
 | Newsprint Gray    | `--strive-muted`         | `#516254`                | Captions and secondary copy; usage remains contrast-aware                  |
 | Muted Sage        | `--strive-inverse-muted` | `#c8d2c8`                | Supporting text on dark surfaces                                           |
-| Highlighter Green | `--strive-signal`        | `#c9f04b`                | Adapted to the existing Strive lime so the result retains brand continuity |
-| Echo Green        | `--strive-wash`          | `#e8f2e8`                | Quiet technical diagram and alternate-paper tint                           |
+| Highlighter Green | `--strive-signal`        | `#2bee4b`                | Exact visual baseline; restricted to actions, rules, and system signals    |
+| Supporting Green  | `--strive-support`       | `#93b799`                | Secondary technical-diagram information only                              |
+| Echo Green        | `--strive-echo`           | `#c4e4c9`                | Alternate paper tint and quiet diagram detail                             |
+| Alternate wash    | `--strive-wash`          | `var(--strive-echo)`     | Semantic alias; no duplicate literal value                                |
 | Hairline ink      | `--strive-border`        | `rgba(18, 22, 19, 0.24)` | Structural rules without card chrome                                       |
 | Signal shadow     | `--strive-signal-shadow` | green-tinted shadow      | Used only on the primary action                                            |
 
@@ -59,10 +62,10 @@ The system does not reproduce the reference's literal 165–295px scale. Display
 
 | Reference principle         | Strive translation                                                                                                   |
 | --------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| Monumental editorial hero   | Asymmetric three-line serif statement with a technical system insert and immediate fit-call action                   |
+| Monumental editorial hero   | Four mixed-face type rows with three original inline system inserts and an immediate fit-call action                 |
 | Small-caps navigation       | Compact uppercase Inter labels with a signal rule for current state                                                  |
 | Inline photo tiles          | Original CSS/HTML system diagrams and annotated interface fragments; no stock people or fake project imagery         |
-| Green highlighter           | Existing Strive lime used for the primary CTA, active rules, small status marks, and closing consultation band       |
+| Green highlighter           | Exact highlighter baseline used for the primary CTA, active rules, small status marks, and closing consultation band |
 | Broadsheet grid             | Numbered sections, asymmetric columns, baseline rules, narrow annotations, and wide reading fields                   |
 | Flat surfaces               | Cards replaced by ruled rows, matrices, definition lists, and editorial columns                                      |
 | Press-black interruption    | A decisive dark statement connecting visible customer systems with operational systems                               |
@@ -106,24 +109,25 @@ The page sequence is Strive-specific rather than a one-to-one reference copy:
 - Display typography scales down before wrapping becomes awkward or causes overflow.
 - Focus indicators remain visible on paper, ink, and signal surfaces.
 - Navigation and dialogs retain keyboard behavior, Escape handling, focus restoration, and body scroll locking.
-- Motion is limited to short rule/button transitions and is removed under `prefers-reduced-motion`.
+- Motion follows `STRIVE_MOTION_SPEC.md`: clipped type, media masks, rule growth, diagram activation, and restrained interface transitions, all completed immediately under `prefers-reduced-motion`.
 
 ## Performance adaptations
 
 - No autoplay video or decorative client-side animation library is introduced.
 - Technical inserts are CSS/HTML and add no image payload.
-- Fonts are local and limited to one variable grotesque plus one regular display serif.
+- Fonts are local and limited to one grotesque family in three required weights plus one regular/italic display serif.
 - Existing static rendering, click-to-load Calendly behavior, and public-asset budget remain release requirements.
 
 ## Explicit differences from the source reference
 
 - Strive's logo and wordmark remain intact; no reference wordmark underline or “N” signature is copied.
-- The existing Strive lime is used instead of the exact reference green.
+- The exact highlighter baseline is used, but its placement and semantics are Strive-specific rather than copied.
 - The page sequence follows Strive's customer journey and ownership model, not an investment-site sequence.
 - Original system diagrams replace the reference photography treatment because no approved Strive photography exists.
 - The closing accent band is short, useful, and contains consultation information rather than empty brand theater.
 - Navigation remains fully visible on desktop and uses Strive's accessible compact menu on mobile.
 - Display sizes are materially smaller than the reference maxima to protect clarity, CTA visibility, and responsive behavior.
+- The reference's multi-second loader, cycling photography, marquee, continuous scroll cue, and scroll-scrubbed font morphs are rejected.
 - Legal and FAQ pages prioritize reading comfort instead of monumental type.
 - No investment language, source-company content, identifying layout signature, proprietary asset, or exact footer treatment is reproduced.
 

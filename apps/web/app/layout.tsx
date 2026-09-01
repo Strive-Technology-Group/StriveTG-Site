@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./design-tokens.css";
 import "./globals.css";
 import { Footer } from "./components/Footer";
+import { MotionObserver } from "./components/MotionObserver";
 import { Navigation } from "./components/Navigation";
 import { StructuredData } from "./components/StructuredData";
 import { company } from "./lib/company";
@@ -95,6 +96,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} ${instrumentSerif.variable}`}>
+        <MotionObserver />
         <a className="skip-link" href="#main-content">
           Skip to content
         </a>

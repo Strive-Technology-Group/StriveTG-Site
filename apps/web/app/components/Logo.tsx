@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 
 export function Logo({
@@ -11,16 +10,12 @@ export function Logo({
   return (
     <Link
       href="/"
-      className="logo-link"
+      className={`logo-link logo-link-${surface}`}
       aria-label="Strive Technology Group home"
     >
-      <Image
-        src={surface === "dark" ? "/Full logo.svg" : "/Full logo on light.svg"}
-        alt="Strive Technology Group"
-        width={586}
-        height={54}
-        className={compact ? "logo-image logo-image-compact" : "logo-image"}
-        priority
+      <span
+        aria-hidden="true"
+        className={compact ? "logo-mark logo-mark-compact" : "logo-mark"}
       />
     </Link>
   );

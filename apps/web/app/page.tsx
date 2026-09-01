@@ -4,6 +4,7 @@ import { Button } from "./components/Button";
 import { Container } from "./components/Container";
 import {
   EditorialRule,
+  HeroSystemInsert,
   MicroLabel,
   SystemDiagram,
 } from "./components/Editorial";
@@ -75,34 +76,45 @@ export default function Home() {
           <div className="hero-register" aria-hidden="true">
             STRIVE / SYSTEMS FOR GROWING BUSINESS
           </div>
-          <div className="home-hero-grid">
-            <div className="home-hero-copy">
-              <MicroLabel>Web / data / automation</MicroLabel>
-              <h1>
-                <span>Replace the systems</span>
-                <span>
-                  <em>your business</em>
+          <div className="home-hero-stage">
+            <MicroLabel>Web / data / automation</MicroLabel>
+            <h1 aria-label="Replace the systems your business has outgrown.">
+              <span className="hero-line hero-line-one" aria-hidden="true">
+                <span className="hero-line-content">
+                  Replace the <HeroSystemInsert variant="presence" />
                 </span>
-                <span>has outgrown.</span>
-              </h1>
+              </span>
+              <span className="hero-line hero-line-two" aria-hidden="true">
+                <span className="hero-line-content">systems your</span>
+              </span>
+              <span className="hero-line hero-line-three" aria-hidden="true">
+                <span className="hero-line-content">
+                  business has <HeroSystemInsert variant="insight" />
+                </span>
+              </span>
+              <span className="hero-line hero-line-four" aria-hidden="true">
+                <span className="hero-line-content">
+                  <HeroSystemInsert variant="operations" /> outgrown.
+                </span>
+              </span>
+            </h1>
+          </div>
+          <div className="home-hero-rail">
+            <p className="hero-rail-label">
+              <span>01—03</span>
+              Presence / insight / operations
+            </p>
+            <p className="hero-rail-summary">
+              Strive designs and manages the websites, reporting systems, and
+              workflow automations growing service businesses need to operate
+              with greater clarity and less manual work.
+            </p>
+            <div className="hero-actions">
+              <Button href="/consultation">Book a Fit Call</Button>
+              <Button href="/#how-we-work" variant="text">
+                Explore Our Approach
+              </Button>
             </div>
-            <aside
-              className="home-hero-side"
-              aria-label="Strive overview and actions"
-            >
-              <SystemDiagram />
-              <p>
-                Strive designs and manages the websites, reporting systems, and
-                workflow automations growing service businesses need to operate
-                with greater clarity and less manual work.
-              </p>
-              <div className="hero-actions">
-                <Button href="/consultation">Book a Fit Call</Button>
-                <Button href="/#how-we-work" variant="text">
-                  Explore Our Approach
-                </Button>
-              </div>
-            </aside>
           </div>
         </Container>
       </section>
@@ -129,7 +141,9 @@ export default function Home() {
       <Section tone="light" className="problem-section">
         <div className="section-heading section-heading-editorial">
           <MicroLabel index="01">What growing businesses outgrow</MicroLabel>
-          <h2>The tools still work. The system around them does not.</h2>
+          <h2 data-reveal="type">
+            The tools still work. The system around them does not.
+          </h2>
           <p>
             Strive enters when a capable business has accumulated enough digital
             friction that isolated fixes no longer hold.
@@ -138,7 +152,11 @@ export default function Home() {
         <EditorialRule />
         <div className="problem-ledger">
           {problems.map((problem) => (
-            <article className="problem-row" key={problem.number}>
+            <article
+              className="problem-row"
+              data-reveal="row"
+              key={problem.number}
+            >
               <span className="card-number">{problem.number}</span>
               <h3>{problem.title}</h3>
               <p>{problem.body}</p>
@@ -151,7 +169,9 @@ export default function Home() {
       <Section tone="soft" className="services-editorial">
         <div className="section-heading section-heading-editorial">
           <MicroLabel index="02">Three connected operating layers</MicroLabel>
-          <h2>Organize the work around the business outcome.</h2>
+          <h2 data-reveal="type">
+            Organize the work around the business outcome.
+          </h2>
           <p>
             Websites, measurement, and automation are treated as parts of one
             customer and operating system—not unrelated technical products.
@@ -159,7 +179,11 @@ export default function Home() {
         </div>
         <div className="service-matrix">
           {servicePillars.map((pillar) => (
-            <article className="service-matrix-row" key={pillar.id}>
+            <article
+              className="service-matrix-row"
+              data-reveal="row"
+              key={pillar.id}
+            >
               <div className="service-matrix-index">
                 <span>{pillar.number}</span>
                 <p>{pillar.eyebrow}</p>
@@ -189,7 +213,7 @@ export default function Home() {
         </MicroLabel>
         <div className="connective-grid">
           <div className="connective-copy">
-            <h2>
+            <h2 data-reveal="type">
               One partner for the systems your customers see <em>and</em> the
               operations behind them.
             </h2>
@@ -211,7 +235,7 @@ export default function Home() {
         <div className="approach-grid">
           <div className="approach-copy">
             <MicroLabel index="04">How Strive solves problems</MicroLabel>
-            <h2>Evidence belongs next to the claim.</h2>
+            <h2 data-reveal="type">Evidence belongs next to the claim.</h2>
             <p>
               Strive does not publish unverified client results. The method is
               visible now; client stories appear only when the facts,
@@ -223,7 +247,11 @@ export default function Home() {
           </div>
           <div className="approach-list">
             {approaches.map((approach) => (
-              <article className="approach-item" key={approach.title}>
+              <article
+                className="approach-item"
+                data-reveal="row"
+                key={approach.title}
+              >
                 <span>{approach.number}</span>
                 <div>
                   <h3>{approach.title}</h3>
@@ -238,7 +266,7 @@ export default function Home() {
       <Section id="how-we-work" tone="soft" className="engagement-section">
         <div className="section-heading section-heading-editorial">
           <MicroLabel index="05">Engagement model</MicroLabel>
-          <h2>Six phases. Decisions stay visible.</h2>
+          <h2 data-reveal="type">Six phases. Decisions stay visible.</h2>
           <p>
             Each engagement is scoped separately, but the rhythm remains
             deliberate: understand first, make the plan explicit, build in
@@ -247,7 +275,7 @@ export default function Home() {
         </div>
         <div className="steps-grid">
           {engagementSteps.map((step) => (
-            <article className="step" key={step.number}>
+            <article className="step" data-reveal="row" key={step.number}>
               <span className="step-number">{step.number}</span>
               <h3>{step.title}</h3>
               <p>{step.description}</p>
@@ -264,7 +292,9 @@ export default function Home() {
           </div>
           <div className="founder-copy">
             <MicroLabel index="06">Accountability without layers</MicroLabel>
-            <h2>The person shaping the work stays close to delivery.</h2>
+            <h2 data-reveal="type">
+              The person shaping the work stays close to delivery.
+            </h2>
             <p>
               Strive is a founder-led technology partner. Planning, build
               decisions, and client communication stay closely connected, with
@@ -296,7 +326,7 @@ export default function Home() {
           <MicroLabel index="07" inverse>
             Trust is operational
           </MicroLabel>
-          <h2>Clear commitments. No wall of badges.</h2>
+          <h2 data-reveal="type">Clear commitments. No wall of badges.</h2>
           <p>
             These are the working principles the site can support today.
             Certifications, results, or client endorsements do not appear
@@ -318,7 +348,9 @@ export default function Home() {
         <div className="faq-preview-grid">
           <div className="section-heading">
             <MicroLabel index="08">Before the first call</MicroLabel>
-            <h2>Know the operating model before you reach out.</h2>
+            <h2 data-reveal="type">
+              Know the operating model before you reach out.
+            </h2>
             <Link href="/faq" className="button button-text">
               Read every FAQ <span aria-hidden="true">↗</span>
             </Link>

@@ -26,7 +26,7 @@ export function EditorialMasthead({
         <div className="page-hero-grid">
           <MicroLabel index="00">{eyebrow}</MicroLabel>
           <div className="page-hero-copy">
-            <h1>{title}</h1>
+            <h1 data-reveal="type">{title}</h1>
           </div>
           <div className="page-hero-side">
             <p className="page-hero-intro">{intro}</p>

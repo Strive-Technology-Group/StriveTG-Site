@@ -17,7 +17,7 @@ export function Footer() {
               <span aria-hidden="true">10</span> A practical first step
             </p>
             <div>
-              <h2 id="consultation-band-title">
+              <h2 id="consultation-band-title" data-reveal="type">
                 Bring the system that is getting in the way.
               </h2>
             </div>
@@ -43,7 +43,7 @@ export function Footer() {
               <p className="micro-label micro-label-inverse">
                 Strive Technology Group
               </p>
-              <h2>Web / data / automation</h2>
+              <h2 data-reveal="type">Web / data / automation</h2>
             </div>
             <p>
               Systems for growing service businesses, built with clear scope and

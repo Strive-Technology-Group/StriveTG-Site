@@ -79,6 +79,109 @@ test("all internal links resolve", async ({ page, request }) => {
   }
 });
 
+test("the canonical editorial palette is what the browser renders", async ({
+  page,
+}) => {
+  await page.goto("/", { waitUntil: "domcontentloaded" });
+  const evidence = await page.evaluate(() => {
+    const root = getComputedStyle(document.documentElement);
+    const background = (selector: string) =>
+      getComputedStyle(document.querySelector(selector) as Element)
+        .backgroundColor;
+    const renderedColors = Array.from(document.querySelectorAll("body *"))
+      .flatMap((element) => {
+        const styles = getComputedStyle(element);
+        return [styles.color, styles.backgroundColor, styles.borderColor];
+      })
+      .join(" ");
+
+    return {
+      tokens: {
+        canvas: root.getPropertyValue("--strive-canvas").trim(),
+        ink: root.getPropertyValue("--strive-ink").trim(),
+        trueInk: root.getPropertyValue("--strive-true-ink").trim(),
+        dark: root.getPropertyValue("--strive-dark").trim(),
+        muted: root.getPropertyValue("--strive-muted").trim(),
+        inverse: root.getPropertyValue("--strive-inverse-muted").trim(),
+        signal: root.getPropertyValue("--strive-signal").trim(),
+        support: root.getPropertyValue("--strive-support").trim(),
+        echo: root.getPropertyValue("--strive-echo").trim(),
+      },
+      surfaces: {
+        body: background("body"),
+        ink: background(".section-ink"),
+        dark: background(".section-dark"),
+        signal: background(".consultation-band"),
+      },
+      hasLegacyNavy: renderedColors.includes("rgb(10, 37, 64)"),
+    };
+  });
+
+  expect(evidence.tokens).toEqual({
+    canvas: "#fafffa",
+    ink: "#121613",
+    trueInk: "#000000",
+    dark: "#232924",
+    muted: "#516254",
+    inverse: "#c8d2c8",
+    signal: "#2bee4b",
+    support: "#93b799",
+    echo: "#c4e4c9",
+  });
+  expect(evidence.surfaces).toEqual({
+    body: "rgb(250, 255, 250)",
+    ink: "rgb(18, 22, 19)",
+    dark: "rgb(35, 41, 36)",
+    signal: "rgb(43, 238, 75)",
+  });
+  expect(evidence.hasLegacyNavy).toBe(false);
+});
+
+test("the licensed local grotesque and editorial serif are rendered", async ({
+  page,
+}) => {
+  await page.goto("/", { waitUntil: "networkidle" });
+  const evidence = await page.evaluate(() => ({
+    status: document.fonts.status,
+    ui: getComputedStyle(document.body).fontFamily,
+    display: getComputedStyle(
+      document.querySelector(".hero-line-two .hero-line-content") as Element,
+    ).fontFamily,
+    uiLoaded: document.fonts.check("400 16px inter"),
+    displayLoaded: document.fonts.check("400 64px instrumentSerif"),
+  }));
+
+  expect(evidence.status).toBe("loaded");
+  expect(evidence.ui).toContain("inter");
+  expect(evidence.display).toContain("instrumentSerif");
+  expect(evidence.uiLoaded).toBe(true);
+  expect(evidence.displayLoaded).toBe(true);
+});
+
+test("editorial reveals activate without hiding skipped content", async ({
+  page,
+}) => {
+  await page.goto("/", { waitUntil: "domcontentloaded" });
+  const servicesHeading = page.locator(".services-editorial h2");
+  await servicesHeading.scrollIntoViewIfNeeded();
+  await expect(servicesHeading).toHaveAttribute("data-visible", "true");
+  await expect(servicesHeading).toHaveCSS("clip-path", "inset(0px)");
+});
+
+test("the primary mobile action remains in the first viewport", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/", { waitUntil: "domcontentloaded" });
+  const bounds = await page
+    .locator(".home-hero .button-primary")
+    .boundingBox();
+  expect(bounds).not.toBeNull();
+  expect((bounds?.y ?? 1000) + (bounds?.height ?? 1000)).toBeLessThanOrEqual(
+    844,
+  );
+});
+
 test("public routes do not overflow at release widths", async ({ page }) => {
   for (const width of widths) {
     await page.setViewportSize({ width, height: 900 });
@@ -165,5 +268,8 @@ test("reduced motion disables nonessential motion and no autoplay media remains"
     .first()
     .evaluate((element) => getComputedStyle(element).transitionDuration);
   expect(["0s", "0.00001s", "1e-05s"]).toContain(duration);
+  await expect(page.locator("[data-reveal]:not([data-visible='true'])")).toHaveCount(
+    0,
+  );
   await expect(page.locator("video[autoplay], audio[autoplay]")).toHaveCount(0);
 });
