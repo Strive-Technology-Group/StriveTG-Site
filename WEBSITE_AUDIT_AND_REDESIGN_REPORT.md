@@ -1,5 +1,7 @@
 # Strive Technology Group Website Audit and Redesign Handoff
 
+> **Historical implementation record:** This report describes the retired Calendly/public fit-call model. The current primary conversion path is the first-party project brief; public scheduling was removed, `/work` now redirects to `/approach`, and `/consultation` now redirects to `/start-a-project`. Founder-led marketing is also absent unless a complete approved founder package is supplied. Route names, architecture, screenshots, and verification counts below are August 31 snapshot evidence, not current release claims. Use `README.md`, `LEAD_INTAKE_SETUP.md`, `STRIVE_OFFER_AND_PRICING_STRATEGY.md`, and `OWNER_LAUNCH_DECISIONS.md` for current operating truth.
+
 **Audit and implementation date:** August 31, 2026
 
 **Working branch:** `feat/strive-credibility-redesign-20260831`
@@ -239,7 +241,7 @@ HSTS is not configured yet because the production hostname and subdomain HTTPS p
 | Next.js production build    | Passed; all public routes statically generated                                              |
 | Public asset budget         | Passed at 46,591 bytes; no WebM/MP4 assets                                                  |
 | Production dependency audit | Passed; no known vulnerabilities                                                            |
-| Playwright                  | 24 tests passed                                                                             |
+| Playwright                  | Historical August 31 snapshot: 24 tests passed                                              |
 | Route smoke tests           | All 9 public routes plus custom 404 passed                                                  |
 | Internal links              | Every discovered internal link resolved                                                     |
 | Axe                         | No serious or critical violations across all 9 routes                                       |
@@ -318,7 +320,7 @@ The public `/privacy` and `/terms` content matches the currently implemented web
 
 - [ ] Resolve the launch-critical items in `CONTENT_REQUIRED.md`.
 - [ ] Have qualified counsel approve `/privacy`, `/terms`, and the decisions in `LEGAL_REVIEW_REQUIRED.md`.
-- [ ] Confirm `https://strivetg.com` is canonical and decide the `www` redirect.
+- [ ] Historical checklist superseded: the current working decision keeps `https://www.strivetg.com` canonical and redirects the apex host to `www` only after DNS, SSL, and ownership checks.
 - [ ] Confirm the legal business identity and approved public contact details.
 - [ ] Confirm the contact inbox and Calendly event are active, controlled, monitored, and correctly configured.
 

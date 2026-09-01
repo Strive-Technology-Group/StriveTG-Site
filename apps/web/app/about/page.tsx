@@ -2,16 +2,17 @@ import type { Metadata } from "next";
 import { Button } from "../components/Button";
 import { EditorialMasthead } from "../components/EditorialMasthead";
 import { Section } from "../components/Section";
-import { company, trustCommitments } from "../lib/company";
+import { company } from "../lib/company";
 
 export const metadata: Metadata = {
   title: "About",
   description:
-    "A founder-led technology partner for growing service businesses, built around clear scope, practical systems, and accountable handoff.",
+    "How Strive applies clear scope, practical systems, visible decisions, and direct accountability for growing small and midsize service businesses.",
   alternates: { canonical: "/about" },
   openGraph: {
     title: `About | ${company.name}`,
-    description: "Why Strive stays founder-led, direct, and close to the work.",
+    description:
+      "The operating principles behind Strive's web, reporting, and automation work.",
     url: "/about",
   },
 };
@@ -21,11 +22,11 @@ export default function AboutPage() {
     <>
       <EditorialMasthead
         eyebrow="About"
-        title="Small by design. Serious about the work."
-        intro="Strive is a founder-led technology partner for growing service businesses that need a clearer online presence, better operating visibility, or a practical path to automation."
+        title="Built for clarity. Accountable by design."
+        intro="Strive is a technology partner for growing small and midsize service businesses that need a clearer online presence, more useful reporting, or a practical path to automation."
       >
         <div className="hero-actions">
-          <Button href="/consultation">Start with a fit call</Button>
+          <Button href="/start-a-project">Start a Project</Button>
         </div>
       </EditorialMasthead>
 
@@ -33,21 +34,21 @@ export default function AboutPage() {
         <div className="founder-grid">
           <div className="founder-mark" aria-hidden="true">
             <span className="founder-monogram">STG</span>
-            <small>Founder profile / approved image pending</small>
+            <small>Clear scope / visible decisions / usable handoff</small>
           </div>
           <div className="founder-copy">
-            <p className="eyebrow">Founder-led</p>
-            <h2>The person shaping the work stays close to delivery.</h2>
+            <p className="eyebrow">Operating model</p>
+            <h2>Responsibility stays visible from question to handoff.</h2>
             <p>
-              A layered agency structure can create distance between the
-              business question and the technical decision. Strive takes a more
-              direct approach: listen carefully, make tradeoffs visible, and
-              keep responsibility clear.
+              Strive connects the business question to the technical decision
+              without obscuring assumptions or tradeoffs. Scope,
+              responsibilities, and review points are documented so the work
+              stays understandable.
             </p>
             <p>
-              When a scope needs a specialist outside the core work, that need
-              should be discussed openly rather than hidden behind vague team
-              language.
+              When specialist input is needed, that dependency should be named
+              in the scope and coordinated through a clear point of
+              responsibility.
             </p>
             <div className="founder-principles">
               <div>
@@ -86,8 +87,9 @@ export default function AboutPage() {
             Technology should make the business easier to understand and run.
           </h2>
           <p>
-            That principle connects the work across websites, search,
-            measurement, and automation.
+            For growing small and midsize service businesses, that means making
+            customer journeys, operating signals, and repetitive workflows
+            easier to inspect and improve.
           </p>
         </div>
         <div className="problem-grid">
@@ -115,22 +117,6 @@ export default function AboutPage() {
               review where context and judgment matter.
             </p>
           </article>
-        </div>
-      </Section>
-
-      <Section tone="dark">
-        <div className="section-heading">
-          <p className="eyebrow eyebrow-on-dark">Working commitments</p>
-          <h2>Credibility comes from how the engagement runs.</h2>
-        </div>
-        <div className="commitment-grid">
-          {trustCommitments.map((item, index) => (
-            <article className="commitment-card" key={item.title}>
-              <span>0{index + 1}</span>
-              <h3>{item.title}</h3>
-              <p>{item.description}</p>
-            </article>
-          ))}
         </div>
       </Section>
     </>

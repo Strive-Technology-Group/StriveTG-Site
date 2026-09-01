@@ -28,20 +28,20 @@ The runtime has one canonical source of truth: `apps/web/app/design-tokens.css`.
 
 ## Token mapping
 
-| Reference idea    | Strive semantic token    | Strive value             | Adaptation                                                                 |
-| ----------------- | ------------------------ | ------------------------ | -------------------------------------------------------------------------- |
-| Bone White        | `--strive-canvas`        | `#fafffa`                | Preserved as the paper-like page canvas                                    |
-| Press Black       | `--strive-ink`           | `#121613`                | Primary text and editorial dark surface                                    |
-| True Ink          | `--strive-true-ink`      | `#000000`                | Reserved exact black for high-contrast technical detail                    |
-| Slate Verdant     | `--strive-dark`          | `#232924`                | Secondary ink surface and dark structural detail                           |
-| Newsprint Gray    | `--strive-muted`         | `#516254`                | Captions and secondary copy; usage remains contrast-aware                  |
-| Muted Sage        | `--strive-inverse-muted` | `#c8d2c8`                | Supporting text on dark surfaces                                           |
-| Highlighter Green | `--strive-signal`        | `#2bee4b`                | Exact visual baseline; restricted to actions, rules, and system signals    |
-| Supporting Green  | `--strive-support`       | `#93b799`                | Secondary technical-diagram information only                              |
-| Echo Green        | `--strive-echo`           | `#c4e4c9`                | Alternate paper tint and quiet diagram detail                             |
-| Alternate wash    | `--strive-wash`          | `var(--strive-echo)`     | Semantic alias; no duplicate literal value                                |
-| Hairline ink      | `--strive-border`        | `rgba(18, 22, 19, 0.24)` | Structural rules without card chrome                                       |
-| Signal shadow     | `--strive-signal-shadow` | green-tinted shadow      | Used only on the primary action                                            |
+| Reference idea    | Strive semantic token    | Strive value             | Adaptation                                                              |
+| ----------------- | ------------------------ | ------------------------ | ----------------------------------------------------------------------- |
+| Bone White        | `--strive-canvas`        | `#fafffa`                | Preserved as the paper-like page canvas                                 |
+| Press Black       | `--strive-ink`           | `#121613`                | Primary text and editorial dark surface                                 |
+| True Ink          | `--strive-true-ink`      | `#000000`                | Reserved exact black for high-contrast technical detail                 |
+| Slate Verdant     | `--strive-dark`          | `#232924`                | Secondary ink surface and dark structural detail                        |
+| Newsprint Gray    | `--strive-muted`         | `#516254`                | Captions and secondary copy; usage remains contrast-aware               |
+| Muted Sage        | `--strive-inverse-muted` | `#c8d2c8`                | Supporting text on dark surfaces                                        |
+| Highlighter Green | `--strive-signal`        | `#2bee4b`                | Exact visual baseline; restricted to actions, rules, and system signals |
+| Supporting Green  | `--strive-support`       | `#93b799`                | Secondary technical-diagram information only                            |
+| Echo Green        | `--strive-echo`          | `#c4e4c9`                | Alternate paper tint and quiet diagram detail                           |
+| Alternate wash    | `--strive-wash`          | `var(--strive-echo)`     | Semantic alias; no duplicate literal value                              |
+| Hairline ink      | `--strive-border`        | `rgba(18, 22, 19, 0.24)` | Structural rules without card chrome                                    |
+| Signal shadow     | `--strive-signal-shadow` | green-tinted shadow      | Used only on the primary action                                         |
 
 Only `--strive-signal` is saturated. There are no gradients and no second bright brand color.
 
@@ -60,19 +60,19 @@ The system does not reproduce the reference's literal 165–295px scale. Display
 
 ## Principle-to-component mapping
 
-| Reference principle         | Strive translation                                                                                                   |
-| --------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| Monumental editorial hero   | Four mixed-face type rows with three original inline system inserts and an immediate fit-call action                 |
-| Small-caps navigation       | Compact uppercase Inter labels with a signal rule for current state                                                  |
-| Inline photo tiles          | Original CSS/HTML system diagrams and annotated interface fragments; no stock people or fake project imagery         |
-| Green highlighter           | Exact highlighter baseline used for the primary CTA, active rules, small status marks, and closing consultation band |
-| Broadsheet grid             | Numbered sections, asymmetric columns, baseline rules, narrow annotations, and wide reading fields                   |
-| Flat surfaces               | Cards replaced by ruled rows, matrices, definition lists, and editorial columns                                      |
-| Press-black interruption    | A decisive dark statement connecting visible customer systems with operational systems                               |
-| Category tags               | `MicroLabel` component for section numbers, context, and technical categories                                        |
-| Editorial mastheads         | Shared `EditorialMasthead` for every inner route with controlled route-specific composition                          |
-| Full-bleed accent signature | Useful Strive consultation band with expectations and two real contact paths; no empty 640px band or copied monogram |
-| Dark footer                 | Original Strive footer with wordmark, navigation, contact, policy links, truth note, and dynamic year                |
+| Reference principle         | Strive translation                                                                                                    |
+| --------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| Monumental editorial hero   | Four mixed-face type rows with three original inline system inserts and an immediate project-brief action             |
+| Small-caps navigation       | Compact uppercase Inter labels with a signal rule for current state                                                   |
+| Inline photo tiles          | Original CSS/HTML system diagrams and annotated interface fragments; no stock people or fake project imagery          |
+| Green highlighter           | Exact highlighter baseline used for the primary CTA, active rules, small status marks, and closing project-brief band |
+| Broadsheet grid             | Numbered sections, asymmetric columns, baseline rules, narrow annotations, and wide reading fields                    |
+| Flat surfaces               | Cards replaced by ruled rows, matrices, definition lists, and editorial columns                                       |
+| Press-black interruption    | A decisive dark statement connecting visible customer systems with operational systems                                |
+| Category tags               | `MicroLabel` component for section numbers, context, and technical categories                                         |
+| Editorial mastheads         | Shared `EditorialMasthead` for every inner route with controlled route-specific composition                           |
+| Full-bleed accent signature | Useful Strive project-brief band with expectations and two real contact paths; no empty 640px band or copied monogram |
+| Dark footer                 | Original Strive footer with wordmark, navigation, contact, policy links, truth note, and dynamic year                 |
 
 ## Homepage composition
 
@@ -85,20 +85,20 @@ The page sequence is Strive-specific rather than a one-to-one reference copy:
 5. Dark connective statement and technical system diagram
 6. Evidence-ready problem-solving method
 7. Six-phase engagement ledger
-8. Founder-led accountability profile without a fabricated portrait
+8. Direct-accountability profile without a fabricated founder identity
 9. Ownership and handoff commitments
 10. Focused FAQ
-11. Functional signal-color consultation band
+11. Functional signal-color project-intake band
 12. Dark editorial footer
 
 ## Inner-page system
 
 - Services uses a matrix and scoped-deliverable ledger, not a SaaS card catalogue.
 - Work uses repeatable problem patterns and an evidence standard, not fictional case studies.
-- About uses an accountable editorial profile awaiting approved founder materials.
+- About uses company principles and direct accountability; founder identity is published only with a complete approved package.
 - FAQ uses ruled disclosure rows and a readable text measure.
-- Contact uses two clear paths—email and booking—without a fake form or response promise.
-- Consultation isolates the click-to-load Calendly dialog and explains the third-party boundary.
+- Contact leads with the project brief, keeps direct email as a fallback, and conditionally exposes only an approved business telephone number.
+- Start a Project uses a numbered editorial brief with flat fields, hairline rules, visible focus, and accessible success and error states.
 - Privacy and Terms use a quieter document masthead, wide margins, numbered sections, and explicit legal-review notices.
 
 ## Accessibility adaptations
@@ -108,7 +108,7 @@ The page sequence is Strive-specific rather than a one-to-one reference copy:
 - Signal green always carries dark text; it is not used as small text on the paper canvas.
 - Display typography scales down before wrapping becomes awkward or causes overflow.
 - Focus indicators remain visible on paper, ink, and signal surfaces.
-- Navigation and dialogs retain keyboard behavior, Escape handling, focus restoration, and body scroll locking.
+- Navigation and form interactions retain keyboard behavior, visible state, focus management, and accessible error summaries.
 - Motion follows `STRIVE_MOTION_SPEC.md`: clipped type, media masks, rule growth, diagram activation, and restrained interface transitions, all completed immediately under `prefers-reduced-motion`.
 
 ## Performance adaptations
@@ -116,7 +116,7 @@ The page sequence is Strive-specific rather than a one-to-one reference copy:
 - No autoplay video or decorative client-side animation library is introduced.
 - Technical inserts are CSS/HTML and add no image payload.
 - Fonts are local and limited to one grotesque family in three required weights plus one regular/italic display serif.
-- Existing static rendering, click-to-load Calendly behavior, and public-asset budget remain release requirements.
+- Server-rendered content, provider-confirmed form delivery, and the public-asset budget remain release requirements.
 
 ## Explicit differences from the source reference
 
@@ -124,7 +124,7 @@ The page sequence is Strive-specific rather than a one-to-one reference copy:
 - The exact highlighter baseline is used, but its placement and semantics are Strive-specific rather than copied.
 - The page sequence follows Strive's customer journey and ownership model, not an investment-site sequence.
 - Original system diagrams replace the reference photography treatment because no approved Strive photography exists.
-- The closing accent band is short, useful, and contains consultation information rather than empty brand theater.
+- The closing accent band is short, useful, and directs visitors to the first-party project brief rather than empty brand theater.
 - Navigation remains fully visible on desktop and uses Strive's accessible compact menu on mobile.
 - Display sizes are materially smaller than the reference maxima to protect clarity, CTA visibility, and responsive behavior.
 - The reference's multi-second loader, cycling photography, marquee, continuous scroll cue, and scroll-scrubbed font morphs are rejected.
@@ -133,4 +133,4 @@ The page sequence is Strive-specific rather than a one-to-one reference copy:
 
 ## Owner assets still needed
 
-The site can launch honestly without fabricated inserts, but the founder-led profile will become more credible with an approved founder name, role, biography, photograph, and professional link. Real project imagery or evidence-backed case-study material may later replace selected diagrams. Requirements and publication controls remain in `CONTENT_REQUIRED.md`.
+The site can launch honestly without fabricated inserts or a founder-led claim. Founder identity remains an optional credibility improvement and requires an approved name, role, biography, photograph, and professional link. Real project imagery or evidence-backed case-study material may later replace selected diagrams. Requirements and publication controls remain in `CONTENT_REQUIRED.md`.

@@ -6,7 +6,7 @@ import { company } from "../lib/company";
 export const metadata: Metadata = {
   title: "Terms",
   description:
-    "Working website and engagement terms for Strive Technology Group, including scope, ownership, support, and handoff principles.",
+    "Website-use terms for Strive Technology Group and the relationship between website information and separate project agreements.",
   alternates: { canonical: "/terms" },
 };
 
@@ -16,168 +16,107 @@ export default function TermsPage() {
       <EditorialMasthead
         document
         eyebrow="Terms"
-        title="Clear ownership starts with clear language."
-        intro="These website terms and engagement principles are a working draft. Signed project agreements control client work and require professional legal review."
+        title="Website terms in plain language."
+        intro="These terms cover use of this website. Any client work is governed by a separate written agreement accepted by the parties."
       />
       <Section tone="light">
         <div className="legal-content">
           <div className="legal-notice">
-            <strong>Review status:</strong> Working draft dated August 31, 2026.
-            Do not deploy as final terms until the owner confirms the
-            contracting entity and commercial model and qualified counsel
-            reviews the document.
+            <strong>Last updated:</strong> September 1, 2026
           </div>
 
           <section>
-            <h2>1. Website use</h2>
+            <h2>1. Website information</h2>
             <p>
-              This website provides general information about {company.name} and
-              its services. It is not professional legal, financial, or
-              accounting advice, and it does not create a client relationship or
-              guarantee that Strive will accept an engagement.
+              This website provides general information about {company.name},
+              its capabilities, and ways to make contact. Website content is not
+              a proposal, fixed package, or professional legal, financial, or
+              accounting advice.
             </p>
             <p>
-              You may use the site for lawful informational and contact
-              purposes. Do not attempt to interfere with the site, test it
-              without authorization, introduce malicious code, or use its
-              content in a way that violates applicable rights or law.
-            </p>
-          </section>
-
-          <section>
-            <h2>2. Proposals and project agreements</h2>
-            <p>
-              Website descriptions are capabilities, not fixed packages or
-              promises that every engagement includes every item. A client
-              engagement begins only when the parties accept a written agreement
-              or proposal identifying the parties, scope, deliverables,
-              exclusions, responsibilities, review process, fees, payment
-              schedule, assumptions, and other applicable terms.
-            </p>
-            <p>
-              If this website conflicts with a signed client agreement, the
-              signed agreement controls for that engagement.
+              Using the website or sending an inquiry does not by itself create
+              a client relationship or require either party to begin an
+              engagement.
             </p>
           </section>
 
           <section>
-            <h2>3. Ownership model</h2>
-            <h3>Client-owned assets</h3>
+            <h2>2. Project agreements</h2>
             <p>
-              After full payment, the client owns its domain, data, content, and
-              the custom deliverables identified for transfer in the signed
-              agreement. Client-provided material remains the client’s or its
-              licensors’ property.
+              Client work begins through a separate written agreement or
+              accepted proposal. That document identifies the parties, scope,
+              deliverables, exclusions, responsibilities, review process,
+              commercial terms, ownership, third-party services, support, and
+              handoff terms that apply to the engagement.
             </p>
-            <h3>Strive’s retained materials</h3>
             <p>
-              Strive retains ownership of pre-existing intellectual property,
-              reusable libraries, templates, tools, methods, processes, and
-              general knowledge. When those materials are embedded in a
-              deliverable, the agreement should provide the client a license
-              sufficient to use the fully paid deliverable as intended.
+              If website information differs from an accepted project agreement,
+              the project agreement controls for that engagement.
             </p>
-            <h3>Third-party and subscription products</h3>
+          </section>
+
+          {/* Working commercial direction. Owner and qualified legal review are required before production publication. */}
+          <section>
+            <h2>3. Commercial terms and ending work</h2>
             <p>
-              Open-source software, platforms, fonts, plugins, stock materials,
-              and other third-party products remain subject to their own
-              licenses and terms. Any separately licensed or subscription-based
-              Strive product must be identified explicitly; it should not be
-              implied to be a transferred custom deliverable.
+              Initial projects, eligible ongoing services, and material
+              additions are separate forms of work. The applicable agreement
+              identifies deposits or setup fees, invoices, milestones,
+              acceptance, changes, third-party costs, renewal, cancellation,
+              refund treatment, ownership, and offboarding.
+            </p>
+            <p>
+              Eligible ongoing monthly services do not require a long-term
+              commitment. They may be canceled before the next renewal, and
+              future recurring charges stop according to the agreement. Initial
+              projects, completed work, work already in progress, committed
+              third-party costs, active billing periods, and handoff
+              responsibilities remain governed by the approved agreement.
             </p>
           </section>
 
           <section>
-            <h2>4. Hosting, support, cancellation, and handoff</h2>
+            <h2>4. Capabilities and outcomes</h2>
             <p>
-              Hosting, maintenance, monitoring, content changes, support, and
-              improvement work may be recurring services when included in a
-              written agreement. The agreement should state the covered systems,
-              service period, renewal or cancellation process, access model,
-              support channel, and any actual service target.
+              Descriptions on this website explain the types of problems Strive
+              addresses. They do not establish a universal scope, price,
+              timeline, service level, search ranking, lead volume, revenue
+              result, time saving, or other guaranteed outcome.
             </p>
             <p>
-              Ending recurring support does not remove the client’s ownership of
-              fully paid custom deliverables. Subject to payment and third-party
-              limitations, Strive should provide reasonable access, export,
-              documentation, and transition assistance as defined in the
-              agreement. Additional migration work may be separately scoped.
+              Project-specific commitments and validation criteria belong in the
+              applicable written agreement.
             </p>
           </section>
 
           <section>
-            <h2>5. Fees, timing, and changes</h2>
+            <h2>5. Acceptable website use</h2>
             <p>
-              Fees, deposits, billing schedules, expenses, taxes, refunds,
-              pauses, and late-payment consequences must be stated in the
-              applicable agreement. This website does not establish a universal
-              project price or timeline.
-            </p>
-            <p>
-              Changes to scope, assumptions, dependencies, client
-              responsibilities, or third-party systems can affect timing and
-              fees. Material changes should be documented and approved before
-              the changed work proceeds.
+              Use the website for lawful informational and contact purposes. Do
+              not interfere with its operation, test it without authorization,
+              introduce malicious code, misrepresent Strive, or use website
+              content in a way that infringes applicable rights.
             </p>
           </section>
 
           <section>
-            <h2>6. Client responsibilities</h2>
+            <h2>6. Website content and third parties</h2>
             <p>
-              A project agreement may require the client to provide timely
-              access, accurate content, lawful materials, decisions, feedback,
-              approvals, and a responsible point of contact. The client is
-              responsible for having rights to the content, data, trademarks,
-              accounts, and instructions it provides.
+              The website design, copy, branding, and other materials are owned
+              or licensed by Strive unless stated otherwise. Third-party links
+              and embedded services are governed by their respective operators.
             </p>
           </section>
 
           <section>
-            <h2>7. Results, warranties, and liability</h2>
+            <h2>7. Changes and contact</h2>
             <p>
-              Technology, search visibility, analytics, and automation outcomes
-              depend on factors outside Strive’s control, including the client’s
-              offer, market, traffic, data quality, operations, decisions,
-              third-party platforms, and implementation after handoff. Unless a
-              signed agreement says otherwise, the site does not promise a
-              ranking, lead volume, revenue result, time saving, uninterrupted
-              service, or specific return.
-            </p>
-            <p>
-              Warranty disclaimers, indemnities, limitation of liability,
-              dispute procedures, governing law, and venue are legal terms that
-              must be established in a professionally reviewed client agreement.
-              This draft intentionally does not invent those decisions.
-            </p>
-          </section>
-
-          <section>
-            <h2>8. Site content and third-party links</h2>
-            <p>
-              Strive owns or licenses the website design, copy, and branding
-              except where otherwise stated. You may not reproduce substantial
-              website content or use Strive’s marks without permission, subject
-              to rights provided by law.
-            </p>
-            <p>
-              Third-party links and embedded services are provided for
-              convenience. Their availability, security, content, and practices
-              are governed by their operators.
-            </p>
-          </section>
-
-          <section>
-            <h2>9. Changes and contact</h2>
-            <p>
-              These website terms may be updated as the site and business
-              practices change. The published date should be revised when
-              material changes are made.
+              These terms may change as the website and business practices
+              evolve. The date above identifies the latest published revision.
             </p>
             <p>
               Questions can be sent to{" "}
-              <a href={`mailto:${company.email}`}>{company.email}</a>. The owner
-              must confirm the legal entity name, effective address, billing
-              contact, and governing-law choices before production use.
+              <a href={`mailto:${company.email}`}>{company.email}</a>.
             </p>
           </section>
         </div>

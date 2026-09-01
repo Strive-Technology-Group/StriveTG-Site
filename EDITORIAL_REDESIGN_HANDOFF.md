@@ -1,6 +1,8 @@
 # Strive Editorial Redesign Handoff
 
 > This document records the first editorial implementation. The later color, composition, and motion correction is documented in `FIDELITY_CORRECTION_REPORT.md`; where evidence or counts differ, the corrective report is authoritative.
+>
+> **Historical implementation record:** This handoff predates the current first-party project brief. Calendly and public scheduling were removed, `/work` now redirects to `/approach`, and `/consultation` now redirects to `/start-a-project`. Route names, booking behavior, screenshots, and verification counts below describe the August 31 snapshot, not the current system. Use `README.md`, `LEAD_INTAKE_SETUP.md`, `STRIVE_OFFER_AND_PRICING_STRATEGY.md`, and `OWNER_LAUNCH_DECISIONS.md` for current operating truth.
 
 Date: August 31, 2026  
 Branch: `feat/strive-editorial-design-20260831`  
@@ -130,17 +132,17 @@ No Lighthouse or real-user Core Web Vitals score was claimed; those require a pr
 
 ## 10. Build, lint, type-check, and test results
 
-| Gate                | Result                                  |
-| ------------------- | --------------------------------------- |
-| `pnpm lint`         | Pass, zero warnings                     |
-| `pnpm check-types`  | Pass                                    |
-| `pnpm build`        | Pass, all static routes generated       |
-| `pnpm check:assets` | Pass, 5 public files / 44,877 bytes     |
-| `pnpm test`         | Pass, 28 of 28 Playwright tests         |
-| Internal links      | Pass                                    |
-| Axe WCAG A/AA sweep | Pass on all public routes               |
-| Responsive overflow | Pass across 45 route/width combinations |
-| `pnpm audit --prod` | Pass, no known vulnerabilities          |
+| Gate                | Result                                                          |
+| ------------------- | --------------------------------------------------------------- |
+| `pnpm lint`         | Pass, zero warnings                                             |
+| `pnpm check-types`  | Pass                                                            |
+| `pnpm build`        | Pass, all static routes generated                               |
+| `pnpm check:assets` | Pass, 5 public files / 44,877 bytes                             |
+| `pnpm test`         | Historical August 31 snapshot: 28 of 28 Playwright tests passed |
+| Internal links      | Pass                                                            |
+| Axe WCAG A/AA sweep | Pass on all public routes                                       |
+| Responsive overflow | Pass across 45 route/width combinations                         |
+| `pnpm audit --prod` | Pass, no known vulnerabilities                                  |
 
 The combined verifier initially reached the workspace's restricted localhost binding at the Playwright stage. The browser suite was rerun with local test-server permission and passed completely; the code, build, asset, and audit gates also passed independently.
 

@@ -1,5 +1,7 @@
 # Strive Reference Fidelity Correction Report
 
+> **Historical implementation record:** This report predates the current first-party project brief. Public scheduling was removed, `/work` now redirects to `/approach`, and `/consultation` now redirects to `/start-a-project`. Route names, consultation components, screenshots, and verification counts below describe the August 31 snapshot, not the current conversion system. Use `README.md`, `LEAD_INTAKE_SETUP.md`, `STRIVE_OFFER_AND_PRICING_STRATEGY.md`, and `OWNER_LAUNCH_DECISIONS.md` for current operating truth.
+
 Date: August 31, 2026  
 Branch: `feat/strive-editorial-design-20260831`  
 Corrective implementation: `f73e0d5` (`feat: correct editorial color composition and motion`)  
@@ -23,18 +25,18 @@ The first adaptation had already removed the centered SaaS hero, waves, five gen
 
 The only runtime token source remains [`apps/web/app/design-tokens.css`](./apps/web/app/design-tokens.css). Tailwind 3 maps to those semantic variables and contains no separate palette, gradients, or generic animation library.
 
-| Conflict | Before | Corrected |
-| --- | --- | --- |
-| Primary signal | `#c9f04b` | `#2bee4b` |
-| Alternate wash | `#e8f2e8` | `var(--strive-echo)` / `#c4e4c9` |
-| Supporting diagram green | Unspecified | `#93b799` |
-| True ink | Unspecified | `#000000` |
-| Tailwind colors | Navy plus blue/teal/purple accents | Semantic `strive.*` variables only |
-| Tailwind imagery | Five gradient utilities | Removed |
-| Tailwind motion | Fade, slide, float, glow, gradient shift | Removed |
-| Open Graph | Navy / adapted lime | Press black / exact signal |
-| Favicon and light wordmark | Legacy navy | Press black / bone white |
-| Logo rendering | Color baked into separate SVG variants | Real wordmark shape used as a mask; canonical ink tokens supply rendered color |
+| Conflict                   | Before                                   | Corrected                                                                      |
+| -------------------------- | ---------------------------------------- | ------------------------------------------------------------------------------ |
+| Primary signal             | `#c9f04b`                                | `#2bee4b`                                                                      |
+| Alternate wash             | `#e8f2e8`                                | `var(--strive-echo)` / `#c4e4c9`                                               |
+| Supporting diagram green   | Unspecified                              | `#93b799`                                                                      |
+| True ink                   | Unspecified                              | `#000000`                                                                      |
+| Tailwind colors            | Navy plus blue/teal/purple accents       | Semantic `strive.*` variables only                                             |
+| Tailwind imagery           | Five gradient utilities                  | Removed                                                                        |
+| Tailwind motion            | Fade, slide, float, glow, gradient shift | Removed                                                                        |
+| Open Graph                 | Navy / adapted lime                      | Press black / exact signal                                                     |
+| Favicon and light wordmark | Legacy navy                              | Press black / bone white                                                       |
+| Logo rendering             | Color baked into separate SVG variants   | Real wordmark shape used as a mask; canonical ink tokens supply rendered color |
 
 Tailwind is version 3, so the supplied Tailwind 4 `@theme` file was not pasted into the project and Tailwind was not upgraded. No incompatible syntax was introduced.
 
@@ -42,17 +44,17 @@ Tailwind is version 3, so the supplied Tailwind 4 `@theme` file was not pasted i
 
 These values were captured from computed browser styles in the local production build. The Playwright release test now asserts the same evidence on every run.
 
-| Semantic role | Canonical value | Browser evidence |
-| --- | --- | --- |
-| Canvas | `#fafffa` | `rgb(250, 255, 250)` on `body` |
-| Primary ink | `#121613` | `rgb(18, 22, 19)` on type and the ink section |
-| True ink | `#000000` | Exact computed root token, reserved for high-contrast detail |
-| Secondary dark | `#232924` | `rgb(35, 41, 36)` on the dark commitments surface and hero inserts |
-| Muted text | `#516254` | Exact computed root token on secondary copy |
-| Inverse muted | `#c8d2c8` | Exact computed root token on ink surfaces |
-| Primary signal | `#2bee4b` | `rgb(43, 238, 75)` on the primary CTA and consultation band |
-| Supporting green | `#93b799` | Exact computed root token in system fragments |
-| Echo green | `#c4e4c9` | Exact computed root token and soft editorial surface |
+| Semantic role    | Canonical value | Browser evidence                                                   |
+| ---------------- | --------------- | ------------------------------------------------------------------ |
+| Canvas           | `#fafffa`       | `rgb(250, 255, 250)` on `body`                                     |
+| Primary ink      | `#121613`       | `rgb(18, 22, 19)` on type and the ink section                      |
+| True ink         | `#000000`       | Exact computed root token, reserved for high-contrast detail       |
+| Secondary dark   | `#232924`       | `rgb(35, 41, 36)` on the dark commitments surface and hero inserts |
+| Muted text       | `#516254`       | Exact computed root token on secondary copy                        |
+| Inverse muted    | `#c8d2c8`       | Exact computed root token on ink surfaces                          |
+| Primary signal   | `#2bee4b`       | `rgb(43, 238, 75)` on the primary CTA and consultation band        |
+| Supporting green | `#93b799`       | Exact computed root token in system fragments                      |
+| Echo green       | `#c4e4c9`       | Exact computed root token and soft editorial surface               |
 
 The automated computed-style scan found no rendered `rgb(10, 37, 64)` legacy navy. No second saturated accent or CSS gradient is defined.
 
@@ -176,22 +178,22 @@ Every captured route reported one visible H1, completed masthead motion, and zer
 
 ## 11. Build, accessibility, performance, and test results
 
-| Gate | Result |
-| --- | --- |
-| `pnpm --filter web lint` | Pass, zero warnings |
-| `pnpm --filter web check-types` | Pass |
-| `pnpm --filter web build` | Pass, 15/15 static pages/resources generated |
-| `pnpm --filter web check:assets` | Pass, 5 files / 44,877 bytes |
-| `pnpm --filter web test` | Pass, 28/28 Playwright tests |
-| Axe WCAG A/AA sweep | Zero serious or critical findings across all public routes |
-| Internal links | Pass |
-| Responsive overflow | Pass at 1440, 1024, 768, 390, and 375 across all public routes |
-| Exact computed palette | Pass |
-| Local font loading | Pass |
-| Editorial reveal/fallback | Pass |
-| Reduced motion | Pass; completed content, effectively zero duration, no autoplay media |
-| Mobile navigation | Pass; state, Escape, body lock, and focus restoration |
-| Consultation dialog | Pass; click-to-load, focus, Escape, success state |
+| Gate                             | Result                                                                |
+| -------------------------------- | --------------------------------------------------------------------- |
+| `pnpm --filter web lint`         | Pass, zero warnings                                                   |
+| `pnpm --filter web check-types`  | Pass                                                                  |
+| `pnpm --filter web build`        | Pass, 15/15 static pages/resources generated                          |
+| `pnpm --filter web check:assets` | Pass, 5 files / 44,877 bytes                                          |
+| `pnpm --filter web test`         | Historical August 31 snapshot: 28/28 Playwright tests passed          |
+| Axe WCAG A/AA sweep              | Zero serious or critical findings across all public routes            |
+| Internal links                   | Pass                                                                  |
+| Responsive overflow              | Pass at 1440, 1024, 768, 390, and 375 across all public routes        |
+| Exact computed palette           | Pass                                                                  |
+| Local font loading               | Pass                                                                  |
+| Editorial reveal/fallback        | Pass                                                                  |
+| Reduced motion                   | Pass; completed content, effectively zero duration, no autoplay media |
+| Mobile navigation                | Pass; state, Escape, body lock, and focus restoration                 |
+| Consultation dialog              | Pass; click-to-load, focus, Escape, success state                     |
 
 Production build output remains 105kB maximum first-load JavaScript with 102kB shared. No animation library, autoplay media, remote font request, dependency, or gradient payload was added. The only new visual asset is an original 452-byte paper texture.
 

@@ -7,7 +7,10 @@ export default function NotFound() {
       <Container>
         <p className="eyebrow">404 · Page not found</p>
         <h1>This route does not exist.</h1>
-        <p>The navigation reflects the pages that are actually available.</p>
+        <p>
+          Use the navigation to continue, or contact Strive if you were looking
+          for something specific.
+        </p>
         <div className="hero-actions" style={{ justifyContent: "center" }}>
           <Button href="/">Return home</Button>
           <Button href="/contact" variant="outline">

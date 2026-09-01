@@ -7,97 +7,121 @@ import { company } from "../lib/company";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Contact Strive Technology Group by email or book a fit call to discuss a website, analytics, or automation need for a growing service business.",
+    "Start a project with Strive by sharing what needs to change, the service needed, current systems, timing, and investment context.",
   alternates: { canonical: "/contact" },
   openGraph: {
     title: `Contact | ${company.name}`,
     description:
-      "Email Strive directly or choose a fit call when a conversation is easier.",
+      "Send Strive a concise project brief. Direct email and an approved business telephone remain secondary contact paths.",
     url: "/contact",
   },
 };
 
 export default function ContactPage() {
-  const subject = encodeURIComponent("Project fit inquiry");
+  const subject = encodeURIComponent("Strive project inquiry");
   const body = encodeURIComponent(
-    "Business name:\n\nWhat are you trying to improve?\n\nWhat is happening today?\n\nAny important timing or constraints?\n",
+    "Company name or website:\n\nService needed:\n\nWhat are you trying to accomplish?:\n\nCurrent systems or platforms:\n\nDesired timing:\n\nExpected investment range:\n\nPreferred contact method (optional):\n",
   );
 
   return (
     <>
       <EditorialMasthead
         eyebrow="Contact"
-        title="Start with the problem you need to solve."
-        intro="Use email when the request is already clear, or book a fit call when talking through the context will be more useful."
+        title="Start with the context that matters."
+        intro="The project brief is the clearest first step. It gives Strive enough information to review the opportunity before requesting more detail or proposing a conversation."
       />
       <Section tone="light">
-        <div className="contact-grid">
-          <article className="contact-card">
-            <p className="eyebrow">Email first</p>
-            <h2>Send the useful context.</h2>
-            <p>
-              There is no public contact form because the site does not have a
-              verified delivery and spam-protection backend. Email keeps the
-              path functional and transparent.
+        <div className="contact-conversion-grid">
+          <article className="contact-primary-choice">
+            <p className="micro-label">
+              <span aria-hidden="true">01</span> Primary path
             </p>
-            <a
-              className="email-link"
-              href={`mailto:${company.email}?subject=${subject}&body=${body}`}
-            >
-              {company.email}
-            </a>
-            <p className="kicker">Helpful details include:</p>
+            <h2>Tell us what you need.</h2>
+            <p>
+              Share what needs to change, the service needed, current systems,
+              timing, and expected investment range in one focused brief.
+            </p>
             <ul className="prompt-list">
-              <li>What the business does and who it serves</li>
-              <li>The problem or decision that prompted the inquiry</li>
-              <li>The current website, tools, or workflow involved</li>
-              <li>Any timing, access, or operational constraints</li>
+              <li>Choose the closest service area</li>
+              <li>Describe what is happening and what should change</li>
+              <li>Give the timing and investment context</li>
+              <li>Optionally choose email or telephone for follow-up</li>
             </ul>
+            <Button href="/start-a-project">Start a Project</Button>
           </article>
-          <article className="contact-card contact-card-dark">
-            <p className="eyebrow eyebrow-on-dark">Fit call</p>
-            <h2>Talk through the context.</h2>
-            <p>
-              The fit call is for understanding the need and deciding whether
-              Strive is the right partner. It is not presented as a guaranteed
-              strategy session, audit, or proposal.
-            </p>
-            <div className="hero-actions">
-              <Button href="/consultation" variant="secondary">
-                See booking details
-              </Button>
-            </div>
-          </article>
+
+          <aside
+            className="contact-secondary-paths"
+            aria-label="Other contact paths"
+          >
+            {company.telephone && (
+              <article className="contact-secondary-choice contact-card-dark">
+                <p className="micro-label micro-label-inverse">
+                  <span aria-hidden="true">02</span> Telephone
+                </p>
+                <h2>Prefer to talk?</h2>
+                <p>
+                  Call Strive’s dedicated business number and leave a concise
+                  voicemail if the call is not answered.
+                </p>
+                <a className="telephone-link" href={company.telephone.href}>
+                  {company.telephone.display}
+                </a>
+                {company.telephone.businessHours && (
+                  <p className="contact-hours">
+                    {company.telephone.businessHours}
+                  </p>
+                )}
+              </article>
+            )}
+
+            <article className="contact-email-fallback">
+              <p className="eyebrow">Accessible fallback</p>
+              <h2>Email Strive directly.</h2>
+              <p>
+                If the form is not practical for you, send the same core context
+                by email. Do not include passwords, credentials, customer
+                records, or regulated data.
+              </p>
+              <a
+                className="email-link"
+                href={`mailto:${company.email}?subject=${subject}&body=${body}`}
+              >
+                {company.email}
+              </a>
+            </article>
+          </aside>
         </div>
       </Section>
       <Section tone="soft">
         <div className="section-heading">
           <p className="eyebrow">What happens next</p>
-          <h2>A practical path, without a response-time promise.</h2>
+          <h2>Review first. Conversation when useful.</h2>
         </div>
         <div className="problem-grid">
           <article className="problem-card">
             <span className="card-number">01</span>
-            <h3>Context is reviewed</h3>
+            <h3>The brief is reviewed</h3>
             <p>
-              Strive reviews what you sent and whether the request fits the
-              services described on this site.
+              Strive considers the goal, systems involved, timing, investment
+              context, and match with its capabilities.
             </p>
           </article>
           <article className="problem-card">
             <span className="card-number">02</span>
-            <h3>Questions come before scope</h3>
+            <h3>The response fits the request</h3>
             <p>
-              If more context is needed, the next step may be a short exchange
-              or fit call—not an immediate estimate.
+              Strive may respond by email, request more information, decline the
+              opportunity, or provide a private scheduling link.
             </p>
           </article>
           <article className="problem-card">
             <span className="card-number">03</span>
-            <h3>A proposal follows fit</h3>
+            <h3>Scope follows clarification</h3>
             <p>
-              When an engagement makes sense, discovery and scope determine the
-              deliverables, assumptions, timing, and price.
+              When an engagement makes sense, a written proposal defines the
+              deliverables, responsibilities, assumptions, commercial terms, and
+              next decision.
             </p>
           </article>
         </div>

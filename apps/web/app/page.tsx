@@ -19,7 +19,7 @@ import {
 export const metadata: Metadata = {
   title: "Websites, reporting, and practical automation",
   description:
-    "Strive builds connected web, reporting, and automation systems for growing service businesses.",
+    "Strive builds connected web, reporting, and automation systems for growing small and midsize service businesses.",
   alternates: { canonical: "/" },
 };
 
@@ -53,18 +53,18 @@ const problems = [
 const approaches = [
   {
     number: "A",
-    title: "Start with the decision",
-    body: "Define what a visitor, operator, or owner needs to understand or do next.",
+    title: "Website path audit",
+    body: "An annotated map of the offer, content hierarchy, inquiry path, search foundations, and measurement needs.",
   },
   {
     number: "B",
-    title: "Trace the complete system",
-    body: "Review the content, tools, data, dependencies, and handoffs shaping the current result.",
+    title: "Reporting definition model",
+    body: "A focused record of business questions, source systems, metric definitions, data checks, and ownership.",
   },
   {
     number: "C",
-    title: "Build the smallest useful change",
-    body: "Prioritize a maintainable improvement and agree how it will be evaluated before adding complexity.",
+    title: "Workflow and controls map",
+    body: "A current-state and proposed flow showing triggers, rules, exceptions, human review, and fallback paths.",
   },
 ] as const;
 
@@ -74,7 +74,7 @@ export default function Home() {
       <section className="home-hero">
         <Container>
           <div className="hero-register" aria-hidden="true">
-            STRIVE / SYSTEMS FOR GROWING BUSINESS
+            STRIVE / SYSTEMS FOR GROWING SMALL AND MIDSIZE SERVICE BUSINESSES
           </div>
           <div className="home-hero-stage">
             <MicroLabel>Web / data / automation</MicroLabel>
@@ -106,12 +106,13 @@ export default function Home() {
             </p>
             <p className="hero-rail-summary">
               Strive designs and manages the websites, reporting systems, and
-              workflow automations growing service businesses need to operate
-              with greater clarity and less manual work.
+              workflow automations growing small and midsize service businesses
+              use to present their value, understand activity, and reduce
+              repetitive work.
             </p>
             <div className="hero-actions">
-              <Button href="/consultation">Book a Fit Call</Button>
-              <Button href="/#how-we-work" variant="text">
+              <Button href="/start-a-project">Start a Project</Button>
+              <Button href="/approach" variant="text">
                 Explore Our Approach
               </Button>
             </div>
@@ -119,17 +120,17 @@ export default function Home() {
         </Container>
       </section>
 
-      <div className="trust-strip" aria-label="Working commitments">
+      <div className="trust-strip" aria-label="Engagement principles">
         <Container>
           <ul className="trust-strip-list">
             <li>
-              <span>01</span> Founder-led communication
+              <span>01</span> Direct project accountability
             </li>
             <li>
               <span>02</span> Scope before build
             </li>
             <li>
-              <span>03</span> Client-owned domains and data
+              <span>03</span> Ownership defined in writing
             </li>
             <li>
               <span>04</span> Documented handoff
@@ -140,13 +141,14 @@ export default function Home() {
 
       <Section tone="light" className="problem-section">
         <div className="section-heading section-heading-editorial">
-          <MicroLabel index="01">What growing businesses outgrow</MicroLabel>
+          <MicroLabel index="01">Where growth creates friction</MicroLabel>
           <h2 data-reveal="type">
             The tools still work. The system around them does not.
           </h2>
           <p>
-            Strive enters when a capable business has accumulated enough digital
-            friction that isolated fixes no longer hold.
+            Growing small and midsize service businesses often reach a point
+            where isolated fixes no longer solve the customer and operating
+            friction between their tools.
           </p>
         </div>
         <EditorialRule />
@@ -223,8 +225,8 @@ export default function Home() {
               between presence, information, and repeatable work—with ownership
               and handoff defined before the build.
             </p>
-            <Button href="/work" variant="outline">
-              Review the work standard
+            <Button href="/approach" variant="outline">
+              Explore the approach
             </Button>
           </div>
           <SystemDiagram inverse />
@@ -235,14 +237,13 @@ export default function Home() {
         <div className="approach-grid">
           <div className="approach-copy">
             <MicroLabel index="04">How Strive solves problems</MicroLabel>
-            <h2 data-reveal="type">Evidence belongs next to the claim.</h2>
+            <h2 data-reveal="type">Artifacts make the work reviewable.</h2>
             <p>
-              Strive does not publish unverified client results. The method is
-              visible now; client stories appear only when the facts,
-              measurement, and permission are in place.
+              Audits, system maps, reporting definitions, workflow diagrams, and
+              handoff records show what is changing and why.
             </p>
-            <Button href="/work" variant="text">
-              See the evidence standard
+            <Button href="/approach" variant="text">
+              Explore capability artifacts
             </Button>
           </div>
           <div className="approach-list">
@@ -288,26 +289,26 @@ export default function Home() {
         <div className="founder-grid">
           <div className="founder-mark" aria-hidden="true">
             <span className="founder-monogram">STG</span>
-            <small>Founder profile / approved image pending</small>
+            <small>Direct accountability / documented decisions</small>
           </div>
           <div className="founder-copy">
-            <MicroLabel index="06">Accountability without layers</MicroLabel>
+            <MicroLabel index="06">Clear point of responsibility</MicroLabel>
             <h2 data-reveal="type">
-              The person shaping the work stays close to delivery.
+              Business questions stay connected to technical decisions.
             </h2>
             <p>
-              Strive is a founder-led technology partner. Planning, build
-              decisions, and client communication stay closely connected, with
-              outside specialists used only when a scope calls for them.
+              Strive keeps planning, technical decisions, and client
+              communication connected so assumptions and tradeoffs remain
+              visible throughout the engagement.
             </p>
             <p>
-              No founder name, biography, portrait, or profile is published
-              until the owner approves the real material.
+              When a scope calls for specialist input, the responsibility,
+              decision path, and handoff should remain explicit.
             </p>
             <div className="founder-principles">
               <div>
-                <strong>Direct communication</strong>
-                <span>Questions and tradeoffs stay close to delivery.</span>
+                <strong>Visible decisions</strong>
+                <span>Questions, assumptions, and tradeoffs are recorded.</span>
               </div>
               <div>
                 <strong>Right-sized systems</strong>
@@ -326,11 +327,12 @@ export default function Home() {
           <MicroLabel index="07" inverse>
             Trust is operational
           </MicroLabel>
-          <h2 data-reveal="type">Clear commitments. No wall of badges.</h2>
+          <h2 data-reveal="type">
+            Clear commitments make the work easier to trust.
+          </h2>
           <p>
-            These are the working principles the site can support today.
-            Certifications, results, or client endorsements do not appear
-            without verification.
+            Scope, ownership terms, evidence, and handoff expectations become
+            part of the working record—not assumptions left for the end.
           </p>
         </div>
         <div className="commitment-grid">
@@ -348,9 +350,7 @@ export default function Home() {
         <div className="faq-preview-grid">
           <div className="section-heading">
             <MicroLabel index="08">Before the first call</MicroLabel>
-            <h2 data-reveal="type">
-              Know the operating model before you reach out.
-            </h2>
+            <h2 data-reveal="type">Decide whether Strive fits the problem.</h2>
             <Link href="/faq" className="button button-text">
               Read every FAQ <span aria-hidden="true">↗</span>
             </Link>

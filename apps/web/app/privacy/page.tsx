@@ -6,7 +6,7 @@ import { company } from "../lib/company";
 export const metadata: Metadata = {
   title: "Privacy",
   description:
-    "Working privacy disclosure for the Strive Technology Group website, email contact path, hosting logs, and click-to-load Calendly booking.",
+    "How the Strive Technology Group website, project brief, direct email, and related service providers handle information.",
   alternates: { canonical: "/privacy" },
   robots: { index: true, follow: true },
 };
@@ -17,140 +17,147 @@ export default function PrivacyPage() {
       <EditorialMasthead
         document
         eyebrow="Privacy"
-        title="A plain-language working privacy draft."
-        intro="This disclosure is written to match the current website behavior. It still requires owner confirmation and professional legal review before production publication."
+        title="How this website handles information."
+        intro="This page explains what happens when you browse the website, submit a project brief, or contact Strive directly."
       />
       <Section tone="light">
         <div className="legal-content">
           <div className="legal-notice">
-            <strong>Review status:</strong> Working draft dated August 31, 2026.
-            Confirm the legal entity, hosting provider, retention practices,
-            processor terms, and applicable-law requirements with qualified
-            counsel before deployment.
+            <strong>Last updated:</strong> September 1, 2026
           </div>
 
           <section>
-            <h2>1. What this site does</h2>
+            <h2>1. Contact choices</h2>
             <p>
-              This is a public marketing website for {company.name}. It does not
-              currently provide user accounts, a customer portal, online
-              payments, a first-party contact form, advertising pixels, or a
-              first-party analytics product.
-            </p>
-            <p>
-              The site provides two ways to contact Strive: send an email using
-              your own email provider, or choose to load Calendly and book a fit
-              call.
+              This website provides a project-brief form and a direct email
+              address. A dedicated business telephone number is displayed only
+              when it has been approved for public use. The website does not
+              provide user accounts, online payments, or file uploads.
             </p>
           </section>
 
           <section>
-            <h2>2. Information that may be processed</h2>
-            <h3>When you browse</h3>
+            <h2>2. When you browse</h2>
             <p>
-              The hosting and network providers that deliver the site may
-              process technical request information such as an IP address,
-              browser or device details, requested pages, timestamps, and
-              security or diagnostic logs. The exact provider and retention
-              settings must be confirmed before deployment.
+              The hosting and network services that deliver the website may
+              process standard technical request information, including an IP
+              address, browser or device details, requested pages, timestamps,
+              and security or diagnostic logs.
             </p>
-            <h3>When you email</h3>
             <p>
-              If you email Strive, the email address, message, attachments, and
-              any information you choose to include are processed to review and
-              respond to the inquiry and to maintain relevant business records.
-            </p>
-            <h3>When you open the booking scheduler</h3>
-            <p>
-              Calendly is not loaded globally. It loads only after you select
-              “Open secure booking” on the consultation page. Calendly may then
-              process booking details, technical data, and cookies under its own
-              terms and privacy practices. Do not include sensitive information
-              that is not needed to schedule the call.
+              The website code does not load a first-party analytics product or
+              advertising pixel. Fonts and visual assets are served locally
+              rather than requested from a font provider.
             </p>
           </section>
 
           <section>
-            <h2>3. Cookies and third parties</h2>
-            <p>
-              The current Strive code does not set a first-party marketing or
-              analytics cookie. The website uses a local/system font stack and
-              does not make a browser request to Google Fonts.
-            </p>
-            <p>
-              If you choose to load the Calendly frame, Calendly may use its own
-              storage, cookies, and subprocessors. Review{" "}
-              <a href="https://calendly.com/privacy">
-                Calendly’s privacy policy
-              </a>{" "}
-              before using the scheduler if you need more detail. You can use
-              email instead.
-            </p>
-          </section>
-
-          <section>
-            <h2>4. How information is used</h2>
+            <h2>3. When you submit a project brief</h2>
+            <p>The form asks for:</p>
             <ul>
-              <li>To deliver and secure the website</li>
-              <li>To understand and respond to an inquiry you send</li>
-              <li>To schedule and prepare for a call you request</li>
               <li>
-                To maintain appropriate operational, security, and business
-                records
+                Full name, work email, and either a company name or company
+                website
               </li>
-              <li>To comply with applicable legal obligations</li>
+              <li>
+                Service needed, what you are trying to accomplish, and optional
+                information about existing systems
+              </li>
+              <li>Desired timing and expected investment range</li>
+              <li>
+                An optional preferred contact method and a telephone number when
+                telephone is selected
+              </li>
+              <li>An optional referral source</li>
             </ul>
             <p>
-              Strive does not state that visitor information is sold. The owner
-              must confirm actual business practices and applicable legal
-              definitions before this draft is published.
+              The application adds the submission time, source page, and a
+              unique reference. It uses a one-way representation of the network
+              address for short-term rate limiting rather than placing the
+              address in the lead record.
             </p>
           </section>
 
           <section>
-            <h2>5. Retention and safeguards</h2>
+            <h2>4. Delivery, use, and access</h2>
             <p>
-              Information should be kept only as long as reasonably needed for
-              the purpose for which it was collected, legitimate business
-              records, security, dispute handling, or legal obligations.
-              Specific retention schedules have not yet been owner-approved and
-              must be documented before production launch.
+              When project intake is enabled, accepted briefs are stored in
+              HubSpot CRM. A project brief is reported as received only after
+              the CRM confirms a durable record. Resend may then deliver a
+              notification to the approved Strive inbox and an acknowledgment to
+              the work email supplied in the brief. An email failure does not
+              replace or erase the CRM record.
             </p>
+            <p>Project-inquiry information is used to:</p>
+            <ul>
+              <li>
+                Review the opportunity and its fit with Strive’s capabilities
+              </li>
+              <li>
+                Respond, request more information, decline, or privately offer a
+                scheduling link
+              </li>
+              <li>Maintain related operational and business records</li>
+              <li>
+                Prevent duplicate submissions, abuse, and technical failures
+              </li>
+            </ul>
             <p>
-              Reasonable technical and organizational safeguards should be used,
-              but no website, email system, or third-party service can guarantee
-              absolute security.
+              Access should be limited to the people and providers responsible
+              for lead review, delivery, security, and required business
+              records.
             </p>
           </section>
 
           <section>
-            <h2>6. Choices and requests</h2>
+            <h2>5. Failure and application logs</h2>
             <p>
-              You can avoid loading Calendly by using email. Depending on where
-              you live, you may have rights concerning access, correction,
-              deletion, objection, restriction, or portability. Applicability
-              and identity-verification procedures require legal review.
+              The application does not intentionally write project-brief
+              contents, email addresses, telephone numbers, or raw network
+              addresses to its logs. A delivery failure may record the unique
+              reference and a technical failure category so the issue can be
+              investigated.
             </p>
             <p>
-              To make a privacy request, email{" "}
-              <a href={`mailto:${company.email}`}>{company.email}</a>. Do not
-              send sensitive identity documents unless Strive has provided a
-              secure and necessary verification method.
+              If the lead provider does not confirm delivery, the website shows
+              an error and does not tell the visitor that the brief was
+              received.
             </p>
           </section>
 
           <section>
-            <h2>7. Changes and contact</h2>
+            <h2>6. Sensitive information</h2>
             <p>
-              This disclosure should be updated when the site’s providers, data
-              collection, contact paths, or business practices change. Material
-              runtime behavior should not drift from the published text.
+              Do not submit passwords, credentials, payment details, regulated
+              data, customer records, identity documents, or other sensitive
+              information through the project brief or a general inquiry.
+            </p>
+          </section>
+
+          <section>
+            <h2>7. Retention, deletion, and providers</h2>
+            <p>
+              Inquiry records should be kept only for the approved review,
+              follow-up, security, legal, and business-record purposes that
+              apply to the request. HubSpot and Resend, along with the
+              configured hosting and network providers, may process information
+              under their contracts, security controls, retention settings, and
+              subprocessor terms when those services are enabled.
             </p>
             <p>
-              Privacy questions can be sent to{" "}
-              <a href={`mailto:${company.email}`}>{company.email}</a>. The owner
-              must provide the legal entity name and any legally required
-              address before deployment.
+              Questions about information you submitted, including access,
+              correction, or deletion requests, can be directed to{" "}
+              <a href={`mailto:${company.email}`}>{company.email}</a>.
+            </p>
+          </section>
+
+          <section>
+            <h2>8. Changes</h2>
+            <p>
+              This page will be updated when the website’s contact paths, data
+              collection, provider configuration, or retention practices
+              materially change. The date above identifies the latest published
+              revision.
             </p>
           </section>
         </div>

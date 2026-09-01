@@ -5,10 +5,49 @@ import { Section } from "../components/Section";
 import { StructuredData } from "../components/StructuredData";
 import { company, servicePillars } from "../lib/company";
 
+const operatingModel = [
+  {
+    number: "01",
+    title: "Lean delivery",
+    body: "Work stays close to the people responsible for planning, implementation, and review instead of moving through unnecessary layers.",
+    signal: "Delivery",
+  },
+  {
+    number: "02",
+    title: "Direct accountability",
+    body: "The written scope identifies who owns decisions, reviews, client inputs, and delivery responsibilities.",
+    signal: "Responsibility",
+  },
+  {
+    number: "03",
+    title: "Transparent scope",
+    body: "Initial projects define deliverables, exclusions, dependencies, acceptance checks, and commercial terms. Material additions require a separate scope or change order.",
+    signal: "Boundaries",
+  },
+  {
+    number: "04",
+    title: "Flexible ongoing service",
+    body: "Eligible ongoing monthly services do not require a long-term commitment. Renewal, cancellation, the active billing period, and support boundaries are stated in the agreement.",
+    signal: "Continuity",
+  },
+  {
+    number: "05",
+    title: "Ownership clarity",
+    body: "The agreement distinguishes client assets and accounts, custom deliverables, reusable Strive materials, and third-party licenses.",
+    signal: "Ownership",
+  },
+  {
+    number: "06",
+    title: "Planned handoff",
+    body: "Access, documentation, exports, subscriptions, and transition needs are addressed before the engagement closes.",
+    signal: "Offboarding",
+  },
+] as const;
+
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Outcome-led website, search visibility, analytics, automation, hosting, and support services for growing service businesses.",
+    "Website, search, reporting, automation, hosting, and support capabilities for growing small and midsize service businesses.",
   alternates: { canonical: "/services" },
   openGraph: {
     title: `Services | ${company.name}`,
@@ -39,10 +78,10 @@ export default function ServicesPage() {
       <EditorialMasthead
         eyebrow="Services"
         title="Connected systems for a clearer business."
-        intro="Strive brings websites, search, measurement, and automation together around three outcomes a small business can actually use."
+        intro="Strive helps growing small and midsize service businesses improve how customers find them, how teams understand activity, and how repeat work moves."
       >
         <div className="hero-actions">
-          <Button href="/consultation">Discuss the right scope</Button>
+          <Button href="/start-a-project">Start a Project</Button>
         </div>
       </EditorialMasthead>
 
@@ -51,9 +90,8 @@ export default function ServicesPage() {
           <p className="eyebrow">Outcome-led scope</p>
           <h2>Choose the business problem first.</h2>
           <p>
-            The capabilities below are building blocks, not one-size-fits-all
-            packages. Discovery determines which pieces belong in a useful
-            scope.
+            Start with the decision, customer action, or workflow that needs to
+            improve. The right capabilities follow from that context.
           </p>
         </div>
         <div className="service-detail-list">
@@ -76,25 +114,47 @@ export default function ServicesPage() {
         </div>
       </Section>
 
+      <Section tone="soft">
+        <div className="section-heading section-heading-editorial">
+          <p className="eyebrow">How the work is structured</p>
+          <h2>Clear scope. Direct responsibility. Flexible continuity.</h2>
+          <p>
+            Initial implementation, optional ongoing service, and expanded work
+            are treated as different commitments so cost, ownership, and next
+            steps remain understandable.
+          </p>
+        </div>
+        <div className="problem-ledger">
+          {operatingModel.map((item) => (
+            <article className="problem-row" data-reveal="row" key={item.title}>
+              <span className="card-number">{item.number}</span>
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+              <span className="row-signal">{item.signal}</span>
+            </article>
+          ))}
+        </div>
+      </Section>
+
       <Section tone="ink">
         <div className="support-grid">
           <div>
             <p className="eyebrow eyebrow-on-dark">Managed support</p>
-            <h2>Hosting and upkeep sit underneath the outcome.</h2>
+            <h2>Keep the system useful after launch.</h2>
             <p>
-              Hosting, maintenance, monitoring, content changes, and ongoing
-              improvement can be scoped when the business needs a continuing
-              operating partner. They are not represented as a universal
-              subscription.
+              Ongoing involvement is optional and scoped separately from an
+              initial implementation. When it is useful, the agreement can
+              define hosting, maintenance, monitoring, content changes, or
+              continuous improvement.
             </p>
           </div>
           <div>
-            <p className="kicker">A support scope can define:</p>
+            <p className="kicker">An ongoing scope can define:</p>
             <ul className="plain-list">
               <li>Hosting responsibilities and account access</li>
               <li>Maintenance, backups, and update cadence</li>
-              <li>Support channels and actual response targets</li>
-              <li>Change requests, reporting, and handoff terms</li>
+              <li>Support channels and service boundaries</li>
+              <li>Renewal, cancellation, change, and handoff terms</li>
             </ul>
           </div>
         </div>
@@ -103,38 +163,35 @@ export default function ServicesPage() {
       <Section tone="soft">
         <div className="section-heading">
           <p className="eyebrow">Scope boundaries</p>
-          <h2>Clarity includes what is not included.</h2>
+          <h2>A useful proposal makes the edges visible.</h2>
           <p>
-            Each proposal should identify dependencies and exclusions. A
-            capability listed on this page is not a promise that every project
-            includes it.
+            Deliverables, responsibilities, dependencies, review points, and
+            exclusions should be understandable before implementation starts.
           </p>
         </div>
         <div className="problem-grid">
           <article className="problem-card">
             <span className="card-number">FIT</span>
-            <h3>Useful when</h3>
+            <h3>Right problem</h3>
             <p>
-              The business problem is clear enough to investigate,
-              decision-makers can participate, and the project has an owner.
+              The business can identify the customer, reporting, or operating
+              problem and the decision the work should support.
             </p>
           </article>
           <article className="problem-card">
             <span className="card-number">SCOPE</span>
-            <h3>Defined in writing</h3>
+            <h3>Clear deliverables</h3>
             <p>
-              Deliverables, review cycles, content responsibilities,
-              integrations, timing assumptions, and payment terms belong in the
-              agreement.
+              The written scope identifies outputs, review cycles, content and
+              access responsibilities, integrations, and acceptance checks.
             </p>
           </article>
           <article className="problem-card">
-            <span className="card-number">LIMITS</span>
-            <h3>Not implied</h3>
+            <span className="card-number">INPUTS</span>
+            <h3>Named dependencies</h3>
             <p>
-              Paid media, custom software, legal review, unlimited support, and
-              specific performance results are not included unless expressly
-              scoped.
+              Platform access, source data, client decisions, third-party tools,
+              and specialist needs are surfaced before they become blockers.
             </p>
           </article>
         </div>
@@ -144,19 +201,18 @@ export default function ServicesPage() {
         <div className="ownership-grid">
           <div>
             <p className="eyebrow eyebrow-on-dark">Ownership and handoff</p>
-            <h2>Your business assets should remain yours.</h2>
+            <h2>Define ownership and handoff before the build.</h2>
           </div>
           <div>
             <p>
-              After full payment, the client owns its domain, data, content, and
-              the custom deliverables identified in the agreement. Strive
-              retains pre-existing IP, reusable libraries, templates, methods,
-              and general know-how.
+              The written scope should identify domains, data, content,
+              accounts, custom deliverables, reusable materials, and third-party
+              licenses so each responsibility is clear.
             </p>
             <p>
-              Ending recurring support does not revoke ownership of fully paid
-              custom deliverables. Reasonable access, documentation, export, and
-              transition expectations should be stated in the scope.
+              Access, documentation, export, transition needs, and any ongoing
+              services should be addressed alongside the deliverables—not left
+              until the project closes.
             </p>
           </div>
         </div>

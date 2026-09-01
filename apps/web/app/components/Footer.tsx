@@ -14,7 +14,7 @@ export function Footer() {
         <Container>
           <div className="consultation-band-grid">
             <p className="micro-label">
-              <span aria-hidden="true">10</span> A practical first step
+              <span aria-hidden="true">10</span> Project brief
             </p>
             <div>
               <h2 id="consultation-band-title" data-reveal="type">
@@ -23,14 +23,21 @@ export function Footer() {
             </div>
             <div className="consultation-band-side">
               <p>
-                A fit call is a focused conversation about the business problem,
-                what exists today, and whether there is a useful next step.
+                Share what needs to change, the current system, and the result
+                you want. Strive will review the context before recommending a
+                next step.
               </p>
               <div className="hero-actions">
-                <Button href="/consultation">Book a Fit Call</Button>
-                <Button href={`mailto:${company.email}`} variant="text">
-                  Email Strive
-                </Button>
+                <Button href="/start-a-project">Start a Project</Button>
+                {company.telephone ? (
+                  <Button href={company.telephone.href} variant="text">
+                    Prefer to talk? Call Strive
+                  </Button>
+                ) : (
+                  <Button href={`mailto:${company.email}`} variant="text">
+                    Email Strive
+                  </Button>
+                )}
               </div>
             </div>
           </div>
@@ -46,8 +53,8 @@ export function Footer() {
               <h2 data-reveal="type">Web / data / automation</h2>
             </div>
             <p>
-              Systems for growing service businesses, built with clear scope and
-              a usable handoff.
+              Systems for growing small and midsize service businesses, built
+              with clear scope and a usable handoff.
             </p>
           </div>
           <div className="footer-grid">
@@ -63,17 +70,26 @@ export function Footer() {
                     <Link href={item.href}>{item.label}</Link>
                   </li>
                 ))}
-                <li>
-                  <Link href="/faq">FAQ</Link>
-                </li>
               </ul>
             </div>
             <div>
               <p className="footer-heading">Contact</p>
               <a href={`mailto:${company.email}`}>{company.email}</a>
+              {company.telephone && (
+                <>
+                  <a href={company.telephone.href}>
+                    {company.telephone.display}
+                  </a>
+                  {company.telephone.businessHours && (
+                    <p className="footer-note">
+                      {company.telephone.businessHours}
+                    </p>
+                  )}
+                </>
+              )}
               <p className="footer-note">
-                No contact form, tracking pixel, or hidden chat widget is used
-                on this site.
+                Start with the project brief. Email remains available as an
+                accessible fallback.
               </p>
             </div>
           </div>

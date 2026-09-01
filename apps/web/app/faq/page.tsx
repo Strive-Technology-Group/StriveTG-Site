@@ -7,7 +7,7 @@ import { company, faqs } from "../lib/company";
 export const metadata: Metadata = {
   title: "FAQ",
   description:
-    "Clear answers about fit, scope, pricing, ownership, measurement, support, automation, and project handoff.",
+    "Clear answers about fit, scope, pricing, cancellation, ownership, support, automation, and project offboarding.",
   alternates: { canonical: "/faq" },
   openGraph: {
     title: `FAQ | ${company.name}`,
@@ -32,8 +32,8 @@ export default function FAQPage() {
     <>
       <EditorialMasthead
         eyebrow="FAQ"
-        title="Clear terms before technical detail."
-        intro="The most useful early answers are about fit, ownership, process, and expectations—not a list of buzzwords."
+        title="Questions that shape a good fit."
+        intro="Review how Strive approaches fit, scope, pricing, recurring service, project cancellation, ownership, support, and offboarding before starting a conversation."
       />
       <Section tone="light">
         <div className="faq-list">
