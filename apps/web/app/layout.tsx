@@ -1,9 +1,44 @@
 import type { Metadata, Viewport } from "next";
+import localFont from "next/font/local";
+import "./design-tokens.css";
 import "./globals.css";
 import { Footer } from "./components/Footer";
 import { Navigation } from "./components/Navigation";
 import { StructuredData } from "./components/StructuredData";
 import { company } from "./lib/company";
+
+const inter = localFont({
+  src: [
+    { path: "./fonts/inter/Inter-Regular.ttf", weight: "400", style: "normal" },
+    { path: "./fonts/inter/Inter-Medium.ttf", weight: "500", style: "normal" },
+    {
+      path: "./fonts/inter/Inter-SemiBold.ttf",
+      weight: "600",
+      style: "normal",
+    },
+  ],
+  variable: "--font-inter",
+  display: "swap",
+  fallback: ["Arial", "sans-serif"],
+});
+
+const instrumentSerif = localFont({
+  src: [
+    {
+      path: "./fonts/instrument-serif/InstrumentSerif-Regular.ttf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "./fonts/instrument-serif/InstrumentSerif-Italic.ttf",
+      weight: "400",
+      style: "italic",
+    },
+  ],
+  variable: "--font-instrument-serif",
+  display: "swap",
+  fallback: ["Georgia", "Times New Roman", "serif"],
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(company.url),
@@ -42,7 +77,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#071b2c",
+  themeColor: "#fafffa",
 };
 
 export default function RootLayout({
@@ -59,7 +94,7 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body>
+      <body className={`${inter.variable} ${instrumentSerif.variable}`}>
         <a className="skip-link" href="#main-content">
           Skip to content
         </a>

@@ -161,7 +161,7 @@ test("reduced motion disables nonessential motion and no autoplay media remains"
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/", { waitUntil: "domcontentloaded" });
   const duration = await page
-    .locator(".home-hero-copy .button")
+    .locator(".home-hero .button")
     .first()
     .evaluate((element) => getComputedStyle(element).transitionDuration);
   expect(["0s", "0.00001s", "1e-05s"]).toContain(duration);

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Button } from "../components/Button";
-import { PageHero } from "../components/PageHero";
+import { EditorialMasthead } from "../components/EditorialMasthead";
 import { Section } from "../components/Section";
 import { company, trustCommitments } from "../lib/company";
 
@@ -19,22 +19,21 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
-      <PageHero
+      <EditorialMasthead
         eyebrow="About"
         title="Small by design. Serious about the work."
         intro="Strive is a founder-led technology partner for growing service businesses that need a clearer online presence, better operating visibility, or a practical path to automation."
       >
         <div className="hero-actions">
-          <Button href="/consultation" variant="secondary">
-            Start with a fit call
-          </Button>
+          <Button href="/consultation">Start with a fit call</Button>
         </div>
-      </PageHero>
+      </EditorialMasthead>
 
       <Section tone="light">
         <div className="founder-grid">
           <div className="founder-mark" aria-hidden="true">
-            <span>Direct responsibility</span>
+            <span className="founder-monogram">STG</span>
+            <small>Founder profile / approved image pending</small>
           </div>
           <div className="founder-copy">
             <p className="eyebrow">Founder-led</p>
@@ -125,30 +124,13 @@ export default function AboutPage() {
           <h2>Credibility comes from how the engagement runs.</h2>
         </div>
         <div className="commitment-grid">
-          {trustCommitments.map((item) => (
+          {trustCommitments.map((item, index) => (
             <article className="commitment-card" key={item.title}>
+              <span>0{index + 1}</span>
               <h3>{item.title}</h3>
               <p>{item.description}</p>
             </article>
           ))}
-        </div>
-      </Section>
-
-      <Section tone="light">
-        <div className="centered-cta">
-          <h2>See whether the working style fits.</h2>
-          <p>
-            Bring a real business problem and the current constraints. The first
-            goal is to decide whether there is a useful next step.
-          </p>
-          <div className="hero-actions">
-            <Button href="/consultation" variant="secondary">
-              Book a Fit Call
-            </Button>
-            <Button href="/work" variant="outline">
-              Review the work standard
-            </Button>
-          </div>
         </div>
       </Section>
     </>

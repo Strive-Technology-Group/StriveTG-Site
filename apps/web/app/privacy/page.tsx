@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { PageHero } from "../components/PageHero";
+import { EditorialMasthead } from "../components/EditorialMasthead";
 import { Section } from "../components/Section";
 import { company } from "../lib/company";
 
@@ -14,7 +14,8 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
   return (
     <>
-      <PageHero
+      <EditorialMasthead
+        document
         eyebrow="Privacy"
         title="A plain-language working privacy draft."
         intro="This disclosure is written to match the current website behavior. It still requires owner confirmation and professional legal review before production publication."

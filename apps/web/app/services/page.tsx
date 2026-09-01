@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Button } from "../components/Button";
-import { PageHero } from "../components/PageHero";
+import { EditorialMasthead } from "../components/EditorialMasthead";
 import { Section } from "../components/Section";
 import { StructuredData } from "../components/StructuredData";
 import { company, servicePillars } from "../lib/company";
@@ -36,17 +36,15 @@ export default function ServicesPage() {
 
   return (
     <>
-      <PageHero
+      <EditorialMasthead
         eyebrow="Services"
         title="Connected systems for a clearer business."
         intro="Strive brings websites, search, measurement, and automation together around three outcomes a small business can actually use."
       >
         <div className="hero-actions">
-          <Button href="/consultation" variant="secondary">
-            Discuss the right scope
-          </Button>
+          <Button href="/consultation">Discuss the right scope</Button>
         </div>
-      </PageHero>
+      </EditorialMasthead>
 
       <Section tone="light">
         <div className="section-heading">
@@ -164,23 +162,6 @@ export default function ServicesPage() {
         </div>
       </Section>
 
-      <Section tone="light">
-        <div className="centered-cta">
-          <h2>Not sure which capability matters?</h2>
-          <p>
-            That is what discovery is for. Bring the business problem and the
-            current setup; the scope can follow.
-          </p>
-          <div className="hero-actions">
-            <Button href="/consultation" variant="secondary">
-              Book a Fit Call
-            </Button>
-            <Button href="/work" variant="outline">
-              See how work is framed
-            </Button>
-          </div>
-        </div>
-      </Section>
       <StructuredData data={serviceSchema} />
     </>
   );

@@ -10,7 +10,7 @@ The public copy intentionally avoids unverified client results, testimonials, ce
 - A custom not-found page, generated sitemap and robots rules
 - Route-specific metadata, canonical URLs, Open Graph/Twitter metadata, and a generated social image
 - Truth-based Organization, Service, and FAQ structured data
-- One responsive design system built with React, Next.js, and CSS
+- One responsive editorial design system built with React, Next.js, and CSS
 - Accessible desktop/mobile navigation, skip navigation, visible focus styles, and reduced-motion handling
 - A click-to-load Calendly dialog with keyboard containment, Escape close, focus restoration, origin-validated completion handling, and an email fallback
 - Automated route, link, accessibility, interaction, overflow, reduced-motion, and asset-budget checks
@@ -23,12 +23,13 @@ The application does **not** include a CMS, database, authentication, customer p
 - Next.js 15.5.24, App Router
 - React and React DOM 19.1.9
 - TypeScript 5.9
-- Plain global CSS with a small token/component system
+- Tailwind CSS 3.4.17 directives with a canonical semantic token layer and focused global component CSS
+- Self-hosted Inter and Instrument Serif loaded through `next/font/local`
 - Turborepo and pnpm 9
 - ESLint 9
 - Playwright 1.62 and Axe for browser/accessibility tests
 
-The site uses a system font stack and does not make a browser request to Google Fonts. The only intentional third-party browser integration is Calendly, and it loads after the visitor chooses to open the scheduler.
+The site self-hosts subsetted Inter and Instrument Serif files under the SIL Open Font License and does not make a browser request to Google Fonts. The only intentional third-party browser integration is Calendly, and it loads after the visitor chooses to open the scheduler.
 
 ## Repository structure
 
@@ -46,9 +47,11 @@ strivetg/
 ├── packages/
 │   ├── eslint-config/            # Shared lint configuration
 │   └── typescript-config/        # Shared TypeScript configuration
-├── docs/redesign/                # Before/after and route/viewport visual evidence
+├── docs/redesign/                # Earlier credibility-redesign evidence
+├── docs/editorial-design/        # Editorial before/after and route/viewport evidence
 ├── CONTENT_REQUIRED.md           # Owner-supplied facts and proof still needed
 ├── LEGAL_REVIEW_REQUIRED.md      # Policy decisions requiring counsel/owner approval
+├── STRIVE_DESIGN_TRANSLATION.md  # Reference-to-Strive design decisions
 └── WEBSITE_AUDIT_AND_REDESIGN_REPORT.md
 ```
 

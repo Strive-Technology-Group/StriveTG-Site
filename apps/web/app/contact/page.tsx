@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Button } from "../components/Button";
-import { PageHero } from "../components/PageHero";
+import { EditorialMasthead } from "../components/EditorialMasthead";
 import { Section } from "../components/Section";
 import { company } from "../lib/company";
 
@@ -25,7 +25,7 @@ export default function ContactPage() {
 
   return (
     <>
-      <PageHero
+      <EditorialMasthead
         eyebrow="Contact"
         title="Start with the problem you need to solve."
         intro="Use email when the request is already clear, or book a fit call when talking through the context will be more useful."

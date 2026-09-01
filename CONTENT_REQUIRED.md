@@ -41,6 +41,8 @@ For every proposed client, logo, testimonial, case study, or result:
 
 The `/work` page must remain method-focused until at least one complete, permissioned evidence package exists.
 
+For every proposed documentary or project image, also provide the source file, subject/context, descriptive alt text, photographer or creator credit, usage permission, and any expiry or placement restriction. Do not substitute stock employees or generated portraits for missing company photography.
+
 ## 4. Commercial facts
 
 - Approved representative pricing ranges or starting prices, if they can be honored

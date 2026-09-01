@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Button } from "../components/Button";
-import { PageHero } from "../components/PageHero";
+import { EditorialMasthead } from "../components/EditorialMasthead";
 import { Section } from "../components/Section";
 import { company, engagementSteps } from "../lib/company";
 
@@ -80,17 +80,15 @@ const patterns = [
 export default function WorkPage() {
   return (
     <>
-      <PageHero
+      <EditorialMasthead
         eyebrow="Work"
         title="Evidence belongs next to the claim."
         intro="Until a client has approved a documented story, Strive will show the method—not invented logos, anonymous testimonials, or unsupported performance numbers."
       >
         <div className="hero-actions">
-          <Button href="/consultation" variant="secondary">
-            Discuss a real problem
-          </Button>
+          <Button href="/consultation">Discuss a real problem</Button>
         </div>
-      </PageHero>
+      </EditorialMasthead>
 
       <Section tone="light">
         <div className="section-heading">
@@ -171,24 +169,6 @@ export default function WorkPage() {
               </div>
             </article>
           ))}
-        </div>
-      </Section>
-
-      <Section tone="light">
-        <div className="centered-cta">
-          <h2>Have a problem worth framing?</h2>
-          <p>
-            A fit call can establish whether the need is clear enough to
-            investigate and whether Strive is the right partner.
-          </p>
-          <div className="hero-actions">
-            <Button href="/consultation" variant="secondary">
-              Book a Fit Call
-            </Button>
-            <Button href="/services" variant="outline">
-              Explore Services
-            </Button>
-          </div>
         </div>
       </Section>
     </>

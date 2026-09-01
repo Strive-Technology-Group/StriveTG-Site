@@ -40,7 +40,7 @@ export function Navigation() {
   return (
     <header className="site-header">
       <div className="site-container header-inner">
-        <Logo surface="dark" compact />
+        <Logo surface="light" compact />
         <nav aria-label="Primary" className="desktop-navigation">
           {navigation.map((item) => (
             <Link
@@ -53,7 +53,7 @@ export function Navigation() {
           ))}
         </nav>
         <Link href="/consultation" className="header-cta">
-          Book a Fit Call
+          Fit Call <span aria-hidden="true">↗</span>
         </Link>
         <button
           ref={menuButtonRef}
@@ -91,7 +91,7 @@ export function Navigation() {
             </Link>
           ))}
           <Link href="/consultation" className="mobile-navigation-cta">
-            Book a Fit Call
+            Book a Fit Call <span aria-hidden="true">↗</span>
           </Link>
         </nav>
       </div>

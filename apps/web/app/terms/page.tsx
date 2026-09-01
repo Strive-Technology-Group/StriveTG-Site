@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { PageHero } from "../components/PageHero";
+import { EditorialMasthead } from "../components/EditorialMasthead";
 import { Section } from "../components/Section";
 import { company } from "../lib/company";
 
@@ -13,7 +13,8 @@ export const metadata: Metadata = {
 export default function TermsPage() {
   return (
     <>
-      <PageHero
+      <EditorialMasthead
+        document
         eyebrow="Terms"
         title="Clear ownership starts with clear language."
         intro="These website terms and engagement principles are a working draft. Signed project agreements control client work and require professional legal review."

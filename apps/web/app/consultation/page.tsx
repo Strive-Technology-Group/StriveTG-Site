@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { CalendlyDialog } from "../components/CalendlyDialog";
-import { PageHero } from "../components/PageHero";
+import { EditorialMasthead } from "../components/EditorialMasthead";
 import { Section } from "../components/Section";
 import { company } from "../lib/company";
 
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 export default function ConsultationPage() {
   return (
     <>
-      <PageHero
+      <EditorialMasthead
         eyebrow="Fit call"
         title="A focused first conversation."
         intro="Use the call to explain the business problem, current situation, and constraints. The immediate goal is to decide whether there is a useful fit and next step."
@@ -58,20 +58,9 @@ export default function ConsultationPage() {
             </div>
           </div>
           <CalendlyDialog />
-          <p
-            style={{
-              marginTop: "1.25rem",
-              marginBottom: 0,
-              fontSize: "0.9rem",
-            }}
-          >
+          <p className="booking-email-note">
             Prefer email?{" "}
-            <a
-              href={`mailto:${company.email}`}
-              style={{ fontWeight: 700, color: "var(--navy-900)" }}
-            >
-              {company.email}
-            </a>
+            <a href={`mailto:${company.email}`}>{company.email}</a>
           </p>
         </div>
       </Section>
