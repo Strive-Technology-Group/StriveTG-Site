@@ -4,12 +4,20 @@
 
 The application code is tested against a deterministic local HubSpot/Resend
 contract. Live provider configuration and a local end-to-end test were completed
-on November 2, 2026, as recorded below. Provider credentials are stored only in
-the ignored local environment file, not in version control.
+on November 2, 2026, as recorded below. The reviewed application release
+(`99b1a95`) is now pushed to GitHub `main`.
 
-Production activation still requires the deployment environment's secrets,
-approved operating and retention decisions, and a production smoke test. The
-local provider setup did not push, merge, or deploy the website.
+All 27 production configuration values have been saved as Vercel secrets,
+scoped only to Production. Credentials remain excluded from version control;
+the local copies are in the ignored `apps/web/.env.local`.
+
+Production deployment is currently blocked by Vercel's plan restriction:
+`Cannot deploy from a private GitHub organization repository on the Hobby plan`.
+A manual deployment of `main` confirmed this error before a build started.
+The existing public deployment is still the previous release. A plan change
+requires the owner's billing approval. After the restriction is resolved,
+deploy `main` and complete the public-domain CRM and email smoke test before
+marking production verified.
 
 With the checked-in example values, `POST /api/project-brief` returns `503`.
 That is the required fail-closed state, not a successful production activation.
@@ -56,9 +64,12 @@ production operating approvals remain owner responsibilities.
   and company, delivered both emails, and accepted an immediate retry without
   duplicate records or messages. The delivered customer email was inspected:
   its subject, body, reply-to, and absence of internal details were verified.
-- Public deployment is not yet verified: the public project-brief page and API
-  returned `404`, and the Vercel dashboard required sign-in. Production secrets,
-  deployment, owner approvals, and the public-domain smoke test remain pending.
+- The Vercel dashboard is now accessible and production secrets are saved.
+  The existing project uses root directory `apps/web`, includes workspace files
+  outside that root, builds with `pnpm run build`, and uses Node.js 22.
+- Public deployment is not yet verified: the new deployment was rejected by
+  the Hobby plan restriction for private GitHub organization repositories.
+  Deployment and the public-domain smoke test remain pending.
 
 ## Current application contract
 
