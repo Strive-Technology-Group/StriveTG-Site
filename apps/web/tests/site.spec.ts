@@ -628,65 +628,64 @@ test("hero text keeps one left edge while resizing across layout breakpoints", a
     await page.setViewportSize({ width, height: 1000 });
     await page.evaluate(async () => {
       await document.fonts.ready;
-      await Promise.all(
-        document
-          .getAnimations()
-          .map((animation) => animation.finished.catch(() => undefined)),
-      );
     });
-    const layout = await page.evaluate(() => {
-      const stage = document
-        .querySelector(".home-hero-stage")!
-        .getBoundingClientRect();
-      const container = document.querySelector(".home-hero .site-container")!;
-      const left =
-        container.getBoundingClientRect().left +
-        parseFloat(getComputedStyle(container).paddingLeft);
-      const lines = Array.from(
-        document.querySelectorAll(".hero-line-content"),
-        (line) => {
-          const range = document.createRange();
-          range.selectNodeContents(line);
-          const text = range.getBoundingClientRect();
-          return {
-            text: line.textContent,
-            left: text.left,
-            right: text.right,
-            rows: range.getClientRects().length,
-          };
-        },
-      );
-      const rail = document
-        .querySelector(".home-hero-rail")!
-        .getBoundingClientRect();
-      return {
-        left,
-        stage: { right: stage.right, bottom: stage.bottom },
-        lines,
-        rail: { left: rail.left, top: rail.top },
-      };
-    });
-    expect(layout.lines).toHaveLength(4);
-    for (const line of layout.lines) {
-      expect(line.text?.trim()).toBeTruthy();
-      expect(
-        Math.abs(line.left - layout.left),
-        `${width}px: ${line.text} shifted horizontally`,
-      ).toBeLessThanOrEqual(1);
-      expect(
-        line.right,
-        `${width}px: ${line.text} escaped its column`,
-      ).toBeLessThanOrEqual(layout.stage.right + 1);
-      expect(line.rows, `${width}px: ${line.text} wrapped unexpectedly`).toBe(
-        1,
-      );
-    }
-    if (width > 992) {
-      expect(layout.rail.left).toBeGreaterThan(layout.stage.right);
-    } else {
-      expect(Math.abs(layout.rail.left - layout.left)).toBeLessThanOrEqual(1);
-      expect(layout.rail.top).toBeGreaterThanOrEqual(layout.stage.bottom);
-    }
+    // Wait for the rendered geometry; unrelated animations may be suspended
+    // outside the viewport and never resolve their finished promises.
+    await expect(async () => {
+      const layout = await page.evaluate(() => {
+        const stage = document
+          .querySelector(".home-hero-stage")!
+          .getBoundingClientRect();
+        const container = document.querySelector(".home-hero .site-container")!;
+        const left =
+          container.getBoundingClientRect().left +
+          parseFloat(getComputedStyle(container).paddingLeft);
+        const lines = Array.from(
+          document.querySelectorAll(".hero-line-content"),
+          (line) => {
+            const range = document.createRange();
+            range.selectNodeContents(line);
+            const text = range.getBoundingClientRect();
+            return {
+              text: line.textContent,
+              left: text.left,
+              right: text.right,
+              rows: range.getClientRects().length,
+            };
+          },
+        );
+        const rail = document
+          .querySelector(".home-hero-rail")!
+          .getBoundingClientRect();
+        return {
+          left,
+          stage: { right: stage.right, bottom: stage.bottom },
+          lines,
+          rail: { left: rail.left, top: rail.top },
+        };
+      });
+      expect(layout.lines).toHaveLength(4);
+      for (const line of layout.lines) {
+        expect(line.text?.trim()).toBeTruthy();
+        expect(
+          Math.abs(line.left - layout.left),
+          `${width}px: ${line.text} shifted horizontally`,
+        ).toBeLessThanOrEqual(1);
+        expect(
+          line.right,
+          `${width}px: ${line.text} escaped its column`,
+        ).toBeLessThanOrEqual(layout.stage.right + 1);
+        expect(line.rows, `${width}px: ${line.text} wrapped unexpectedly`).toBe(
+          1,
+        );
+      }
+      if (width > 992) {
+        expect(layout.rail.left).toBeGreaterThan(layout.stage.right);
+      } else {
+        expect(Math.abs(layout.rail.left - layout.left)).toBeLessThanOrEqual(1);
+        expect(layout.rail.top).toBeGreaterThanOrEqual(layout.stage.bottom);
+      }
+    }).toPass({ timeout: 8000 });
   }
 });
 
