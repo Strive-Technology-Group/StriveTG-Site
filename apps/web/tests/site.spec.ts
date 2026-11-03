@@ -923,6 +923,73 @@ test("project brief exposes stable autofill fields and the approved investment l
   await expect(page.locator("#telephone")).toHaveAttribute("required", "");
 });
 
+test("early telephone selection survives delayed JavaScript loading", async ({
+  page,
+}) => {
+  let releaseScripts!: () => void;
+  let blockedScripts = 0;
+  const scriptsReady = new Promise<void>((resolve) => {
+    releaseScripts = resolve;
+  });
+  await page.route(/\/_next\/static\/.*\.js(?:\?|$)/, async (route) => {
+    blockedScripts += 1;
+    await scriptsReady;
+    await route.continue();
+  });
+  try {
+    await page.goto("/start-a-project", { waitUntil: "domcontentloaded" });
+    expect(blockedScripts).toBeGreaterThan(0);
+    await page.getByLabel("Preferred contact method").selectOption("telephone");
+  } finally {
+    releaseScripts();
+  }
+  await expect(page.locator("html")).toHaveClass(/motion-ready/);
+  await expect(page.getByLabel("Preferred contact method")).toHaveValue(
+    "telephone",
+  );
+  await expect(page.locator("#telephone")).toBeVisible();
+  await expect(page.locator("#telephone")).toHaveAttribute("required", "");
+  await page.locator("#telephone").fill("+1 202 555 0123");
+  const numbers = await page
+    .locator("form.project-brief-form")
+    .evaluate((form) =>
+      new FormData(form as HTMLFormElement).getAll("telephone"),
+    );
+  expect(numbers).toEqual(["+1 202 555 0123"]);
+});
+
+test("native telephone contact has a usable number field without JavaScript", async ({
+  browser,
+  baseURL,
+}) => {
+  const context = await browser.newContext({
+    baseURL,
+    javaScriptEnabled: false,
+    viewport: { width: 390, height: 844 },
+  });
+  try {
+    const page = await context.newPage();
+    await page.goto("/start-a-project", { waitUntil: "domcontentloaded" });
+    await page.getByLabel("Preferred contact method").selectOption("telephone");
+    await page.getByLabel("Telephone number").fill("+1 202 555 0123");
+    const contact = await page
+      .locator("form.project-brief-form")
+      .evaluate((form) => {
+        const data = new FormData(form as HTMLFormElement);
+        return {
+          method: data.get("preferredContact"),
+          numbers: data.getAll("telephone"),
+        };
+      });
+    expect(contact).toEqual({
+      method: "telephone",
+      numbers: ["+1 202 555 0123"],
+    });
+  } finally {
+    await context.close();
+  }
+});
+
 test("a valid project brief is delivered before the success state appears", async ({
   page,
 }) => {

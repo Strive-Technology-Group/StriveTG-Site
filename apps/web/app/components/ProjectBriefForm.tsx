@@ -51,9 +51,16 @@ export function ProjectBriefForm({
     name: "ready",
   });
   const formRef = useRef<HTMLFormElement>(null);
+  const preferredContactRef = useRef<HTMLSelectElement>(null);
   const errorSummaryRef = useRef<HTMLDivElement>(null);
   const successRef = useRef<HTMLDivElement>(null);
   const idempotencyKey = useRef(initialIdempotencyKey);
+
+  useEffect(() => {
+    // Preserve a selection made in the server-rendered form before hydration.
+    const selected = preferredContactRef.current?.value;
+    if (selected) setPreferredContact(selected);
+  }, []);
 
   useEffect(() => {
     if (submission.name === "error") errorSummaryRef.current?.focus();
@@ -443,9 +450,10 @@ export function ProjectBriefForm({
               Preferred contact method <span>Optional</span>
             </label>
             <select
+              ref={preferredContactRef}
               id="preferredContact"
               name="preferredContact"
-              value={preferredContact}
+              defaultValue=""
               onChange={(event) => setPreferredContact(event.target.value)}
               aria-invalid={Boolean(fieldErrors.preferredContact)}
               aria-describedby={
@@ -488,6 +496,23 @@ export function ProjectBriefForm({
               />
             </div>
           )}
+          <noscript>
+            <div className="form-field">
+              <label htmlFor="telephone-fallback">Telephone number</label>
+              <p className="field-help" id="telephone-fallback-help">
+                Include a number if you chose telephone for follow-up.
+              </p>
+              <input
+                id="telephone-fallback"
+                name="telephone"
+                type="tel"
+                inputMode="tel"
+                autoComplete="tel"
+                maxLength={projectBriefLimits.telephone}
+                aria-describedby="telephone-fallback-help"
+              />
+            </div>
+          </noscript>
           <div className="form-field form-field-wide">
             <label htmlFor="heardAbout">
               How did you hear about Strive? <span>Optional</span>
