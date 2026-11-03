@@ -18,7 +18,7 @@ export function Footer() {
             </p>
             <div>
               <h2 id="consultation-band-title" data-reveal="type">
-                Bring the system that is getting in the way.
+                Tell us what you want to improve.
               </h2>
             </div>
             <div className="consultation-band-side">
@@ -50,7 +50,7 @@ export function Footer() {
               <p className="micro-label micro-label-inverse">
                 Strive Technology Group
               </p>
-              <h2 data-reveal="type">Web / data / automation</h2>
+              <h2 data-reveal="type">Websites. Reporting. Automation.</h2>
             </div>
             <p>
               Systems for growing small and midsize service businesses, built

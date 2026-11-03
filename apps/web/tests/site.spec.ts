@@ -167,6 +167,8 @@ test("public copy does not expose internal readiness language", async ({
     "no fictional case studies",
     "no founder name",
     "no form backend",
+    "approved business telephone",
+    "capability artifact",
     "unverified client results",
     "book a fit call",
     "calendly",
@@ -174,7 +176,13 @@ test("public copy does not expose internal readiness language", async ({
 
   for (const route of routes) {
     await page.goto(route, { waitUntil: "domcontentloaded" });
-    const copy = (await page.locator("body").innerText()).toLowerCase();
+    const metadata = await page
+      .locator('meta[name=description], meta[property="og:description"]')
+      .evaluateAll((elements) =>
+        elements.map((element) => element.getAttribute("content")).join(" "),
+      );
+    const copy =
+      `${await page.locator("body").innerText()} ${metadata}`.toLowerCase();
     for (const phrase of prohibited) {
       expect(copy, `${route} exposes "${phrase}"`).not.toContain(phrase);
     }
@@ -595,52 +603,145 @@ test("critical content and controls stay inside the viewport", async ({
   }
 });
 
-test("hero system inserts remain inside the editorial content grid", async ({
+test("hero text keeps one left edge while resizing across layout breakpoints", async ({
   page,
 }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/", { waitUntil: "networkidle" });
 
-  for (const width of widths) {
-    await page.setViewportSize({ width, height: 900 });
-    await page.goto("/", { waitUntil: "domcontentloaded" });
+  // Resize the same page in both directions, including either side of breakpoints.
+  for (const width of [
+    ...widths,
+    767,
+    769,
+    991,
+    992,
+    993,
+    1183,
+    1184,
+    1185,
+    1599,
+    1600,
+    1601,
+    2176,
+  ]) {
+    await page.setViewportSize({ width, height: 1000 });
     await page.evaluate(async () => {
+      await document.fonts.ready;
       await Promise.all(
         document
           .getAnimations()
           .map((animation) => animation.finished.catch(() => undefined)),
       );
     });
-    const malformed = await page.evaluate(() => {
-      const containerElement = document.querySelector(
-        ".home-hero .site-container",
-      );
-      if (!containerElement) return ["Homepage container was not rendered"];
-      const container = containerElement.getBoundingClientRect();
-      const containerStyles = getComputedStyle(containerElement);
-      const contentLeft =
-        container.left + Number.parseFloat(containerStyles.paddingLeft);
-      const contentRight =
-        container.right - Number.parseFloat(containerStyles.paddingRight);
-
-      return Array.from(document.querySelectorAll(".hero-system-insert"))
-        .map((element) => {
-          const rect = element.getBoundingClientRect();
+    const layout = await page.evaluate(() => {
+      const stage = document
+        .querySelector(".home-hero-stage")!
+        .getBoundingClientRect();
+      const container = document.querySelector(".home-hero .site-container")!;
+      const left =
+        container.getBoundingClientRect().left +
+        parseFloat(getComputedStyle(container).paddingLeft);
+      const lines = Array.from(
+        document.querySelectorAll(".hero-line-content"),
+        (line) => {
+          const range = document.createRange();
+          range.selectNodeContents(line);
+          const text = range.getBoundingClientRect();
           return {
-            className: element.className,
-            left: Math.round(rect.left * 10) / 10,
-            right: Math.round(rect.right * 10) / 10,
+            text: line.textContent,
+            left: text.left,
+            right: text.right,
+            rows: range.getClientRects().length,
           };
-        })
-        .filter(
-          ({ left, right }) =>
-            left < contentLeft - 1 || right > contentRight + 1,
-        );
+        },
+      );
+      const rail = document
+        .querySelector(".home-hero-rail")!
+        .getBoundingClientRect();
+      return {
+        left,
+        stage: { right: stage.right, bottom: stage.bottom },
+        lines,
+        rail: { left: rail.left, top: rail.top },
+      };
     });
+    expect(layout.lines).toHaveLength(4);
+    for (const line of layout.lines) {
+      expect(line.text?.trim()).toBeTruthy();
+      expect(
+        Math.abs(line.left - layout.left),
+        `${width}px: ${line.text} shifted horizontally`,
+      ).toBeLessThanOrEqual(1);
+      expect(
+        line.right,
+        `${width}px: ${line.text} escaped its column`,
+      ).toBeLessThanOrEqual(layout.stage.right + 1);
+      expect(line.rows, `${width}px: ${line.text} wrapped unexpectedly`).toBe(
+        1,
+      );
+    }
+    if (width > 992) {
+      expect(layout.rail.left).toBeGreaterThan(layout.stage.right);
+    } else {
+      expect(Math.abs(layout.rail.left - layout.left)).toBeLessThanOrEqual(1);
+      expect(layout.rail.top).toBeGreaterThanOrEqual(layout.stage.bottom);
+    }
+  }
+});
 
-    expect(
-      malformed,
-      `Hero system insert escaped the content grid at ${width}px`,
-    ).toEqual([]);
+test("page and section headings share the container left edge", async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  for (const width of [320, 768, 820, 992, 1024, 1440, 2176, 3440]) {
+    await page.setViewportSize({ width, height: 1000 });
+    for (const route of routes) {
+      await page.goto(route, { waitUntil: "networkidle" });
+      const offsets = await page
+        .locator(
+          ".page-hero-copy, .section-heading-editorial h2, .consultation-band h2",
+        )
+        .evaluateAll((elements) =>
+          elements.map((element) => {
+            const container = element.closest(".site-container")!;
+            const left =
+              container.getBoundingClientRect().left +
+              parseFloat(getComputedStyle(container).paddingLeft);
+            return {
+              text: element.textContent?.trim().slice(0, 60),
+              offset: Math.abs(element.getBoundingClientRect().left - left),
+            };
+          }),
+        );
+      expect(offsets.length).toBeGreaterThan(0);
+      for (const heading of offsets) {
+        expect(
+          heading.offset,
+          `${route}, ${width}px: ${heading.text}`,
+        ).toBeLessThanOrEqual(1);
+      }
+      if (width <= 992) {
+        const stackedOffsets = await page
+          .locator(
+            ".section-heading-editorial > p:last-child, .page-hero-side, .consultation-band-side",
+          )
+          .evaluateAll((elements) =>
+            elements.map((element) => {
+              const container = element.closest(".site-container")!;
+              const left =
+                container.getBoundingClientRect().left +
+                parseFloat(getComputedStyle(container).paddingLeft);
+              return Math.abs(element.getBoundingClientRect().left - left);
+            }),
+          );
+        for (const offset of stackedOffsets)
+          expect(
+            offset,
+            `${route}, ${width}px: intro did not stack beneath its heading`,
+          ).toBeLessThanOrEqual(1);
+      }
+    }
   }
 });
 

@@ -13,14 +13,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: `Approach | ${company.name}`,
     description:
-      "A practical, artifact-led approach to web, reporting, and automation decisions.",
+      "Clear project plans, useful checks, and documented decisions for websites, reporting, and automation.",
     url: "/approach",
   },
 };
 
 const artifacts = [
   {
-    label: "Capability artifact 01",
+    label: "Example plan 01",
     title: "Website path audit",
     body: "Maps how a prospect moves from search or referral to understanding the offer, evaluating credibility, and choosing a next step.",
     flow: [
@@ -29,27 +29,24 @@ const artifacts = [
         "Audience, offer, page structure, search intent, and inquiry path",
       ],
       [
-        "Artifact",
+        "Plan",
         "Annotated page map, content hierarchy, and conversion checklist",
       ],
       ["Review", "Accuracy, accessibility, performance, and measurement needs"],
     ],
   },
   {
-    label: "Capability artifact 02",
+    label: "Example plan 02",
     title: "Reporting definition model",
     body: "Connects a recurring business question to the source systems, definitions, and checks needed for a useful reporting view.",
     flow: [
       ["Inputs", "Business questions, source systems, access, and known gaps"],
-      [
-        "Artifact",
-        "Metric definitions, data map, dashboard outline, and owners",
-      ],
+      ["Plan", "Metric definitions, data map, dashboard outline, and owners"],
       ["Review", "Sample records, reconciliation, edge cases, and usefulness"],
     ],
   },
   {
-    label: "Capability artifact 03",
+    label: "Example plan 03",
     title: "Workflow and controls map",
     body: "Shows where repeat work can be reduced while keeping exceptions, sensitive data, and judgment visible.",
     flow: [
@@ -57,10 +54,7 @@ const artifacts = [
         "Inputs",
         "Trigger, steps, systems, rules, exceptions, and failure cost",
       ],
-      [
-        "Artifact",
-        "Current-state map, proposed flow, controls, and fallback path",
-      ],
+      ["Plan", "Current-state map, proposed flow, controls, and fallback path"],
       [
         "Review",
         "Representative cases, access, alerts, human review, and handoff",
@@ -98,7 +92,7 @@ export default function ApproachPage() {
     "@type": "WebPage",
     name: `Approach | ${company.name}`,
     description:
-      "How Strive turns web, reporting, and workflow problems into reviewable artifacts and clearly documented decisions.",
+      "How Strive turns website, reporting, and workflow problems into clear project plans and documented decisions.",
     url: `${company.url}/approach`,
     audience: {
       "@type": "BusinessAudience",
@@ -111,7 +105,7 @@ export default function ApproachPage() {
       <EditorialMasthead
         eyebrow="Approach"
         title="Make the system visible before changing it."
-        intro="Strive turns broad web, reporting, and workflow problems into concrete artifacts that can be reviewed, scoped, and validated."
+        intro="Understand the current website, reporting, or workflow first. Then agree on what to change, how to check it, and what you will receive."
       >
         <div className="hero-actions">
           <Button href="/start-a-project">Start a Project</Button>
@@ -120,11 +114,11 @@ export default function ApproachPage() {
 
       <Section tone="light">
         <div className="section-heading">
-          <p className="eyebrow">Capability artifacts</p>
-          <h2>Three artifacts for three recurring business problems.</h2>
+          <p className="eyebrow">Example project plans</p>
+          <h2>A clear plan for each kind of problem.</h2>
           <p>
-            Each artifact gives the client something concrete to inspect before
-            implementation decisions are locked in.
+            These examples show how a project can be planned before the build.
+            Your deliverables depend on the agreed scope.
           </p>
         </div>
         <div className="work-grid">

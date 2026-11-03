@@ -25,7 +25,7 @@ export const company: CompanyProfile = {
   positioning:
     "A technology partner for growing small and midsize service businesses that need clearer websites, more useful reporting, and practical workflow automation.",
   description:
-    "Web, reporting, and automation systems for growing small and midsize service businesses.",
+    "Websites, reporting and analytics, and workflow automation for growing small and midsize service businesses.",
 } as const;
 
 export const navigation = [
@@ -40,13 +40,13 @@ export const servicePillars = [
   {
     number: "01",
     id: "get-found",
-    eyebrow: "Get found and convert",
+    eyebrow: "Websites and search",
     title: "A credible digital front door",
     description:
       "Build or improve the website and search foundations people use to discover, evaluate, and contact your business.",
     capabilities: [
       "Website strategy and development",
-      "Conversion-path and content structure",
+      "Content structure and inquiry paths",
       "Technical search foundations",
       "Managed hosting and upkeep options",
     ],
@@ -54,7 +54,7 @@ export const servicePillars = [
   {
     number: "02",
     id: "understand-growth",
-    eyebrow: "Understand what works",
+    eyebrow: "Reporting and analytics",
     title: "Reporting you can act on",
     description:
       "Connect the signals that matter so decisions are based on a useful view of activity, not disconnected dashboards.",
@@ -68,7 +68,7 @@ export const servicePillars = [
   {
     number: "03",
     id: "remove-repetition",
-    eyebrow: "Remove repetitive work",
+    eyebrow: "Workflow automation",
     title: "Practical automation with guardrails",
     description:
       "Map repeatable work, choose the right level of automation, and keep people in control where judgment matters.",

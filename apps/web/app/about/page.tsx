@@ -34,17 +34,16 @@ export default function AboutPage() {
         <div className="responsibility-grid">
           <div className="responsibility-copy">
             <p className="eyebrow">Operating model</p>
-            <h2>Responsibility stays visible from question to handoff.</h2>
+            <h2>A clear point of contact, from first question to handoff.</h2>
             <p>
-              Strive connects the business question to the technical decision
-              without obscuring assumptions or tradeoffs. Scope,
-              responsibilities, and review points are documented so the work
-              stays understandable.
+              Strive keeps planning, implementation, and communication
+              connected. You can see what is being built, why it matters, and
+              what decisions need your input.
             </p>
             <p>
-              When specialist input is needed, that dependency should be named
-              in the scope and coordinated through a clear point of
-              responsibility.
+              When a project needs specialist input, the scope identifies who is
+              involved and what they are responsible for. Decisions and review
+              points stay documented throughout the work.
             </p>
           </div>
           <dl className="responsibility-principles">
@@ -105,7 +104,7 @@ export default function AboutPage() {
           </article>
           <article className="problem-card">
             <span className="card-number">03</span>
-            <h3>Responsible leverage</h3>
+            <h3>Practical automation</h3>
             <p>
               Automation should remove stable repeat work while preserving human
               review where context and judgment matter.

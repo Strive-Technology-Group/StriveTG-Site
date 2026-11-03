@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: `Contact | ${company.name}`,
     description:
-      "Send Strive a concise project brief. Direct email and an approved business telephone remain secondary contact paths.",
+      "Start a project with Strive using a short project brief, or email contact@strivetg.com directly.",
     url: "/contact",
   },
 };
@@ -28,13 +28,13 @@ export default function ContactPage() {
       <EditorialMasthead
         eyebrow="Contact"
         title="Start with the context that matters."
-        intro="The project brief is the clearest first step. It gives Strive enough information to review the opportunity before requesting more detail or proposing a conversation."
+        intro="Tell Strive what you want to improve. Use the project brief to share the basics, or get in touch directly by email."
       />
       <Section tone="light">
         <div className="contact-conversion-grid">
           <article className="contact-primary-choice">
             <p className="micro-label">
-              <span aria-hidden="true">01</span> Primary path
+              <span aria-hidden="true">01</span> Project brief
             </p>
             <h2>Tell us what you need.</h2>
             <p>
@@ -76,7 +76,7 @@ export default function ContactPage() {
             )}
 
             <article className="contact-email-fallback">
-              <p className="eyebrow">Accessible fallback</p>
+              <p className="eyebrow">Prefer email?</p>
               <h2>Email Strive directly.</h2>
               <p>
                 If the form is not practical for you, send the same core context
@@ -96,7 +96,7 @@ export default function ContactPage() {
       <Section tone="soft">
         <div className="section-heading">
           <p className="eyebrow">What happens next</p>
-          <h2>Review first. Conversation when useful.</h2>
+          <h2>From your brief to a clear next step.</h2>
         </div>
         <div className="problem-grid">
           <article className="problem-card">
@@ -111,8 +111,9 @@ export default function ContactPage() {
             <span className="card-number">02</span>
             <h3>The response fits the request</h3>
             <p>
-              Strive may respond by email, request more information, decline the
-              opportunity, or provide a private scheduling link.
+              Strive follows up by email with questions or a suggested next
+              step. If a conversation would help, you can arrange a time to
+              talk.
             </p>
           </article>
           <article className="problem-card">

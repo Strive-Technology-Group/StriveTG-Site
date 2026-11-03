@@ -188,7 +188,7 @@ export default function ServicesPage() {
           </article>
           <article className="problem-card">
             <span className="card-number">INPUTS</span>
-            <h3>Named dependencies</h3>
+            <h3>What the project needs</h3>
             <p>
               Platform access, source data, client decisions, third-party tools,
               and specialist needs are surfaced before they become blockers.

@@ -4,7 +4,6 @@ import { Button } from "./components/Button";
 import { Container } from "./components/Container";
 import {
   EditorialRule,
-  HeroSystemInsert,
   MicroLabel,
   SystemDiagram,
 } from "./components/Editorial";
@@ -38,7 +37,7 @@ const problems = [
   },
   {
     number: "03",
-    title: "Repeat work keeps absorbing judgment time.",
+    title: "Repetitive tasks take time away from clients.",
     body: "Manual handoffs and copy-paste processes persist because the workflow has never been mapped carefully enough to improve.",
     signal: "Operations",
   },
@@ -74,47 +73,42 @@ export default function Home() {
       <section className="home-hero">
         <Container>
           <div className="hero-register" aria-hidden="true">
-            STRIVE / SYSTEMS FOR GROWING SMALL AND MIDSIZE SERVICE BUSINESSES
+            STRIVE / TECHNOLOGY FOR SERVICE BUSINESSES
           </div>
-          <div className="home-hero-stage">
-            <MicroLabel>Web / data / automation</MicroLabel>
-            <h1 aria-label="Replace the systems your business has outgrown.">
-              <span className="hero-line hero-line-one" aria-hidden="true">
-                <span className="hero-line-content">
-                  Replace the <HeroSystemInsert variant="presence" />
+          <div className="home-hero-layout">
+            <div className="home-hero-stage">
+              <MicroLabel>Websites / reporting / automation</MicroLabel>
+              <h1 aria-label="Replace the systems your business has outgrown.">
+                <span className="hero-line hero-line-one" aria-hidden="true">
+                  <span className="hero-line-content">Replace the</span>
                 </span>
-              </span>
-              <span className="hero-line hero-line-two" aria-hidden="true">
-                <span className="hero-line-content">systems your</span>
-              </span>
-              <span className="hero-line hero-line-three" aria-hidden="true">
-                <span className="hero-line-content">
-                  business has <HeroSystemInsert variant="insight" />
+                <span className="hero-line hero-line-two" aria-hidden="true">
+                  <span className="hero-line-content">systems your</span>
                 </span>
-              </span>
-              <span className="hero-line hero-line-four" aria-hidden="true">
-                <span className="hero-line-content">
-                  <HeroSystemInsert variant="operations" /> outgrown.
+                <span className="hero-line hero-line-three" aria-hidden="true">
+                  <span className="hero-line-content">business has</span>
                 </span>
-              </span>
-            </h1>
-          </div>
-          <div className="home-hero-rail">
-            <p className="hero-rail-label">
-              <span>01—03</span>
-              Presence / insight / operations
-            </p>
-            <p className="hero-rail-summary">
-              Strive designs and manages the websites, reporting systems, and
-              workflow automations growing small and midsize service businesses
-              use to present their value, understand activity, and reduce
-              repetitive work.
-            </p>
-            <div className="hero-actions">
-              <Button href="/start-a-project">Start a Project</Button>
-              <Button href="/approach" variant="text">
-                Explore Our Approach
-              </Button>
+                <span className="hero-line hero-line-four" aria-hidden="true">
+                  <span className="hero-line-content">outgrown.</span>
+                </span>
+              </h1>
+            </div>
+            <div className="home-hero-rail">
+              <p className="hero-rail-summary">
+                Strive builds websites, connects reporting, and automates
+                repetitive work for growing small and midsize service
+                businesses.
+              </p>
+              <div className="hero-actions">
+                <Button href="/start-a-project">Start a Project</Button>
+                <Button href="/approach" variant="text">
+                  Explore Our Approach
+                </Button>
+              </div>
+              <p className="hero-rail-detail">
+                Need help after launch? Hosting, maintenance, and ongoing
+                support are optional.
+              </p>
             </div>
           </div>
         </Container>
@@ -170,13 +164,13 @@ export default function Home() {
 
       <Section tone="soft" className="services-editorial">
         <div className="section-heading section-heading-editorial">
-          <MicroLabel index="02">Three connected operating layers</MicroLabel>
+          <MicroLabel index="02">What Strive does</MicroLabel>
           <h2 data-reveal="type">
-            Organize the work around the business outcome.
+            A better website. Clearer reporting. Less repeat work.
           </h2>
           <p>
-            Websites, measurement, and automation are treated as parts of one
-            customer and operating system—not unrelated technical products.
+            Start with one service or connect them around a shared goal. The
+            scope follows what your business needs.
           </p>
         </div>
         <div className="service-matrix">
@@ -221,9 +215,9 @@ export default function Home() {
             </h2>
             <EditorialRule inverse />
             <p>
-              The value is not more software. It is a clearer relationship
-              between presence, information, and repeatable work—with ownership
-              and handoff defined before the build.
+              Your website, reporting, and internal tools work better when they
+              connect. Strive plans those connections with clear
+              responsibilities and a documented handoff.
             </p>
             <Button href="/approach" variant="outline">
               Explore the approach
@@ -237,13 +231,13 @@ export default function Home() {
         <div className="approach-grid">
           <div className="approach-copy">
             <MicroLabel index="04">How Strive solves problems</MicroLabel>
-            <h2 data-reveal="type">Artifacts make the work reviewable.</h2>
+            <h2 data-reveal="type">See the plan before the build.</h2>
             <p>
               Audits, system maps, reporting definitions, workflow diagrams, and
               handoff records show what is changing and why.
             </p>
             <Button href="/approach" variant="text">
-              Explore capability artifacts
+              See example project plans
             </Button>
           </div>
           <div className="approach-list">
@@ -298,8 +292,9 @@ export default function Home() {
               visible throughout the engagement.
             </p>
             <p>
-              When a scope calls for specialist input, the responsibility,
-              decision path, and handoff should remain explicit.
+              If a project needs specialist input, the scope identifies who is
+              involved, what they are responsible for, and how the work comes
+              together.
             </p>
             <Button href="/about" variant="text">
               About the operating model

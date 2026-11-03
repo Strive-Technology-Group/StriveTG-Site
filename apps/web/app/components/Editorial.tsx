@@ -70,34 +70,3 @@ export function SystemDiagram({ inverse = false }: { inverse?: boolean }) {
     </div>
   );
 }
-
-export function HeroSystemInsert({
-  variant,
-}: {
-  variant: "presence" | "insight" | "operations";
-}) {
-  const labels = {
-    presence: ["Presence", "Search / web", "Indexed"],
-    insight: ["Insight", "Reporting", "Live view"],
-    operations: ["Operations", "Workflow", "Guarded"],
-  } as const;
-  const [title, detail, status] = labels[variant];
-
-  return (
-    <span
-      className={`hero-system-insert hero-system-insert-${variant}`}
-      aria-hidden="true"
-    >
-      <span className="hero-insert-register">
-        <b>{title}</b>
-        <small>{status}</small>
-      </span>
-      <span className="hero-insert-visual">
-        <i />
-        <i />
-        <i />
-      </span>
-      <span className="hero-insert-detail">{detail}</span>
-    </span>
-  );
-}
