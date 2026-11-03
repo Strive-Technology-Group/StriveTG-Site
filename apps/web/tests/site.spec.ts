@@ -383,6 +383,30 @@ test("the licensed local grotesque and editorial serif are rendered", async ({
   expect(evidence.displayLoaded).toBe(true);
 });
 
+test("header and footer wordmarks stay visible and the footer logo links home", async ({
+  page,
+}) => {
+  await page.goto("/services", { waitUntil: "networkidle" });
+  for (const width of [320, 390, 820, 1440, 3440]) {
+    await page.setViewportSize({ width, height: 1000 });
+    for (const mark of await page.locator(".logo-mark").all()) {
+      await expect(mark).toBeVisible();
+      const bounds = await mark.boundingBox();
+      expect(
+        bounds!.width,
+        `Wordmark disappeared at ${width}px`,
+      ).toBeGreaterThan(150);
+      expect(bounds!.height).toBeGreaterThan(10);
+    }
+  }
+  await page
+    .locator(".footer-brand")
+    .getByRole("link", { name: "Strive Technology Group home" })
+    .click();
+  await expect(page).toHaveURL(/\/$/);
+  await expect(page.locator(".home-hero h1")).toBeVisible();
+});
+
 test("hero display glyphs are not cropped by their reveal wrappers", async ({
   page,
 }) => {

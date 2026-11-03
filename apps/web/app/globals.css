@@ -133,7 +133,8 @@ a {
 
 .logo-mark {
   display: block;
-  width: min(15rem, 100%);
+  width: 15rem;
+  max-width: 100%;
   aspect-ratio: 586 / 54;
   background: currentColor;
   mask: url("/Full logo on light.svg") center / contain no-repeat;
