@@ -1,18 +1,21 @@
 :root {
-  /* Warm ivory, charcoal, and restrained bronze. */
-  --strive-canvas: #f7f4ed;
-  --strive-ink: #242521;
+  /* Porcelain, deep navy, and restrained teal. */
+  --strive-canvas: #f7f9f8;
+  --strive-ink: #152b3a;
   --strive-true-ink: #000000;
-  --strive-dark: #30312b;
-  --strive-muted: #64635c;
-  --strive-inverse-muted: #cfcbc1;
-  --strive-signal: #c5a477;
-  --strive-support: #96907d;
-  --strive-echo: #e8e2d6;
+  --strive-dark: #1d3b47;
+  --strive-muted: #526675;
+  --strive-inverse-muted: #cedbde;
+  --strive-signal: #0b7074;
+  --strive-on-signal: #ffffff;
+  --strive-signal-inverse: #86cfca;
+  --strive-highlight: var(--strive-signal);
+  --strive-support: #7c9fa4;
+  --strive-echo: #e8f0ef;
   --strive-wash: var(--strive-echo);
-  --strive-border: rgba(36, 37, 33, 0.22);
-  --strive-border-inverse: rgba(247, 244, 237, 0.26);
-  --strive-focus: #6f5032;
+  --strive-border: rgba(21, 43, 58, 0.22);
+  --strive-border-inverse: rgba(247, 249, 248, 0.26);
+  --strive-focus: var(--strive-signal);
 
   /* Typography scale */
   --strive-body-size: clamp(1rem, 0.96rem + 0.18vw, 1.125rem);
@@ -28,8 +31,8 @@
   --strive-rule: 1px solid var(--strive-border);
   --strive-radius: 0.35rem;
   --strive-radius-media: 0.8rem;
-  --strive-signal-shadow: 0 2px 5px rgba(36, 37, 33, 0.1);
-  --strive-signal-shadow-hover: 0 5px 12px rgba(36, 37, 33, 0.16);
+  --strive-signal-shadow: 0 2px 5px rgba(21, 43, 58, 0.1);
+  --strive-signal-shadow-hover: 0 5px 12px rgba(21, 43, 58, 0.16);
 
   /* Motion scale */
   --motion-fast: 180ms;

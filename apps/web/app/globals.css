@@ -39,7 +39,7 @@ a {
 
 ::selection {
   background: var(--strive-signal);
-  color: var(--strive-ink);
+  color: var(--strive-on-signal);
 }
 
 h1,
@@ -194,9 +194,9 @@ a {
   gap: 0.65rem;
   min-height: 2.65rem;
   padding: 0.75rem 1rem;
-  color: var(--strive-ink);
+  color: var(--strive-on-signal);
   background: var(--strive-signal);
-  border: 1px solid var(--strive-ink);
+  border: 1px solid var(--strive-signal);
   border-radius: var(--strive-radius);
   box-shadow: var(--strive-signal-shadow);
   transition:
@@ -297,7 +297,7 @@ a {
   justify-content: center;
   margin-top: 1.5rem;
   min-height: 3.8rem;
-  color: var(--strive-ink);
+  color: var(--strive-on-signal);
   background: var(--strive-signal);
   border: 1px solid var(--strive-signal);
 }
@@ -326,9 +326,9 @@ a {
   place-items: center;
   width: 1.8rem;
   height: 1.35rem;
-  color: var(--strive-ink);
+  color: var(--strive-on-signal);
   background: var(--strive-signal);
-  border: 1px solid var(--strive-ink);
+  border: 1px solid var(--strive-signal);
   font-size: 0.58rem;
 }
 
@@ -338,7 +338,7 @@ a {
 }
 
 .micro-label-inverse > span {
-  color: var(--strive-ink);
+  color: var(--strive-on-signal);
 }
 
 .editorial-rule {
@@ -380,8 +380,11 @@ a {
 .section-dark,
 .section-ink,
 .editorial-footer,
-.mobile-navigation {
-  --strive-focus: var(--strive-signal);
+.mobile-navigation,
+.hero-system-insert,
+.system-diagram-inverse {
+  --strive-focus: var(--strive-signal-inverse);
+  --strive-highlight: var(--strive-signal-inverse);
 }
 
 .section-dark p,
@@ -490,9 +493,9 @@ a {
 }
 
 .button-primary {
-  color: var(--strive-ink);
+  color: var(--strive-on-signal);
   background: var(--strive-signal);
-  border: 1px solid var(--strive-ink);
+  border: 1px solid var(--strive-signal);
   box-shadow: var(--strive-signal-shadow);
 }
 
@@ -522,7 +525,7 @@ a {
 
 .button-text:hover,
 .button-text:focus-visible {
-  border-color: var(--strive-signal);
+  border-color: var(--strive-highlight);
   transform: none;
 }
 
@@ -662,7 +665,7 @@ a {
 }
 
 .hero-insert-register small {
-  color: var(--strive-signal);
+  color: var(--strive-highlight);
 }
 
 .hero-insert-detail {
@@ -691,7 +694,7 @@ a {
 
 .hero-insert-visual i:nth-child(2) {
   height: 72%;
-  background: var(--strive-signal);
+  background: var(--strive-highlight);
 }
 
 .hero-insert-visual i:nth-child(3) {
@@ -718,13 +721,13 @@ a {
 }
 
 .hero-system-insert-operations {
-  color: var(--strive-ink);
+  color: var(--strive-on-signal);
   background: var(--strive-signal);
 }
 
 .hero-system-insert-operations .hero-insert-register small,
 .hero-system-insert-operations .hero-insert-detail {
-  color: var(--strive-ink);
+  color: var(--strive-on-signal);
 }
 
 .hero-system-insert-operations .hero-insert-visual i {
@@ -843,7 +846,7 @@ a {
   width: 0.5rem;
   height: 0.5rem;
   margin-left: 0.55rem;
-  background: var(--strive-signal);
+  background: var(--strive-highlight);
   border: 1px solid var(--strive-ink);
   border-radius: 50%;
   content: "";
@@ -887,7 +890,7 @@ a {
 .diagram-human span {
   width: 0.5rem;
   height: 0.5rem;
-  background: var(--strive-signal);
+  background: var(--strive-highlight);
   border-radius: 50%;
 }
 
@@ -987,7 +990,7 @@ a {
   width: 0.45rem;
   height: 0.45rem;
   margin-right: 0.55rem;
-  background: var(--strive-signal);
+  background: var(--strive-highlight);
   border: 1px solid var(--strive-ink);
   border-radius: 50%;
   content: "";
@@ -1057,7 +1060,7 @@ a {
   left: 0;
   width: 0.35rem;
   height: 0.35rem;
-  background: var(--strive-signal);
+  background: var(--strive-highlight);
   border: 1px solid var(--strive-ink);
   border-radius: 50%;
   content: "";
@@ -1089,7 +1092,7 @@ a {
 }
 
 .connective-copy h2 em {
-  color: var(--strive-signal);
+  color: var(--strive-highlight);
   font-weight: 400;
 }
 
@@ -1826,11 +1829,7 @@ a {
 
 .project-brief-success {
   padding: clamp(2rem, 5vw, 5rem);
-  background: color-mix(
-    in srgb,
-    var(--strive-signal) 16%,
-    var(--strive-canvas)
-  );
+  background: var(--strive-wash);
   border: 1px solid var(--strive-ink);
 }
 
@@ -1915,11 +1914,7 @@ a {
 .legal-notice {
   margin-bottom: 3rem;
   padding: 1rem 1.25rem;
-  background: color-mix(
-    in srgb,
-    var(--strive-signal) 20%,
-    var(--strive-canvas)
-  );
+  background: var(--strive-wash);
   border: 1px solid var(--strive-ink);
   font-size: 0.78rem;
 }
@@ -1960,7 +1955,7 @@ a {
 .consultation-band {
   padding-block: clamp(4rem, 8vw, 8rem);
   color: var(--strive-ink);
-  background: var(--strive-signal);
+  background: var(--strive-wash);
   border-top: 1px solid var(--strive-ink);
 }
 
@@ -1990,7 +1985,6 @@ a {
 }
 
 .consultation-band .button-primary {
-  background: var(--strive-canvas);
   box-shadow: none;
 }
 
@@ -2090,7 +2084,7 @@ a {
 
 .section-dark .micro-label > span,
 .section-ink .micro-label > span {
-  color: var(--strive-ink);
+  color: var(--strive-on-signal);
 }
 
 /* Not found */

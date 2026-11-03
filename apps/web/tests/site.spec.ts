@@ -326,28 +326,28 @@ test("the canonical editorial palette is what the browser renders", async ({
         body: background("body"),
         ink: background(".section-ink"),
         dark: background(".section-dark"),
-        signal: background(".consultation-band"),
+        intake: background(".consultation-band"),
       },
       hasLegacyNavy: renderedColors.includes("rgb(10, 37, 64)"),
     };
   });
 
   expect(evidence.tokens).toEqual({
-    canvas: "#f7f4ed",
-    ink: "#242521",
+    canvas: "#f7f9f8",
+    ink: "#152b3a",
     trueInk: "#000000",
-    dark: "#30312b",
-    muted: "#64635c",
-    inverse: "#cfcbc1",
-    signal: "#c5a477",
-    support: "#96907d",
-    echo: "#e8e2d6",
+    dark: "#1d3b47",
+    muted: "#526675",
+    inverse: "#cedbde",
+    signal: "#0b7074",
+    support: "#7c9fa4",
+    echo: "#e8f0ef",
   });
   expect(evidence.surfaces).toEqual({
-    body: "rgb(247, 244, 237)",
-    ink: "rgb(36, 37, 33)",
-    dark: "rgb(48, 49, 43)",
-    signal: "rgb(197, 164, 119)",
+    body: "rgb(247, 249, 248)",
+    ink: "rgb(21, 43, 58)",
+    dark: "rgb(29, 59, 71)",
+    intake: "rgb(232, 240, 239)",
   });
   expect(evidence.hasLegacyNavy).toBe(false);
 });
