@@ -607,6 +607,7 @@ test("mobile navigation exposes state, handles Escape, and restores focus", asyn
 }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/", { waitUntil: "domcontentloaded" });
+  await expect(page.locator("html")).toHaveClass(/motion-ready/);
   const trigger = page.getByRole("button", { name: "Open navigation" });
   await expect(trigger).toHaveAttribute("aria-expanded", "false");
   await trigger.click();
