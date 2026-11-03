@@ -412,19 +412,13 @@ test("editorial type masks preserve ascenders and descenders on every route", as
 
   for (const route of routes) {
     await page.goto(route, { waitUntil: "domcontentloaded" });
-    const masks = await page
-      .locator('[data-reveal="type"]')
-      .evaluateAll((elements) =>
-        elements.map((element) => ({
-          clipPath: getComputedStyle(element).clipPath,
-          text: element.textContent?.trim().slice(0, 80),
-          visible: element.getAttribute("data-visible"),
-        })),
-      );
+    const masks = page.locator('[data-reveal="type"]');
 
-    for (const mask of masks) {
-      expect(mask.visible, `${route}: ${mask.text}`).toBe("true");
-      expect(mask.clipPath, `${route}: ${mask.text}`).toMatch(
+    for (const mask of await masks.all()) {
+      const label = `${route}: ${(await mask.textContent())?.trim().slice(0, 80)}`;
+      await expect(mask, label).toHaveAttribute("data-visible", "true");
+      await expect(mask, label).toHaveCSS(
+        "clip-path",
         /^inset\(-[\d.]+(?:px|em)/,
       );
     }
