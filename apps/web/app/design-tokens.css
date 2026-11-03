@@ -7,6 +7,8 @@
   --strive-muted: #526675;
   --strive-inverse-muted: #cedbde;
   --strive-signal: #0b7074;
+  --strive-signal-hover: #095b60;
+  --strive-signal-active: #074d52;
   --strive-on-signal: #ffffff;
   --strive-signal-inverse: #86cfca;
   --strive-highlight: var(--strive-signal);
@@ -32,7 +34,8 @@
   --strive-radius: 0.35rem;
   --strive-radius-media: 0.8rem;
   --strive-signal-shadow: 0 2px 5px rgba(21, 43, 58, 0.1);
-  --strive-signal-shadow-hover: 0 5px 12px rgba(21, 43, 58, 0.16);
+  --strive-signal-shadow-hover: 0 8px 18px rgba(21, 43, 58, 0.18);
+  --strive-signal-shadow-active: 0 1px 3px rgba(21, 43, 58, 0.12);
 
   /* Motion scale */
   --motion-fast: 180ms;
