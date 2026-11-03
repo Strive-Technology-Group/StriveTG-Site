@@ -392,6 +392,66 @@ test("hero display glyphs are not cropped by their reveal wrappers", async ({
   expect(evidence?.contentClipPath).toMatch(/^inset\(-/);
 });
 
+test("hero headline rows leave clearance between glyphs at release widths", async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+
+  for (const width of [1920, ...widths]) {
+    await page.setViewportSize({ width, height: 1000 });
+    await page.goto("/", { waitUntil: "networkidle" });
+    await page.evaluate(async () => {
+      await document.fonts.ready;
+    });
+
+    const gaps = await page.evaluate(() => {
+      const context = document.createElement("canvas").getContext("2d")!;
+      const lines = Array.from(
+        document.querySelectorAll(".hero-line-content"),
+      ).map((line) => {
+        const style = getComputedStyle(line);
+        context.font = `${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
+        const ink: { top: number; bottom: number }[] = [];
+
+        for (const node of line.childNodes) {
+          if (node.nodeType !== Node.TEXT_NODE) continue;
+          const text = node.textContent ?? "";
+          for (let index = 0; index < text.length; index++) {
+            if (!/[a-zA-Z.]/.test(text[index]!)) continue;
+            const range = document.createRange();
+            range.setStart(node, index);
+            range.setEnd(node, index + 1);
+            const metrics = context.measureText(text[index]!);
+            const baseline =
+              range.getBoundingClientRect().top + metrics.fontBoundingBoxAscent;
+            ink.push({
+              top: baseline - metrics.actualBoundingBoxAscent,
+              bottom: baseline + metrics.actualBoundingBoxDescent,
+            });
+          }
+        }
+
+        return {
+          top: Math.min(...ink.map((glyph) => glyph.top)),
+          bottom: Math.max(...ink.map((glyph) => glyph.bottom)),
+        };
+      });
+
+      return lines
+        .slice(1)
+        .map((line, index) => line.top - lines[index]!.bottom);
+    });
+
+    expect(gaps).toHaveLength(3);
+    for (const [index, gap] of gaps.entries()) {
+      expect(
+        gap,
+        `Headline rows ${index + 1} and ${index + 2} collide at ${width}px`,
+      ).toBeGreaterThanOrEqual(3);
+    }
+  }
+});
+
 test("editorial reveals activate without hiding skipped content", async ({
   page,
 }) => {

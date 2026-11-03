@@ -587,6 +587,11 @@ a {
   padding-block: 0.035em;
 }
 
+.hero-line + .hero-line {
+  /* Keep the serif descenders clear of the next row's capitals and i dots. */
+  margin-top: 0.15em;
+}
+
 .hero-line-content {
   display: flex;
   width: 100%;
