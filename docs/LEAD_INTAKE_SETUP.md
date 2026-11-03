@@ -11,13 +11,12 @@ All 27 production configuration values have been saved as Vercel secrets,
 scoped only to Production. Credentials remain excluded from version control;
 the local copies are in the ignored `apps/web/.env.local`.
 
-Production deployment is currently blocked by Vercel's plan restriction:
-`Cannot deploy from a private GitHub organization repository on the Hobby plan`.
-A manual deployment of `main` confirmed this error before a build started.
-The existing public deployment is still the previous release. A plan change
-requires the owner's billing approval. After the restriction is resolved,
-deploy `main` and complete the public-domain CRM and email smoke test before
-marking production verified.
+The first production deployment was rejected because the repository was a
+private GitHub organization repository on Vercel's Hobby plan. The owner has
+since changed the repository to public, and GitHub confirms that visibility.
+The release is being pushed again to retry deployment with the existing plan.
+Production verification remains pending until the new build is live and the
+public-domain CRM and email smoke test passes.
 
 With the checked-in example values, `POST /api/project-brief` returns `503`.
 That is the required fail-closed state, not a successful production activation.
@@ -67,9 +66,9 @@ production operating approvals remain owner responsibilities.
 - The Vercel dashboard is now accessible and production secrets are saved.
   The existing project uses root directory `apps/web`, includes workspace files
   outside that root, builds with `pnpm run build`, and uses Node.js 22.
-- Public deployment is not yet verified: the new deployment was rejected by
-  the Hobby plan restriction for private GitHub organization repositories.
-  Deployment and the public-domain smoke test remain pending.
+- The owner changed the GitHub repository to public after the initial Hobby
+  plan rejection. Deployment is being retried; the public-domain smoke test
+  remains pending.
 
 ## Current application contract
 
