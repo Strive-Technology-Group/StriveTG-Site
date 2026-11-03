@@ -6,11 +6,13 @@ import {
   type APIRequestContext,
   type Page,
 } from "@playwright/test";
+import { validateProjectBrief } from "../app/lib/lead-intake";
 
 const routes = [
   "/",
   "/services",
   "/approach",
+  "/research",
   "/about",
   "/faq",
   "/contact",
@@ -302,6 +304,53 @@ test("navigation, metadata, sitemap, robots, and structured data use Approach an
     "Growing small and midsize service businesses",
   );
   expect(schema.join(" ")).not.toContain('"telephone"');
+});
+
+test("research content connects discovery, focus areas, and an AI project brief", async ({
+  page,
+  request,
+}) => {
+  await page.goto("/", { waitUntil: "networkidle" });
+  await page
+    .getByRole("link", { name: "Explore Research & Engineering", exact: true })
+    .click();
+  await expect(page).toHaveURL(/\/research$/);
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText(
+    "Applied AI Research & Development",
+  );
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+    "href",
+    "https://www.strivetg.com/research",
+  );
+  await expect(page.locator(".research-focus")).toHaveCount(4);
+  await expect(page.locator(".research-steps .step")).toHaveCount(4);
+  await expect(
+    page
+      .getByRole("navigation", { name: "Primary" })
+      .getByRole("link", { name: "Research", exact: true }),
+  ).toHaveAttribute("aria-current", "page");
+  expect(await (await request.get("/sitemap.xml")).text()).toContain(
+    "https://www.strivetg.com/research",
+  );
+  await page
+    .locator(".page-hero")
+    .getByRole("link", { name: "Discuss an AI Project" })
+    .click();
+  await expect(page).toHaveURL(/\/start-a-project$/);
+  await page
+    .getByLabel("Service needed")
+    .selectOption("applied-ai-research-development");
+  await expect(page.getByLabel("Service needed")).toHaveValue(
+    "applied-ai-research-development",
+  );
+  const validation = validateProjectBrief(
+    projectBrief({ serviceNeeded: "applied-ai-research-development" }),
+  );
+  expect(validation.success).toBe(true);
+  if (validation.success)
+    expect(validation.data.serviceNeeded).toBe(
+      "applied-ai-research-development",
+    );
 });
 
 test("the canonical editorial palette is what the browser renders", async ({

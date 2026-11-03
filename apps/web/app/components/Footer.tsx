@@ -50,7 +50,7 @@ export function Footer() {
               <p className="micro-label micro-label-inverse">
                 Strive Technology Group
               </p>
-              <h2 data-reveal="type">Websites. Reporting. Automation.</h2>
+              <h2 data-reveal="type">Digital systems. Applied AI.</h2>
             </div>
             <p>
               Systems for growing small and midsize service businesses, built

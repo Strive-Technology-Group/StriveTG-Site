@@ -3,7 +3,12 @@ import { Button } from "../components/Button";
 import { EditorialMasthead } from "../components/EditorialMasthead";
 import { Section } from "../components/Section";
 import { StructuredData } from "../components/StructuredData";
-import { company, servicePillars } from "../lib/company";
+import {
+  appliedAI,
+  company,
+  researchFocusAreas,
+  servicePillars,
+} from "../lib/company";
 
 const operatingModel = [
   {
@@ -47,12 +52,12 @@ const operatingModel = [
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Website, search, reporting, automation, hosting, and support capabilities for growing small and midsize service businesses.",
+    "Websites, reporting, workflow automation, applied AI research and development, and optional hosting and support from Strive.",
   alternates: { canonical: "/services" },
   openGraph: {
     title: `Services | ${company.name}`,
     description:
-      "Three connected outcomes: get found and convert, understand what works, and remove repetitive work.",
+      "Practical digital systems for growing businesses, alongside applied AI research, prototyping, and evaluation.",
     url: "/services",
   },
 };
@@ -60,17 +65,30 @@ export const metadata: Metadata = {
 export default function ServicesPage() {
   const serviceSchema = {
     "@context": "https://schema.org",
-    "@graph": servicePillars.map((pillar) => ({
-      "@type": "Service",
-      name: pillar.eyebrow,
-      description: pillar.description,
-      provider: {
-        "@type": "Organization",
-        name: company.name,
-        url: company.url,
+    "@graph": [
+      ...servicePillars.map((pillar) => ({
+        "@type": "Service",
+        name: pillar.eyebrow,
+        description: pillar.description,
+        provider: {
+          "@type": "Organization",
+          name: company.name,
+          url: company.url,
+        },
+        url: `${company.url}/services#${pillar.id}`,
+      })),
+      {
+        "@type": "Service",
+        name: appliedAI.title,
+        description: appliedAI.introduction,
+        provider: {
+          "@type": "Organization",
+          name: company.name,
+          url: company.url,
+        },
+        url: `${company.url}/research`,
       },
-      url: `${company.url}/services#${pillar.id}`,
-    })),
+    ],
   };
 
   return (
@@ -111,6 +129,36 @@ export default function ServicesPage() {
               </ul>
             </article>
           ))}
+        </div>
+      </Section>
+
+      <Section id="applied-ai" tone="ink">
+        <div className="support-grid">
+          <div>
+            <p className="eyebrow eyebrow-on-dark">{appliedAI.title}</p>
+            <h2>Explore questions beyond a standard workflow.</h2>
+            <p>
+              Some problems call for experimentation with models, data, and
+              system design. Strive combines machine learning research with
+              software engineering to build focused prototypes and evaluate what
+              they can reliably do.
+            </p>
+            <Button href="/research" variant="outline">
+              Explore Research &amp; Engineering
+            </Button>
+          </div>
+          <div>
+            <p className="kicker">Technical interests</p>
+            <ul className="plain-list">
+              {researchFocusAreas.map((area) => (
+                <li key={area.id}>{area.title}</li>
+              ))}
+            </ul>
+            <p>
+              Research questions, prototype boundaries, evaluation criteria, and
+              deliverables are agreed in the scope.
+            </p>
+          </div>
         </div>
       </Section>
 

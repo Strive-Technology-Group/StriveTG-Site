@@ -9,6 +9,10 @@ export const serviceNeededOptions = [
   },
   { value: "workflow-automation", label: "Workflow automation" },
   {
+    value: "applied-ai-research-development",
+    label: "Applied AI research and development",
+  },
+  {
     value: "ongoing-technology-support",
     label: "Ongoing technology support",
   },

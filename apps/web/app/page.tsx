@@ -9,6 +9,7 @@ import {
 } from "./components/Editorial";
 import { Section } from "./components/Section";
 import {
+  appliedAI,
   engagementSteps,
   faqs,
   servicePillars,
@@ -16,9 +17,9 @@ import {
 } from "./lib/company";
 
 export const metadata: Metadata = {
-  title: "Websites, reporting, and practical automation",
+  title: "Digital systems and applied AI engineering",
   description:
-    "Strive builds connected web, reporting, and automation systems for growing small and midsize service businesses.",
+    "Strive builds websites, reporting, and automation systems for growing service businesses, alongside applied AI research and development.",
   alternates: { canonical: "/" },
 };
 
@@ -227,10 +228,26 @@ export default function Home() {
         </div>
       </Section>
 
+      <Section tone="soft" className="research-feature">
+        <div className="responsibility-grid">
+          <div className="responsibility-copy">
+            <MicroLabel index="04">{appliedAI.title}</MicroLabel>
+            <h2 data-reveal="type">{appliedAI.tagline}</h2>
+            <Button href="/research" variant="text">
+              Explore Research &amp; Engineering
+            </Button>
+          </div>
+          <div className="research-summary">
+            <p>{appliedAI.introduction}</p>
+            <p>{appliedAI.description}</p>
+          </div>
+        </div>
+      </Section>
+
       <Section tone="light" className="approach-section">
         <div className="approach-grid">
           <div className="approach-copy">
-            <MicroLabel index="04">How Strive solves problems</MicroLabel>
+            <MicroLabel index="05">How Strive solves problems</MicroLabel>
             <h2 data-reveal="type">See the plan before the build.</h2>
             <p>
               Audits, system maps, reporting definitions, workflow diagrams, and
@@ -260,7 +277,7 @@ export default function Home() {
 
       <Section id="how-we-work" tone="soft" className="engagement-section">
         <div className="section-heading section-heading-editorial">
-          <MicroLabel index="05">Engagement model</MicroLabel>
+          <MicroLabel index="06">Engagement model</MicroLabel>
           <h2 data-reveal="type">Six phases. Decisions stay visible.</h2>
           <p>
             Each engagement is scoped separately, but the rhythm remains
@@ -282,7 +299,7 @@ export default function Home() {
       <Section tone="light" className="responsibility-section">
         <div className="responsibility-grid">
           <div className="responsibility-copy">
-            <MicroLabel index="06">Clear point of responsibility</MicroLabel>
+            <MicroLabel index="07">Clear point of responsibility</MicroLabel>
             <h2 data-reveal="type">
               Business questions stay connected to technical decisions.
             </h2>
@@ -315,7 +332,7 @@ export default function Home() {
 
       <Section tone="dark" className="commitments-section">
         <div className="section-heading section-heading-editorial">
-          <MicroLabel index="07" inverse>
+          <MicroLabel index="08" inverse>
             Trust is operational
           </MicroLabel>
           <h2 data-reveal="type">
@@ -340,7 +357,7 @@ export default function Home() {
       <Section tone="light" className="faq-preview-section">
         <div className="faq-preview-grid">
           <div className="section-heading">
-            <MicroLabel index="08">Before the first call</MicroLabel>
+            <MicroLabel index="09">Before the first call</MicroLabel>
             <h2 data-reveal="type">Decide whether Strive fits the problem.</h2>
             <Link href="/faq" className="button button-text">
               Read every FAQ <span aria-hidden="true">↗</span>

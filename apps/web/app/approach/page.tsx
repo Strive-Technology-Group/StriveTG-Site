@@ -8,7 +8,7 @@ import { company } from "../lib/company";
 export const metadata: Metadata = {
   title: "Approach",
   description:
-    "See how Strive audits websites, defines useful reporting, maps workflows, and keeps technology decisions reviewable.",
+    "See how Strive plans digital systems and approaches applied AI through focused experiments, prototypes, evaluation, and documented decisions.",
   alternates: { canonical: "/approach" },
   openGraph: {
     title: `Approach | ${company.name}`,
@@ -137,6 +137,33 @@ export default function ApproachPage() {
               </div>
             </article>
           ))}
+        </div>
+      </Section>
+
+      <Section tone="ink">
+        <div className="support-grid">
+          <div>
+            <p className="eyebrow eyebrow-on-dark">AI research & engineering</p>
+            <h2>Turn a technical question into a testable idea.</h2>
+            <p>
+              Applied AI projects begin with a defined question, a practical
+              baseline, and explicit evaluation criteria. Focused experiments
+              and prototypes help determine whether an idea merits further
+              development.
+            </p>
+            <Button href="/research" variant="outline">
+              Explore Research &amp; Engineering
+            </Button>
+          </div>
+          <div>
+            <p className="kicker">Make the learning useful</p>
+            <ul className="plain-list">
+              <li>Record the hypothesis, data needs, and constraints</li>
+              <li>Compare the prototype against the agreed baseline</li>
+              <li>Inspect failure cases and document limitations</li>
+              <li>Use the findings to recommend a next step</li>
+            </ul>
+          </div>
         </div>
       </Section>
 

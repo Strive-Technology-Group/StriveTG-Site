@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: `About | ${company.name}`,
     description:
-      "The operating principles behind Strive's web, reporting, and automation work.",
+      "The engineering principles behind Strive's digital systems and applied AI research and development.",
     url: "/about",
   },
 };
@@ -45,6 +45,15 @@ export default function AboutPage() {
               involved and what they are responsible for. Decisions and review
               points stay documented throughout the work.
             </p>
+            <p>
+              That engineering mindset also informs Strive&apos;s applied AI
+              research and development: exploring technical questions through
+              experimentation, building focused prototypes, and measuring
+              results before expanding the work.
+            </p>
+            <Button href="/research" variant="text">
+              Explore Research &amp; Engineering
+            </Button>
           </div>
           <dl className="responsibility-principles">
             <div>

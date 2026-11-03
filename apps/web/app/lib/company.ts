@@ -23,17 +23,81 @@ export const company: CompanyProfile = {
   // Publish only a dedicated, owner-approved business number.
   telephone: null,
   positioning:
-    "A technology partner for growing small and midsize service businesses that need clearer websites, more useful reporting, and practical workflow automation.",
+    "A technology partner for growing small and midsize service businesses, combining websites, reporting, and practical automation with applied AI research and development.",
   description:
-    "Websites, reporting and analytics, and workflow automation for growing small and midsize service businesses.",
+    "Digital systems for growing service businesses, plus applied AI research and development through experimentation, prototyping, and evaluation.",
 } as const;
 
 export const navigation = [
   { label: "Services", href: "/services" },
   { label: "Approach", href: "/approach" },
+  { label: "Research", href: "/research" },
   { label: "About", href: "/about" },
   { label: "FAQ", href: "/faq" },
   { label: "Contact", href: "/contact" },
+] as const;
+
+export const appliedAI = {
+  title: "Applied AI Research & Development",
+  tagline: "Engineering intelligent systems beyond conventional automation.",
+  introduction:
+    "Strive Technology Group brings an engineering-led approach to artificial intelligence, combining machine learning research with practical software development.",
+  description:
+    "Our technical interests span agentic AI, multimodal learning, efficient machine learning architectures, and trustworthy AI systems. We focus on turning complex technical problems into measurable, reliable solutions through experimentation, prototyping, and rigorous evaluation.",
+} as const;
+
+export const researchFocusAreas = [
+  {
+    id: "agentic-ai",
+    title: "Agentic AI",
+    description:
+      "Explore systems that plan, use tools, and coordinate tasks, with explicit boundaries, human review, and evaluation of failure cases.",
+  },
+  {
+    id: "multimodal-learning",
+    title: "Multimodal learning",
+    description:
+      "Investigate how text, images, and other data types can work together, guided by the problem and the quality of the available data.",
+  },
+  {
+    id: "efficient-architectures",
+    title: "Efficient ML architectures",
+    description:
+      "Examine model and system designs that balance useful performance with compute, latency, and resource requirements.",
+  },
+  {
+    id: "trustworthy-ai",
+    title: "Trustworthy AI systems",
+    description:
+      "Evaluate reliability, limitations, oversight, and behavior across representative inputs and difficult cases.",
+  },
+] as const;
+
+export const researchSteps = [
+  {
+    number: "01",
+    title: "Define the question",
+    description:
+      "Clarify the technical problem, available data, constraints, and what a useful result would look like.",
+  },
+  {
+    number: "02",
+    title: "Establish a baseline",
+    description:
+      "Choose a practical point of comparison and agree on the measures that will guide the experiment.",
+  },
+  {
+    number: "03",
+    title: "Build a focused prototype",
+    description:
+      "Test the central idea with a bounded implementation before committing to a larger system.",
+  },
+  {
+    number: "04",
+    title: "Evaluate and decide",
+    description:
+      "Compare results, inspect failure cases, document limitations, and use the evidence to choose the next step.",
+  },
 ] as const;
 
 export const servicePillars = [
@@ -195,6 +259,11 @@ export const faqs = [
       "The process begins with the workflow and its risks. Automation is introduced where it can reduce repeat work without hiding important decisions, and human review remains part of the design when judgment or sensitive information is involved.",
   },
   {
+    question: "Does Strive take on AI research and development projects?",
+    answer:
+      "Strive's applied AI research and development combines machine learning exploration with practical software engineering. Technical interests include agentic AI, multimodal learning, efficient machine learning architectures, and trustworthy AI systems. A research engagement defines the question, prototype, evaluation criteria, and deliverables in writing; findings and limitations guide the next step.",
+  },
+  {
     question: "What happens during offboarding?",
     answer:
       "Offboarding follows the written scope. It can include the effective end date, final covered period, agreed deliverables, account access, documentation, exports, third-party subscriptions, and access removal. Migration or transition work beyond the included handoff is scoped separately.",
@@ -205,6 +274,7 @@ export const publicRoutes = [
   "/",
   "/services",
   "/approach",
+  "/research",
   "/about",
   "/faq",
   "/contact",

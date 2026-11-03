@@ -44,7 +44,7 @@ const instrumentSerif = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL(company.url),
   title: {
-    default: `${company.name} | Systems for growing small and midsize service businesses`,
+    default: `${company.name} | Digital systems & applied AI`,
     template: `%s | ${company.name}`,
   },
   description: company.description,
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     type: "website",
     url: company.url,
     siteName: company.name,
-    title: `${company.name} | Systems for growing small and midsize service businesses`,
+    title: `${company.name} | Digital systems & applied AI`,
     description: company.description,
     images: [
       { url: "/opengraph-image", width: 1200, height: 630, alt: company.name },
@@ -69,7 +69,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${company.name} | Systems for growing small and midsize service businesses`,
+    title: `${company.name} | Digital systems & applied AI`,
     description: company.description,
     images: ["/opengraph-image"],
   },

@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const alt =
-  "Strive Technology Group — web, reporting, and automation for growing small and midsize service businesses";
+  "Strive Technology Group — digital systems and applied AI research and development";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -50,7 +50,7 @@ export default function OpenGraphImage() {
             letterSpacing: "-3px",
           }}
         >
-          Practical systems for growing small and midsize service businesses.
+          Practical digital systems. Applied AI engineering.
         </div>
         <div
           style={{
@@ -62,11 +62,11 @@ export default function OpenGraphImage() {
         >
           <span>Websites</span>
           <span>·</span>
-          <span>Visibility</span>
-          <span>·</span>
-          <span>Analytics</span>
+          <span>Reporting</span>
           <span>·</span>
           <span>Automation</span>
+          <span>·</span>
+          <span>Applied AI</span>
         </div>
       </div>
     ),

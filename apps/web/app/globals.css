@@ -1200,6 +1200,40 @@ a {
   font-size: 0.9rem;
 }
 
+/* Applied AI research uses the shared editorial grid and type scale. */
+.research-feature .responsibility-grid {
+  align-items: center;
+}
+
+.research-summary {
+  max-width: 40ch;
+  color: var(--strive-muted);
+}
+
+.research-summary p + p {
+  margin-top: 1.25rem;
+}
+
+.research-focus {
+  scroll-margin-top: 7rem;
+}
+
+.commitment-grid.research-focus-grid {
+  border-color: var(--strive-border);
+}
+
+.research-focus-grid p {
+  color: var(--strive-muted);
+}
+
+.research-steps {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.research-steps p {
+  max-width: 40ch;
+}
+
 .commitment-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
