@@ -16,8 +16,8 @@ export default function OpenGraphImage() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: "72px",
-          color: "white",
-          background: "#121613",
+          color: "#f7f4ed",
+          background: "#242521",
           fontFamily: "Arial, sans-serif",
         }}
       >
@@ -35,7 +35,7 @@ export default function OpenGraphImage() {
               width: 20,
               height: 20,
               borderRadius: 999,
-              background: "#2bee4b",
+              background: "#c5a477",
             }}
           />
           Strive Technology Group
@@ -56,7 +56,7 @@ export default function OpenGraphImage() {
           style={{
             display: "flex",
             gap: "18px",
-            color: "#b9c7d0",
+            color: "#cfcbc1",
             fontSize: 24,
           }}
         >

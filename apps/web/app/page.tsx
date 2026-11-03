@@ -285,13 +285,9 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section tone="light" className="founder-section">
-        <div className="founder-grid">
-          <div className="founder-mark" aria-hidden="true">
-            <span className="founder-monogram">STG</span>
-            <small>Direct accountability / documented decisions</small>
-          </div>
-          <div className="founder-copy">
+      <Section tone="light" className="responsibility-section">
+        <div className="responsibility-grid">
+          <div className="responsibility-copy">
             <MicroLabel index="06">Clear point of responsibility</MicroLabel>
             <h2 data-reveal="type">
               Business questions stay connected to technical decisions.
@@ -305,20 +301,20 @@ export default function Home() {
               When a scope calls for specialist input, the responsibility,
               decision path, and handoff should remain explicit.
             </p>
-            <div className="founder-principles">
-              <div>
-                <strong>Visible decisions</strong>
-                <span>Questions, assumptions, and tradeoffs are recorded.</span>
-              </div>
-              <div>
-                <strong>Right-sized systems</strong>
-                <span>Complexity has to earn its place.</span>
-              </div>
-            </div>
             <Button href="/about" variant="text">
               About the operating model
             </Button>
           </div>
+          <dl className="responsibility-principles">
+            <div>
+              <dt>Visible decisions</dt>
+              <dd>Questions, assumptions, and tradeoffs are recorded.</dd>
+            </div>
+            <div>
+              <dt>Right-sized systems</dt>
+              <dd>Complexity has to earn its place.</dd>
+            </div>
+          </dl>
         </div>
       </Section>
 

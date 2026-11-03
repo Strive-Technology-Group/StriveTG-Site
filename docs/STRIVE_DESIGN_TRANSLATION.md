@@ -4,7 +4,7 @@ This document translates the attached `DESIGN.md`, `tokens.json`, `variables.css
 
 ## Interpretation
 
-The useful idea in the reference is an editorial broadsheet rhythm: warm paper, dark ink, one highlighter accent, monumental serif statements, small grotesque labels, flat sections, hairline rules, and documentary inserts. For Strive, that grammar becomes a technical field journal rather than an investment publication.
+The useful idea in the reference is an editorial broadsheet rhythm: warm paper, dark ink, one restrained bronze accent, monumental serif statements, small grotesque labels, flat sections, hairline rules, and documentary inserts. For Strive, that grammar becomes a technical field journal rather than an investment publication.
 
 Strive's version should feel like a careful technical partner documenting a system in public:
 
@@ -28,22 +28,30 @@ The runtime has one canonical source of truth: `apps/web/app/design-tokens.css`.
 
 ## Token mapping
 
-| Reference idea    | Strive semantic token    | Strive value             | Adaptation                                                              |
-| ----------------- | ------------------------ | ------------------------ | ----------------------------------------------------------------------- |
-| Bone White        | `--strive-canvas`        | `#fafffa`                | Preserved as the paper-like page canvas                                 |
-| Press Black       | `--strive-ink`           | `#121613`                | Primary text and editorial dark surface                                 |
-| True Ink          | `--strive-true-ink`      | `#000000`                | Reserved exact black for high-contrast technical detail                 |
-| Slate Verdant     | `--strive-dark`          | `#232924`                | Secondary ink surface and dark structural detail                        |
-| Newsprint Gray    | `--strive-muted`         | `#516254`                | Captions and secondary copy; usage remains contrast-aware               |
-| Muted Sage        | `--strive-inverse-muted` | `#c8d2c8`                | Supporting text on dark surfaces                                        |
-| Highlighter Green | `--strive-signal`        | `#2bee4b`                | Exact visual baseline; restricted to actions, rules, and system signals |
-| Supporting Green  | `--strive-support`       | `#93b799`                | Secondary technical-diagram information only                            |
-| Echo Green        | `--strive-echo`          | `#c4e4c9`                | Alternate paper tint and quiet diagram detail                           |
-| Alternate wash    | `--strive-wash`          | `var(--strive-echo)`     | Semantic alias; no duplicate literal value                              |
-| Hairline ink      | `--strive-border`        | `rgba(18, 22, 19, 0.24)` | Structural rules without card chrome                                    |
-| Signal shadow     | `--strive-signal-shadow` | green-tinted shadow      | Used only on the primary action                                         |
+| Role           | Strive semantic token    | Strive value             | Use                                                |
+| -------------- | ------------------------ | ------------------------ | -------------------------------------------------- |
+| Warm ivory     | `--strive-canvas`        | `#f7f4ed`                | Paper-like page canvas                             |
+| Charcoal       | `--strive-ink`           | `#242521`                | Primary text and editorial dark surface            |
+| True ink       | `--strive-true-ink`      | `#000000`                | High-contrast technical detail                     |
+| Deep charcoal  | `--strive-dark`          | `#30312b`                | Secondary dark surface                             |
+| Warm gray      | `--strive-muted`         | `#64635c`                | Secondary text on ivory and stone                  |
+| Pale stone     | `--strive-inverse-muted` | `#cfcbc1`                | Supporting text on dark surfaces                   |
+| Muted bronze   | `--strive-signal`        | `#c5a477`                | Actions, status marks, and the closing intake band |
+| Taupe          | `--strive-support`       | `#96907d`                | Secondary technical-diagram detail                 |
+| Stone          | `--strive-echo`          | `#e8e2d6`                | Alternate paper tint                               |
+| Alternate wash | `--strive-wash`          | `var(--strive-echo)`     | Alias for the stone tint                           |
+| Hairline       | `--strive-border`        | `rgba(36, 37, 33, 0.22)` | Structural rules                                   |
+| Deep bronze    | `--strive-focus`         | `#6f5032`                | Visible keyboard focus on light surfaces           |
 
-Only `--strive-signal` is saturated. There are no gradients and no second bright brand color.
+The November 3, 2026 refinement replaces the neon green palette with warm
+ivory, charcoal, and muted bronze. Bronze carries dark text; secondary copy
+has at least 4.5:1 contrast on both ivory and stone. Focus rings use deep
+bronze on light surfaces and the lighter bronze on dark surfaces. Primary
+actions use a subtle neutral shadow rather than a colored glow.
+
+The decorative STG monogram panels were removed from both Home and About.
+The responsibility sections now pair the main copy with a ruled definition
+list of operating principles. They require no stock image or placeholder.
 
 ## Typography
 
@@ -65,7 +73,7 @@ The system does not reproduce the reference's literal 165–295px scale. Display
 | Monumental editorial hero   | Four mixed-face type rows with three original inline system inserts and an immediate project-brief action             |
 | Small-caps navigation       | Compact uppercase Inter labels with a signal rule for current state                                                   |
 | Inline photo tiles          | Original CSS/HTML system diagrams and annotated interface fragments; no stock people or fake project imagery          |
-| Green highlighter           | Exact highlighter baseline used for the primary CTA, active rules, small status marks, and closing project-brief band |
+| Bronze annotation           | Restrained bronze used for the primary CTA, active rules, small status marks, and closing project-brief band          |
 | Broadsheet grid             | Numbered sections, asymmetric columns, baseline rules, narrow annotations, and wide reading fields                    |
 | Flat surfaces               | Cards replaced by ruled rows, matrices, definition lists, and editorial columns                                       |
 | Press-black interruption    | A decisive dark statement connecting visible customer systems with operational systems                                |
@@ -105,7 +113,7 @@ The page sequence is Strive-specific rather than a one-to-one reference copy:
 
 - Body line-height is increased beyond the reference's literal `1.0–1.2` values.
 - Muted colors are used only where their contrast is appropriate.
-- Signal green always carries dark text; it is not used as small text on the paper canvas.
+- The bronze signal always carries dark text; it is not used as small text on the ivory canvas.
 - Display typography scales down before wrapping becomes awkward or causes overflow.
 - Focus indicators remain visible on paper, ink, and signal surfaces.
 - Navigation and form interactions retain keyboard behavior, visible state, focus management, and accessible error summaries.
@@ -121,7 +129,7 @@ The page sequence is Strive-specific rather than a one-to-one reference copy:
 ## Explicit differences from the source reference
 
 - Strive's logo and wordmark remain intact; no reference wordmark underline or “N” signature is copied.
-- The exact highlighter baseline is used, but its placement and semantics are Strive-specific rather than copied.
+- The warm neutral and bronze palette is Strive-specific and supersedes the initial highlighter baseline.
 - The page sequence follows Strive's customer journey and ownership model, not an investment-site sequence.
 - Original system diagrams replace the reference photography treatment because no approved Strive photography exists.
 - The closing accent band is short, useful, and directs visitors to the first-party project brief rather than empty brand theater.

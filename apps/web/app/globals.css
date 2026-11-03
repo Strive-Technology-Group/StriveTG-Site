@@ -75,7 +75,7 @@ a {
 }
 
 :focus-visible {
-  outline: 3px solid var(--strive-signal);
+  outline: 3px solid var(--strive-focus);
   outline-offset: 4px;
 }
 
@@ -206,7 +206,7 @@ a {
 
 .header-cta:hover,
 .header-cta:focus-visible {
-  box-shadow: 1px 11px 24px rgba(16, 94, 29, 0.42);
+  box-shadow: var(--strive-signal-shadow-hover);
   transform: translateY(-2px);
 }
 
@@ -377,6 +377,13 @@ a {
   background: var(--strive-ink);
 }
 
+.section-dark,
+.section-ink,
+.editorial-footer,
+.mobile-navigation {
+  --strive-focus: var(--strive-signal);
+}
+
 .section-dark p,
 .section-ink p {
   color: var(--strive-inverse-muted);
@@ -412,7 +419,7 @@ a {
 .support-grid h2,
 .proof-standard h2,
 .contact-card h2,
-.founder-copy h2,
+.responsibility-copy h2,
 .approach-copy h2 {
   margin-bottom: 1.5rem;
   color: inherit;
@@ -425,7 +432,7 @@ a {
 
 .section-heading > p:last-child,
 .approach-copy > p,
-.founder-copy > p,
+.responsibility-copy > p,
 .ownership-grid p,
 .support-grid p,
 .proof-standard > p,
@@ -479,7 +486,7 @@ a {
 
 .button-primary:hover,
 .button-primary:focus-visible {
-  box-shadow: 1px 11px 24px rgba(16, 94, 29, 0.42);
+  box-shadow: var(--strive-signal-shadow-hover);
 }
 
 .button-primary {
@@ -1171,100 +1178,42 @@ a {
   font-size: 0.88rem;
 }
 
-.founder-grid {
+.responsibility-grid {
   display: grid;
-  grid-template-columns: minmax(18rem, 5fr) minmax(0, 7fr);
-  gap: clamp(3rem, 8vw, 9rem);
-  align-items: stretch;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);
+  gap: clamp(3rem, 8vw, 8rem);
+  align-items: start;
 }
 
-.founder-mark {
-  position: relative;
+.responsibility-copy h2 {
+  max-width: 21ch;
+}
+
+.responsibility-principles {
   display: grid;
-  align-content: space-between;
-  min-height: 35rem;
-  padding: clamp(1.5rem, 3vw, 3rem);
-  overflow: hidden;
-  color: var(--strive-canvas);
-  background: var(--strive-dark);
-  border-radius: var(--strive-radius-media);
-}
-
-.founder-mark::before,
-.founder-mark::after {
-  position: absolute;
-  width: 25rem;
-  height: 25rem;
-  border: 1px solid var(--strive-border-inverse);
-  border-radius: 50%;
-  content: "";
-}
-
-.founder-mark::before {
-  top: -8rem;
-  right: -8rem;
-}
-
-.founder-mark::after {
-  right: -2rem;
-  bottom: -14rem;
-}
-
-.founder-monogram {
-  position: relative;
-  z-index: 1;
-  font-family: var(--strive-display);
-  font-size: clamp(5rem, 11vw, 10rem);
-  letter-spacing: -0.06em;
-  line-height: 0.8;
-}
-
-.founder-mark > span:not(.founder-monogram) {
-  position: relative;
-  z-index: 1;
-  align-self: end;
-  font-family: var(--strive-display);
-  font-size: clamp(2.5rem, 5vw, 5rem);
-  line-height: 0.9;
-}
-
-.founder-mark small {
-  position: relative;
-  z-index: 1;
-  align-self: end;
-  color: var(--strive-inverse-muted);
-  font-size: 0.62rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.founder-copy {
-  align-self: center;
-}
-
-.founder-principles {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  margin-block: 2.5rem;
+  margin: 0;
   border-top: var(--strive-rule);
 }
 
-.founder-principles > div {
+.responsibility-principles > div {
   display: grid;
-  gap: 0.35rem;
-  padding: 1.2rem 1.2rem 1.2rem 0;
+  gap: 0.6rem;
+  padding-block: 1.5rem;
   border-bottom: var(--strive-rule);
 }
 
-.founder-principles strong {
+.responsibility-principles dt {
   font-family: var(--strive-display);
-  font-size: 1.4rem;
+  font-size: clamp(1.75rem, 2.5vw, 2.3rem);
   font-weight: 400;
+  line-height: 1.1;
 }
 
-.founder-principles span {
+.responsibility-principles dd {
+  max-width: 38ch;
+  margin: 0;
   color: var(--strive-muted);
-  font-size: 0.78rem;
+  font-size: 0.9rem;
 }
 
 .commitment-grid {
@@ -1767,7 +1716,7 @@ a {
 .form-field input:focus-visible,
 .form-field select:focus-visible,
 .form-field textarea:focus-visible {
-  outline: 3px solid var(--strive-signal);
+  outline: 3px solid var(--strive-focus);
   outline-offset: 2px;
   background: var(--strive-canvas);
   border-color: var(--strive-ink);
@@ -1806,7 +1755,7 @@ a {
 
 .form-error-summary:focus-visible,
 .project-brief-success:focus-visible {
-  outline: 3px solid var(--strive-signal);
+  outline: 3px solid var(--strive-focus);
   outline-offset: 3px;
 }
 
@@ -2314,7 +2263,7 @@ a {
 
   .connective-grid,
   .approach-grid,
-  .founder-grid,
+  .responsibility-grid,
   .support-grid,
   .ownership-grid,
   .faq-preview-grid,
@@ -2407,6 +2356,11 @@ a {
 
   .approach-copy {
     position: static;
+  }
+
+  .responsibility-principles {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 3rem;
   }
 }
 
@@ -2586,12 +2540,11 @@ a {
     margin-bottom: 2rem;
   }
 
-  .founder-mark {
-    min-height: 25rem;
+  .contact-grid {
+    grid-template-columns: 1fr;
   }
 
-  .founder-principles,
-  .contact-grid {
+  .responsibility-principles {
     grid-template-columns: 1fr;
   }
 

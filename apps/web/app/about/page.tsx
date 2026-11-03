@@ -31,12 +31,8 @@ export default function AboutPage() {
       </EditorialMasthead>
 
       <Section tone="light">
-        <div className="founder-grid">
-          <div className="founder-mark" aria-hidden="true">
-            <span className="founder-monogram">STG</span>
-            <small>Clear scope / visible decisions / usable handoff</small>
-          </div>
-          <div className="founder-copy">
+        <div className="responsibility-grid">
+          <div className="responsibility-copy">
             <p className="eyebrow">Operating model</p>
             <h2>Responsibility stays visible from question to handoff.</h2>
             <p>
@@ -50,33 +46,31 @@ export default function AboutPage() {
               in the scope and coordinated through a clear point of
               responsibility.
             </p>
-            <div className="founder-principles">
-              <div>
-                <strong>Clarity</strong>
-                <span>
-                  Plain language, visible assumptions, and written scope.
-                </span>
-              </div>
-              <div>
-                <strong>Restraint</strong>
-                <span>Use only the complexity the outcome requires.</span>
-              </div>
-              <div>
-                <strong>Stewardship</strong>
-                <span>
-                  Treat client access, data, and continuity as operational
-                  responsibilities.
-                </span>
-              </div>
-              <div>
-                <strong>Handoff</strong>
-                <span>
-                  Build toward a usable transition, not dependency for its own
-                  sake.
-                </span>
-              </div>
-            </div>
           </div>
+          <dl className="responsibility-principles">
+            <div>
+              <dt>Clarity</dt>
+              <dd>Plain language, visible assumptions, and written scope.</dd>
+            </div>
+            <div>
+              <dt>Restraint</dt>
+              <dd>Use only the complexity the outcome requires.</dd>
+            </div>
+            <div>
+              <dt>Stewardship</dt>
+              <dd>
+                Treat client access, data, and continuity as operational
+                responsibilities.
+              </dd>
+            </div>
+            <div>
+              <dt>Handoff</dt>
+              <dd>
+                Build toward a usable transition, not dependency for its own
+                sake.
+              </dd>
+            </div>
+          </dl>
         </div>
       </Section>
 

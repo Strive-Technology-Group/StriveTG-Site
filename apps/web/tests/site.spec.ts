@@ -333,21 +333,21 @@ test("the canonical editorial palette is what the browser renders", async ({
   });
 
   expect(evidence.tokens).toEqual({
-    canvas: "#fafffa",
-    ink: "#121613",
+    canvas: "#f7f4ed",
+    ink: "#242521",
     trueInk: "#000000",
-    dark: "#232924",
-    muted: "#516254",
-    inverse: "#c8d2c8",
-    signal: "#2bee4b",
-    support: "#93b799",
-    echo: "#c4e4c9",
+    dark: "#30312b",
+    muted: "#64635c",
+    inverse: "#cfcbc1",
+    signal: "#c5a477",
+    support: "#96907d",
+    echo: "#e8e2d6",
   });
   expect(evidence.surfaces).toEqual({
-    body: "rgb(250, 255, 250)",
-    ink: "rgb(18, 22, 19)",
-    dark: "rgb(35, 41, 36)",
-    signal: "rgb(43, 238, 75)",
+    body: "rgb(247, 244, 237)",
+    ink: "rgb(36, 37, 33)",
+    dark: "rgb(48, 49, 43)",
+    signal: "rgb(197, 164, 119)",
   });
   expect(evidence.hasLegacyNavy).toBe(false);
 });
