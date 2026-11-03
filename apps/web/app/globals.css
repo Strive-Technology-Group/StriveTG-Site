@@ -1889,19 +1889,9 @@ a {
   max-width: 48rem;
 }
 
-.project-brief-success > p:not(.micro-label, .submission-reference) {
+.project-brief-success > p:not(.micro-label) {
   max-width: 40rem;
   color: var(--strive-muted);
-}
-
-.submission-reference {
-  padding-top: 1.5rem;
-  margin: 2rem 0 0;
-  border-top: var(--strive-rule);
-  font-size: 0.72rem;
-  letter-spacing: 0.04em;
-  overflow-wrap: anywhere;
-  text-transform: uppercase;
 }
 
 .contact-conversion-grid {

@@ -133,4 +133,4 @@ The page sequence is Strive-specific rather than a one-to-one reference copy:
 
 ## Owner assets still needed
 
-The site can launch honestly without fabricated inserts or a founder-led claim. Founder identity remains an optional credibility improvement and requires an approved name, role, biography, photograph, and professional link. Real project imagery or evidence-backed case-study material may later replace selected diagrams. Requirements and publication controls remain in `CONTENT_REQUIRED.md`.
+The site can launch honestly without fabricated inserts or a founder-led claim. Founder identity remains an optional credibility improvement and requires an approved name, role, biography, photograph, and professional link. Real project imagery or evidence-backed case-study material may later replace selected diagrams. Requirements and publication controls are recorded in `OWNER_LAUNCH_DECISIONS.md`.

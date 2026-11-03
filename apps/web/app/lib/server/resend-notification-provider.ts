@@ -54,11 +54,9 @@ export class ResendNotificationProvider implements NotificationProvider {
               to: [to],
               subject,
               text,
-              ...(this.configuration.notifications.replyToEmail
-                ? {
-                    reply_to: this.configuration.notifications.replyToEmail,
-                  }
-                : {}),
+              reply_to:
+                this.configuration.notifications.replyToEmail ??
+                this.configuration.notifications.internalEmail,
             }),
             cache: "no-store",
             signal: AbortSignal.timeout(this.configuration.providerTimeoutMs),
@@ -135,19 +133,18 @@ export class ResendNotificationProvider implements NotificationProvider {
     const text = [
       `Hi ${firstName},`,
       "",
-      "Your project brief has been received and stored for review.",
-      `Reference: ${submission.reference}`,
+      "Thank you for getting in touch with Strive. We've received your project brief and will review what you shared.",
       "",
-      "Strive will review the goal, service fit, timing, and investment context you shared. If a conversation is the right next step, you will receive an invitation. If more context is needed, Strive will ask using your selected contact method.",
+      "We'll contact you if we need more information or to discuss next steps.",
       "",
-      "Please do not reply with passwords, credentials, regulated data, customer records, or payment details.",
+      "If you have any questions, simply reply to this email.",
       "",
       "Strive Technology Group",
     ].join("\n");
 
     await this.send(
       submission.brief.workEmail,
-      `Strive received your project brief — ${submission.reference}`,
+      "We received your project brief | Strive",
       text,
       `${submission.reference}/acknowledgment`,
     );

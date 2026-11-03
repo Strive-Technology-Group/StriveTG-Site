@@ -18,7 +18,7 @@ type SubmissionState =
   | { name: "ready" }
   | { name: "submitting" }
   | { name: "error"; message: string }
-  | { name: "success"; reference: string };
+  | { name: "success" };
 
 function FieldError({ id, message }: { id: string; message?: string }) {
   if (!message) return null;
@@ -101,16 +101,11 @@ export function ProjectBriefForm({
       const result = (await response.json().catch(() => null)) as {
         ok?: unknown;
         message?: unknown;
-        reference?: unknown;
         fieldErrors?: unknown;
       } | null;
 
-      if (
-        response.ok &&
-        result?.ok === true &&
-        typeof result.reference === "string"
-      ) {
-        setSubmission({ name: "success", reference: result.reference });
+      if (response.ok && result?.ok === true) {
+        setSubmission({ name: "success" });
         return;
       }
 
@@ -146,13 +141,10 @@ export function ProjectBriefForm({
         <p className="micro-label">
           <span aria-hidden="true">✓</span> Brief received
         </p>
-        <h2>Thank you. Strive will review the project brief.</h2>
+        <h2>Thank you. We&apos;ve received your project brief.</h2>
         <p>
-          Strive will use your selected contact method if the opportunity needs
-          a reply, more information, or a private scheduling link.
-        </p>
-        <p className="submission-reference">
-          Reference <strong>{submission.reference}</strong>
+          We&apos;ll review what you shared and contact you if we need more
+          information or to discuss next steps.
         </p>
       </div>
     );

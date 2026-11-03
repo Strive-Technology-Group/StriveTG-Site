@@ -23,14 +23,13 @@ export const dynamic = "force-dynamic";
 type StartProjectPageProps = {
   searchParams: Promise<{
     submission?: string;
-    reference?: string;
   }>;
 };
 
 export default async function StartProjectPage({
   searchParams,
 }: StartProjectPageProps) {
-  const { submission, reference } = await searchParams;
+  const { submission } = await searchParams;
   const idempotencyKey = randomUUID();
 
   return (
@@ -101,17 +100,11 @@ export default async function StartProjectPage({
                 <p className="micro-label">
                   <span aria-hidden="true">✓</span> Brief received
                 </p>
-                <h2>Thank you. Strive will review the project brief.</h2>
+                <h2>Thank you. We&apos;ve received your project brief.</h2>
                 <p>
-                  Strive will use your selected contact method if the
-                  opportunity needs a reply, more information, or a private
-                  scheduling link.
+                  We&apos;ll review what you shared and contact you if we need
+                  more information or to discuss next steps.
                 </p>
-                {reference && (
-                  <p className="submission-reference">
-                    Reference <strong>{reference}</strong>
-                  </p>
-                )}
               </div>
             ) : (
               <>

@@ -2,12 +2,14 @@
 
 ## Production status
 
-The application code is complete and tested against a deterministic local
-HubSpot/Resend contract. Production intake is intentionally disabled until the
-owner creates the accounts and CRM configuration below, supplies secrets in the
-deployment environment, approves the operating and retention decisions, and
-passes the production smoke test. No provider credentials are stored in this
-repository.
+The application code is tested against a deterministic local HubSpot/Resend
+contract. Live provider configuration and a local end-to-end test were completed
+on November 2, 2026, as recorded below. Provider credentials are stored only in
+the ignored local environment file, not in version control.
+
+Production activation still requires the deployment environment's secrets,
+approved operating and retention decisions, and a production smoke test. The
+local provider setup did not push, merge, or deploy the website.
 
 With the checked-in example values, `POST /api/project-brief` returns `503`.
 That is the required fail-closed state, not a successful production activation.
@@ -15,42 +17,48 @@ That is the required fail-closed state, not a successful production activation.
 The first-party project brief is the primary conversion path. Public scheduling
 and public fit-call booking have been removed. A private qualification call may
 be offered only after project-brief review and a human qualification decision.
-The HubSpot/Resend adapter and pipeline design are built, but production
-accounts, owners, stage governance, qualification practice, and follow-up
-operations are not configured or approved.
+The HubSpot/Resend accounts, initial owner, and inquiry pipeline are now
+configured. Human qualification, stage governance, follow-up operations, and
+production operating approvals remain owner responsibilities.
 
-## Starting-state reconciliation
+### Local provider verification — November 2, 2026
 
-Before this integration, the route used a generic authenticated webhook:
-
-```ts
-type LeadProviderConfiguration = {
-  webhookUrl: string;
-  webhookSecret: string;
-  notificationEmail: string;
-};
-
-type LeadEnvelope = {
-  schemaVersion: "1.0";
-  leadId: string;
-  submittedAt: string;
-  sourcePage: string;
-  notificationEmail: string;
-  brief: ProjectBrief;
-};
-```
-
-The route sent that envelope to `LEAD_INTAKE_WEBHOOK_URL` and required a 2xx
-response containing `{ "accepted": true, "providerRecordId": "..." }`. It
-returned `503` because both activation flags defaulted to false and no durable
-webhook URL, secret, or approved inbox had been configured. Its in-memory
-24-hour delivery map could suppress same-process retries but could not provide
-durable idempotency across restarts or deployments.
-
-The current implementation replaces that placeholder with a formal
-`LeadProvider` interface and a HubSpot adapter. HubSpot is the durable authority;
-Resend is notification transport only. The acceptance boundary is an associated
-HubSpot deal in the configured pipeline—not an email.
+- Pipeline: **Strive Project Inquiries**, with all ten stages below and an
+  assigned initial owner. Account, owner, pipeline, and stage IDs are kept in
+  the ignored local environment file rather than in this document.
+- All twelve mapped deal properties exist. `strive_reference` is unique.
+- The **Strive Website Lead Intake** service key retains the seven runtime
+  scopes listed below. Temporary schema-write and owner-read scopes were
+  removed after setup.
+- Resend verified `updates.strivetg.com` after adding its DKIM TXT record and
+  two DNS-only sending CNAME records in Cloudflare. Existing website and Zoho
+  mail records were preserved.
+- The Resend **Strive Website Lead Intake** key has sending-only access,
+  restricted to `updates.strivetg.com`.
+- Sender: `inquiries@updates.strivetg.com`; internal notification and reply-to:
+  `contact@strivetg.com`.
+- Both activation flags are enabled in the ignored `apps/web/.env.local` for
+  this local checkout. Local submissions use the live providers and send real
+  emails. This does not configure the production hosting environment.
+- The browser form created one clearly labeled test inquiry with the expected
+  owner, New Inquiry stage, mapped fields, one associated contact, and one
+  associated company. Notification status is `complete`.
+- Resend reported both the internal notification and the prospect confirmation
+  to Strive-controlled addresses as **Delivered**.
+- Retrying with the original idempotency key returned HTTP `200` with
+  `duplicate: true`. The internal reference stayed the same, and one matching
+  deal and two delivered emails remained after the retry.
+- The corrected release build passed `pnpm verify`: lint, type checking,
+  production build, asset checks, all 60 browser tests, and a production
+  dependency audit with no known vulnerabilities. Next.js is pinned to
+  `15.5.28`, sharp to `0.35.5`, and source-map-js to `1.2.2`.
+- A fresh test against the production-mode local server created a new contact
+  and company, delivered both emails, and accepted an immediate retry without
+  duplicate records or messages. The delivered customer email was inspected:
+  its subject, body, reply-to, and absence of internal details were verified.
+- Public deployment is not yet verified: the public project-brief page and API
+  returned `404`, and the Vercel dashboard required sign-in. Production secrets,
+  deployment, owner approvals, and the public-domain smoke test remain pending.
 
 ## Current application contract
 
@@ -105,22 +113,26 @@ interface NotificationProvider {
 
 The route generates a deterministic reference from the browser idempotency key,
 for example `STG-12A4F09C113B`. The HubSpot reference property must be a custom
-unique property. Every retry searches by that property before creating a deal.
-That makes HubSpot the duplicate authority across browser retries, application
+unique property. Every retry reads the deal directly by that property before
+creating a deal. Completed associations are reused without repeating contact
+or company searches, whose indexes can lag behind new writes. That makes
+HubSpot the duplicate authority across browser retries, application
 restarts, multiple instances, and deployments.
 
 Processing sequence:
 
-1. Normalize and search for a contact by email; create it if absent.
-2. When a website is supplied, normalize its domain, search for a company by
+1. Read the deal by its unique reference. Reuse it directly when its required
+   contact and company associations already exist.
+2. For a new or incomplete inquiry, find the contact by normalized email and
+   create it if absent.
+3. When a website is supplied, normalize its domain, search for a company by
    domain, and create it if absent.
-3. Associate the contact and company when a company record exists.
-4. Search for a deal by Strive reference; create it in `New Inquiry` if absent.
-5. Associate the deal with the contact and available company.
-6. Only after those steps succeed, report the brief as received.
-7. Send the internal notification and prospect acknowledgment with separate
+4. Associate the contact and company, create the deal in `New Inquiry` if
+   absent, and associate the deal with its contact and available company.
+5. Only after those steps succeed, accept the brief as received.
+6. Send the internal notification and prospect acknowledgment with separate
    Resend idempotency keys.
-8. Write notification status back to the HubSpot deal.
+7. Write notification status back to the HubSpot deal and return the response.
 
 If CRM persistence fails, the visitor receives an honest `503` and is not shown
 a success state. If CRM persistence succeeds but email fails, the visitor still
@@ -131,8 +143,12 @@ failed channel for reconciliation.
 
 ### HubSpot
 
-Create a HubSpot private app owned by an approved Strive administrator. Enable
-MFA and keep at least one documented backup administrator. Grant only:
+Create a HubSpot service key owned by an approved Strive administrator from
+Development > Keys > Service keys. HubSpot disabled creation of new legacy
+private apps on October 26, 2026; existing private-app tokens remain supported.
+Service keys use the same Bearer authentication as the existing adapter and
+belong in `HUBSPOT_ACCESS_TOKEN`. Enable MFA and keep at least one documented
+backup administrator. Grant only:
 
 - `crm.objects.contacts.read`
 - `crm.objects.contacts.write`
@@ -140,12 +156,19 @@ MFA and keep at least one documented backup administrator. Grant only:
 - `crm.objects.companies.write`
 - `crm.objects.deals.read`
 - `crm.objects.deals.write`
+- `crm.schemas.deals.read` (required to verify the unique reference property)
 
 The integration uses HubSpot’s current date-versioned `2026-03` CRM object and
 search endpoints plus the supported v4 default-association endpoint. It does not
 need marketing-email, forms, tickets, custom-object, automation, or pipeline
-write access. The owner creates pipeline stages and properties manually in the
-HubSpot UI, then supplies their internal IDs.
+write access at runtime. Pipeline stages and properties can be created in the
+HubSpot UI. When provisioning the deal properties through the API, temporarily
+grant `crm.schemas.deals.write`; `crm.objects.owners.read` can likewise be used
+to identify the initial owner. Remove these two setup permissions after recording
+the field configuration and owner ID.
+
+Current authentication guidance:
+https://developers.hubspot.com/docs/apps/developer-platform/build-apps/authentication/account-service-keys
 
 ### Resend
 
@@ -247,7 +270,7 @@ populated file.
 | `LEAD_PROVIDER_TIMEOUT_MS`        | Per-request timeout; default 5,000 and max 10,000 |
 | `LEAD_RETENTION_DAYS`             | Days until HubSpot retention review; 1–3,650      |
 | `LEAD_NOTIFICATION_EMAIL`         | Approved monitored internal inbox                 |
-| `HUBSPOT_ACCESS_TOKEN`            | Private-app token                                 |
+| `HUBSPOT_ACCESS_TOKEN`            | Service key (or existing legacy private-app token) |
 | `HUBSPOT_PIPELINE_ID`             | Internal deal-pipeline ID                         |
 | `HUBSPOT_NEW_INQUIRY_STAGE_ID`    | Internal ID for New Inquiry                       |
 | `HUBSPOT_OWNER_ID`                | Initial accountable HubSpot owner ID              |
@@ -276,10 +299,17 @@ The internal notification goes only to `LEAD_NOTIFICATION_EMAIL` and includes:
 - all validated qualification fields;
 - no secrets or application diagnostics.
 
-The prospect acknowledgment includes only confirmation of receipt, the Strive
-reference, what will be reviewed, and a sensitive-data reminder. It includes no
-response-time promise, qualification result, scheduling link, internal stage,
-owner, score, or provider details.
+The prospect acknowledgment includes a first-name greeting, confirmation of
+receipt, a short explanation of the next step, and an invitation to reply with
+questions. Its subject is `We received your project brief | Strive`. It does not
+repeat the submitted brief, investment range, telephone number, internal
+reference, CRM link, owner, stage, or provider details, and it makes no response-time
+promise. Replies use `RESEND_REPLY_TO_EMAIL` when configured, otherwise the
+monitored `LEAD_NOTIFICATION_EMAIL` inbox.
+
+The browser success state, JSON success response, and no-JavaScript success
+redirect also omit the internal reference. References remain in CRM records,
+internal notifications, provider idempotency keys, and safe operational logs.
 
 Both requests use Resend `Idempotency-Key` headers. The internal and prospect
 keys are distinct. Resend’s provider-side email idempotency window is 24 hours;
@@ -292,6 +322,11 @@ The Playwright suite launches:
 - a deterministic fake HubSpot/Resend server at `127.0.0.1:3101`;
 - a configured production build at `127.0.0.1:3100`;
 - a disabled production build at `127.0.0.1:3102` that must return `503`.
+
+An HTTPS proxy at `127.0.0.1:3143` uses an ephemeral local certificate to test
+the native, JavaScript-disabled browser form with the production CSP intact.
+Confirmation redirects use a relative location so the browser retains its
+original host and protocol behind reverse proxies.
 
 The fake implements the same endpoint paths, bearer-auth boundaries, unique
 reference contract, associations, email idempotency, and notification-status
@@ -314,8 +349,8 @@ at the production pipeline.
 - CRM searches and writes use bounded timeouts and at most three attempts.
 - HTTP 409, 429, 5xx, network failure, and timeout are treated as retryable.
 - Other 4xx responses fail without repeated writes.
-- After an uncertain create, the next attempt searches normalized email,
-  normalized domain, or unique Strive reference before creating again.
+- After an uncertain create, the next attempt searches normalized email or
+  domain, or directly reads the unique Strive reference before creating again.
 - A same-key browser retry resolves to the same deterministic reference.
 - An existing HubSpot deal returns success with `duplicate: true` and does not
   create a second deal.
@@ -375,7 +410,7 @@ The operating owner must document:
 - which export format is supplied and how it is transferred securely;
 - how completion is recorded without retaining unnecessary request data.
 
-Review access quarterly and immediately after role changes. Rotate private-app
+Review access quarterly and immediately after role changes. Rotate HubSpot
 and email API keys on owner change, suspected exposure, provider recommendation,
 or the approved rotation schedule. Test new keys with activation still false,
 switch secrets atomically, then revoke old keys.

@@ -62,7 +62,7 @@ export default defineConfig({
             RESEND_API_BASE_URL: "http://127.0.0.1:3101",
             RESEND_API_KEY: "test-resend-key",
             RESEND_FROM_EMAIL: "intake@strivetg.com",
-            RESEND_REPLY_TO_EMAIL: "info@strivetg.com",
+            RESEND_REPLY_TO_EMAIL: "",
           },
         },
         {
@@ -74,6 +74,13 @@ export default defineConfig({
             LEAD_INTAKE_ENABLED: "false",
             LEAD_INTAKE_OPERATIONS_APPROVED: "false",
           },
+        },
+        {
+          command: "node scripts/test-https-proxy.mjs",
+          url: "https://127.0.0.1:3143/__test/https-health",
+          ignoreHTTPSErrors: true,
+          reuseExistingServer: false,
+          timeout: 30_000,
         },
       ],
 });

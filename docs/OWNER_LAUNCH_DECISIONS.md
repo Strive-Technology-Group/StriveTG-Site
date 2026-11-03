@@ -2,7 +2,7 @@
 
 **Purpose:** Record only the owner decisions required before Strive's initial production launch. Enter the approved response in the **Owner response** column, update **Status**, and retain approval evidence outside this repository when it contains confidential information.
 
-**Authority:** `STRIVE_OFFER_AND_PRICING_STRATEGY.md` is the canonical commercial-strategy source. `LEAD_INTAKE_SETUP.md` controls the technical intake contract. `LEGAL_REVIEW_REQUIRED.md`, `CONTENT_DECISIONS_REQUIRED.md`, `CONTENT_REQUIRED.md`, and `STRIVE_AGENCY_READINESS_AUDIT.md` remain comprehensive reference material and do not replace this launch register.
+**Authority:** `STRIVE_OFFER_AND_PRICING_STRATEGY.md` is the canonical commercial-strategy source. `LEAD_INTAKE_SETUP.md` controls the technical intake contract. `LEGAL_REVIEW_REQUIRED.md` records the outstanding legal questions. This register also contains the content and proof requirements previously repeated across separate checklists.
 
 | Decision                                        | Recommended working choice                                                                                                                                                                                                                                                                                                              | Owner response        | Status                                           | Affected files or systems                                                          | Blocks launch?                                   |
 | ----------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------- | ------------------------------------------------ | ---------------------------------------------------------------------------------- | ------------------------------------------------ |
@@ -27,4 +27,16 @@
 
 ## Launch interpretation
 
-The public project brief remains disabled until the blocking decisions are approved and the `LEAD_INTAKE_SETUP.md` activation gate passes. Human review controls qualification. Advanced scoring, routing, automated follow-up, and rejection remain out of scope until human qualification is proven and separately approved.
+The local project brief has passed a live-provider integration test. Production activation still requires approval of the blocking decisions and the `LEAD_INTAKE_SETUP.md` production checks. Human review controls qualification. Advanced scoring, routing, automated follow-up, and rejection remain out of scope until human qualification is proven and separately approved.
+
+## Content and proof requirements
+
+- Record the source, exact approved wording, approving owner, approval date, and usage or expiry restrictions for each public claim. Keep confidential approval evidence outside version control.
+- Confirm the legal entity, trade-name relationship, service area, any publishable mailing address, and monitored contact roles. Publish a business telephone number or hours only after verifying ownership, timezone, and operating coverage.
+- Founder identity is optional. A founder-led claim requires an approved name, role, factual biography, current photograph, alt text, usage permission, and professional profile. Verify team, contractor, experience, certification, partnership, and award claims before publication.
+- Client evidence requires written permission, permitted attribution or anonymization, the initial problem and baseline, delivered scope, dates, measurement source, attribution limits, and a review date. Testimonials and logos require their own publication permission. Keep `/approach` focused on capabilities and methods until a complete evidence package exists.
+- For photographs, screenshots, diagrams, dashboards, and other artifacts, confirm source, context, ownership, confidential-data removal, descriptive alt text, credits, and usage restrictions. Use accurate labels for demonstration artifacts; do not present them as client results or company photographs.
+- Approve the supported platforms, service boundaries, any timeline or response commitments, and private scheduling ownership. Commercial terms and investment bands remain governed by the strategy and decision table above.
+- Record production providers, data locations, logging, retention, deletion/export ownership, shared rate limiting, and trusted client-address headers. Review privacy disclosures before adding analytics, monitoring, advertising, session replay, cookies, or other processors.
+- Verify external profiles, search-console and business-listing ownership, structured-data `sameAs` links, social handles, and sharing imagery before publication.
+- After content changes, check visible copy against structured data and repeat the relevant accessibility, link, and responsive-layout checks.

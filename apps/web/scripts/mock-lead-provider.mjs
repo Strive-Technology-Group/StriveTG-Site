@@ -101,9 +101,43 @@ const server = createServer(async (request, response) => {
         (candidate) =>
           candidate.properties?.[filter?.propertyName] === filter?.value,
       );
+      const indexDelayed =
+        filter?.value === "index-delay@example.com" ||
+        filter?.value === "index-delay.example" ||
+        result?.properties?.dealname?.startsWith("Index Delay Co —");
       send(response, 200, {
-        total: result ? 1 : 0,
-        results: result ? [result] : [],
+        total: result && !indexDelayed ? 1 : 0,
+        results: result && !indexDelayed ? [result] : [],
+      });
+      return;
+    }
+
+    const readDeal = url.pathname.match(
+      /^\/crm\/objects\/2026-03\/deals\/([^/]+)$/,
+    );
+    if (request.method === "GET" && readDeal) {
+      const value = decodeURIComponent(readDeal[1]);
+      const idProperty = url.searchParams.get("idProperty");
+      const deal = idProperty
+        ? [...deals.values()].find(
+            (candidate) => candidate.properties[idProperty] === value,
+          )
+        : deals.get(value);
+      if (!deal) {
+        send(response, 404, { status: "not_found" });
+        return;
+      }
+      const linked = (type) => ({
+        results: [...associations]
+          .filter((entry) => entry.startsWith(`deal:${deal.id}->${type}:`))
+          .map((entry) => ({ id: entry.split(":").at(-1) })),
+      });
+      send(response, 200, {
+        ...deal,
+        associations: {
+          contacts: linked("contact"),
+          companies: linked("company"),
+        },
       });
       return;
     }

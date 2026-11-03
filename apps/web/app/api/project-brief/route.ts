@@ -1,7 +1,10 @@
 import { createHash, randomUUID } from "node:crypto";
 import { NextResponse } from "next/server";
 import { validateProjectBrief } from "../../lib/lead-intake";
-import { HubSpotLeadProvider } from "../../lib/server/hubspot-lead-provider";
+import {
+  HubSpotLeadProvider,
+  HubSpotProviderError,
+} from "../../lib/server/hubspot-lead-provider";
 import { leadIntakeConfiguration } from "../../lib/server/lead-intake-config";
 import type {
   LeadSubmission,
@@ -58,16 +61,15 @@ function wantsHtml(request: Request) {
 }
 
 function redirectToForm(
-  request: Request,
   submission: "received" | "invalid" | "unavailable" | "limited",
-  reference?: string,
 ) {
-  const destination = new URL("/start-a-project", request.url);
-  destination.searchParams.set("submission", submission);
-  if (reference) destination.searchParams.set("reference", reference);
-  return NextResponse.redirect(destination, {
+  const query = new URLSearchParams({ submission });
+  // Keep the browser's origin when the app runs behind a reverse proxy.
+  return new NextResponse(null, {
     status: 303,
-    headers: noStoreHeaders(),
+    headers: noStoreHeaders({
+      Location: `/start-a-project?${query.toString()}`,
+    }),
   });
 }
 
@@ -200,7 +202,7 @@ export async function POST(request: Request) {
       1,
       Math.ceil((rate.resetAt - Date.now()) / 1_000),
     );
-    if (htmlFallback) return redirectToForm(request, "limited");
+    if (htmlFallback) return redirectToForm("limited");
     return json(
       {
         ok: false,
@@ -244,12 +246,12 @@ export async function POST(request: Request) {
   const key = idempotencyKey(request, body);
   const reference = leadReference(key);
   if (typeof body.companyFax === "string" && body.companyFax.trim()) {
-    return json({ ok: true, reference }, 200);
+    return json({ ok: true }, 200);
   }
 
   const validation = validateProjectBrief(body);
   if (!validation.success) {
-    if (htmlFallback) return redirectToForm(request, "invalid");
+    if (htmlFallback) return redirectToForm("invalid");
     return json(
       {
         ok: false,
@@ -262,7 +264,7 @@ export async function POST(request: Request) {
 
   const configuration = leadIntakeConfiguration();
   if (!configuration) {
-    if (htmlFallback) return redirectToForm(request, "unavailable");
+    if (htmlFallback) return redirectToForm("unavailable");
     return json(
       {
         ok: false,
@@ -340,21 +342,23 @@ export async function POST(request: Request) {
       }
     }
 
-    if (htmlFallback) return redirectToForm(request, "received", reference);
+    if (htmlFallback) return redirectToForm("received");
     return json(
       {
         ok: true,
-        reference,
         ...(durableLead.duplicate ? { duplicate: true } : {}),
       },
       durableLead.duplicate ? 200 : 201,
     );
-  } catch {
+  } catch (error) {
     console.error("Project brief persistence failed", {
       reference,
-      reason: "durable_provider_unavailable",
+      reason:
+        error instanceof HubSpotProviderError
+          ? error.reason
+          : "durable_provider_unavailable",
     });
-    if (htmlFallback) return redirectToForm(request, "unavailable");
+    if (htmlFallback) return redirectToForm("unavailable");
     return json(
       {
         ok: false,

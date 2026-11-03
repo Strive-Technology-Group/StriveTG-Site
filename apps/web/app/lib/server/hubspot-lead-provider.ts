@@ -16,12 +16,14 @@ import type {
 type HubSpotRecord = {
   id: string;
   properties?: Record<string, string | null>;
+  associations?: Record<string, { results?: { id: string }[] }>;
 };
 
-class HubSpotProviderError extends Error {
+export class HubSpotProviderError extends Error {
   constructor(
     readonly reason: string,
     readonly retryable: boolean,
+    readonly status?: number,
   ) {
     super(reason);
     this.name = "HubSpotProviderError";
@@ -86,6 +88,7 @@ export class HubSpotLeadProvider implements LeadProvider {
           response.status === 409 ||
             response.status === 429 ||
             response.status >= 500,
+          response.status,
         );
       }
 
@@ -264,17 +267,49 @@ export class HubSpotLeadProvider implements LeadProvider {
     };
   }
 
-  private async persistOnce(submission: LeadSubmission): Promise<DurableLead> {
-    const referenceProperty = this.configuration.hubspot.properties.reference;
+  private async findDealByReference(reference: string) {
+    const query = new URLSearchParams({
+      idProperty: this.configuration.hubspot.properties.reference,
+      properties: this.configuration.hubspot.properties.notificationStatus,
+      associations: "contacts,companies",
+    });
+    try {
+      return await this.request<HubSpotRecord>(
+        `/crm/objects/2026-03/deals/${encodeURIComponent(reference)}?${query.toString()}`,
+        { method: "GET" },
+      );
+    } catch (error) {
+      if (error instanceof HubSpotProviderError && error.status === 404) {
+        return null;
+      }
+      throw error;
+    }
+  }
+
+  private durableLead(deal: HubSpotRecord, duplicate: boolean): DurableLead {
     const statusProperty =
       this.configuration.hubspot.properties.notificationStatus;
-    let deal = await this.searchObject(
-      "deals",
-      referenceProperty,
-      submission.reference,
-      [statusProperty],
-    );
-    const duplicate = Boolean(deal);
+    return {
+      provider: "hubspot",
+      providerRecordId: deal.id,
+      providerRecordUrl: `https://app.hubspot.com/contacts/${encodeURIComponent(this.configuration.hubspot.portalId)}/record/0-3/${encodeURIComponent(deal.id)}`,
+      duplicate,
+      notificationStatus: notificationStatus(deal.properties?.[statusProperty]),
+    };
+  }
+
+  private async persistOnce(submission: LeadSubmission): Promise<DurableLead> {
+    let deal = await this.findDealByReference(submission.reference);
+    let duplicate = Boolean(deal);
+    // Search indexes can lag behind writes. A completed inquiry can be reused
+    // directly without searching for or recreating its associated records.
+    if (
+      deal?.associations?.contacts?.results?.length &&
+      (!companyDomain(submission.brief.companyWebsite) ||
+        deal.associations.companies?.results?.length)
+    ) {
+      return this.durableLead(deal, true);
+    }
     const contactId = await this.findOrCreateContact(submission);
     const companyId = await this.findOrCreateCompany(submission);
 
@@ -293,13 +328,9 @@ export class HubSpotLeadProvider implements LeadProvider {
           throw error;
         }
         await delay(300);
-        deal = await this.searchObject(
-          "deals",
-          referenceProperty,
-          submission.reference,
-          [statusProperty],
-        );
+        deal = await this.findDealByReference(submission.reference);
         if (!deal) throw error;
+        duplicate = true;
       }
     }
 
@@ -308,13 +339,7 @@ export class HubSpotLeadProvider implements LeadProvider {
       await this.associate("deal", deal.id, "company", companyId);
     }
 
-    return {
-      provider: "hubspot",
-      providerRecordId: deal.id,
-      providerRecordUrl: `https://app.hubspot.com/contacts/${encodeURIComponent(this.configuration.hubspot.portalId)}/record/0-3/${encodeURIComponent(deal.id)}`,
-      duplicate,
-      notificationStatus: notificationStatus(deal.properties?.[statusProperty]),
-    };
+    return this.durableLead(deal, duplicate);
   }
 
   async persist(submission: LeadSubmission): Promise<DurableLead> {

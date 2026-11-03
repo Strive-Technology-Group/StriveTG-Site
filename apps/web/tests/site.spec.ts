@@ -69,6 +69,7 @@ async function providerState(request: APIRequestContext) {
       to: string[];
       subject: string;
       text: string;
+      reply_to: string;
     }[];
     associations: string[];
   }>;
@@ -653,14 +654,20 @@ test("a valid project brief is delivered before the success state appears", asyn
 }) => {
   await page.goto("/start-a-project", { waitUntil: "domcontentloaded" });
   await fillProjectBrief(page);
+  const deliveryResponse = page.waitForResponse(
+    (response) =>
+      response.url().endsWith("/api/project-brief") &&
+      response.request().method() === "POST",
+  );
   await page.getByRole("button", { name: "Submit project brief" }).click();
 
+  expect(await (await deliveryResponse).json()).toEqual({ ok: true });
   const success = page.getByRole("status");
   await expect(success).toBeFocused();
   await expect(success).toContainText(
-    "Thank you. Strive will review the project brief.",
+    "Thank you. We've received your project brief.",
   );
-  await expect(success).toContainText(/STG-[A-F0-9]{12}/);
+  await expect(success).not.toContainText(/STG-|Reference|HubSpot/);
   await expect(page.locator("iframe")).toHaveCount(0);
 });
 
@@ -842,7 +849,7 @@ test("HubSpot receives one durable, associated record and both notifications", a
     },
   });
   expect(response.status()).toBe(201);
-  const { reference } = await response.json();
+  expect(await response.json()).toEqual({ ok: true });
   const state = await providerState(request);
   const contact = state.contacts.find(
     (candidate) => candidate.properties.email === "durable-record@example.com",
@@ -850,9 +857,11 @@ test("HubSpot receives one durable, associated record and both notifications", a
   const company = state.companies.find(
     (candidate) => candidate.properties.domain === "durable-record.example",
   );
-  const deal = state.deals.find(
-    (candidate) => candidate.properties.strive_reference === reference,
+  const deal = state.deals.find((candidate) =>
+    candidate.properties.dealname?.startsWith("Durable Record Co —"),
   );
+  const reference = deal?.properties.strive_reference ?? "";
+  expect(reference).toMatch(/^STG-[A-F0-9]{12}$/);
   expect(contact).toBeTruthy();
   expect(company).toBeTruthy();
   expect(deal?.properties).toMatchObject({
@@ -876,6 +885,27 @@ test("HubSpot receives one durable, associated record and both notifications", a
   expect(
     state.emails.filter((email) => email.key.startsWith(reference)),
   ).toHaveLength(2);
+  const internal = state.emails.find(
+    (email) => email.key === `${reference}/internal`,
+  );
+  const acknowledgment = state.emails.find(
+    (email) => email.key === `${reference}/acknowledgment`,
+  );
+  expect(internal?.text).toContain(reference);
+  expect(internal?.text).toContain("HubSpot record:");
+  expect(acknowledgment).toMatchObject({
+    to: ["durable-record@example.com"],
+    subject: "We received your project brief | Strive",
+    reply_to: "test-intake@strivetg.com",
+  });
+  expect(acknowledgment?.text).toContain("Hi Jordan,");
+  expect(acknowledgment?.text).toContain("We've received your project brief");
+  expect(acknowledgment?.text).toContain("simply reply to this email");
+  expect(`${acknowledgment?.subject}\n${acknowledgment?.text}`).not.toMatch(
+    /STG-|Reference:|HubSpot|pipeline|dealstage|test-owner|test-intake-pipeline/,
+  );
+  expect(acknowledgment?.text).not.toContain(projectBrief().projectGoal);
+  expect(acknowledgment?.text).not.toContain("+1 555 010 1212");
 });
 
 test("normalized email and domain matching reuse contact and company records", async ({
@@ -956,11 +986,13 @@ test("notification failure is recorded after durable CRM persistence", async ({
     },
   });
   expect(response.status()).toBe(201);
-  const { reference } = await response.json();
+  expect(await response.json()).toEqual({ ok: true });
   const state = await providerState(request);
-  const deal = state.deals.find(
-    (candidate) => candidate.properties.strive_reference === reference,
+  const deal = state.deals.find((candidate) =>
+    candidate.properties.dealname?.startsWith("Notification Failure Co —"),
   );
+  const reference = deal?.properties.strive_reference ?? "";
+  expect(reference).toMatch(/^STG-[A-F0-9]{12}$/);
   expect(deal?.properties.strive_notification_status).toBe("internal_failed");
   expect(
     state.emails.some((email) => email.key === `${reference}/acknowledgment`),
@@ -988,6 +1020,56 @@ test("provider timeouts fail closed within the configured retry boundary", async
   expect(response.status()).toBe(503);
   expect(Date.now() - started).toBeLessThan(3_000);
 });
+
+for (const scenario of [
+  {
+    companyName: "Acknowledgment Failure Co",
+    status: "acknowledgment_failed",
+    internalSent: true,
+    key: "ack-channel-failure-0001",
+    address: "203.0.113.54",
+  },
+  {
+    companyName: "Notification Failure Co Both Channels",
+    status: "both_failed",
+    internalSent: false,
+    key: "both-channel-failure-0001",
+    address: "203.0.113.55",
+  },
+]) {
+  test(`${scenario.status} preserves the accepted inquiry for follow-up`, async ({
+    request,
+  }) => {
+    const response = await request.post("/api/project-brief", {
+      data: projectBrief({
+        workEmail: "ack-failure@example.com",
+        companyName: scenario.companyName,
+        companyWebsite: "",
+      }),
+      headers: {
+        "Idempotency-Key": scenario.key,
+        "x-forwarded-for": scenario.address,
+      },
+    });
+    expect(response.status()).toBe(201);
+    expect(await response.json()).toEqual({ ok: true });
+    const state = await providerState(request);
+    const deal = state.deals.find(
+      (candidate) =>
+        candidate.properties.dealname ===
+        `${scenario.companyName} — Website strategy and development`,
+    );
+    expect(deal?.properties.strive_notification_status).toBe(scenario.status);
+    const reference = deal?.properties.strive_reference ?? "";
+    expect(reference).toMatch(/^STG-[A-F0-9]{12}$/);
+    expect(
+      state.emails.some((email) => email.key === `${reference}/internal`),
+    ).toBe(scenario.internalSent);
+    expect(
+      state.emails.some((email) => email.key === `${reference}/acknowledgment`),
+    ).toBeFalsy();
+  });
+}
 
 test("a production server with missing provider configuration returns 503", async ({
   request,
@@ -1021,18 +1103,62 @@ test("successful retries with one idempotency key do not create a second lead", 
     headers,
   });
   expect(first.status()).toBe(201);
-  const firstBody = await first.json();
+  expect(await first.json()).toEqual({ ok: true });
+  const firstState = await providerState(request);
 
   const second = await request.post("/api/project-brief", {
     data: projectBrief(),
     headers,
   });
   expect(second.status()).toBe(200);
-  expect(await second.json()).toMatchObject({
+  expect(await second.json()).toEqual({
     ok: true,
     duplicate: true,
-    reference: firstBody.reference,
   });
+  const secondState = await providerState(request);
+  expect(secondState.deals).toEqual(firstState.deals);
+  expect(secondState.emails).toEqual(firstState.emails);
+});
+
+test("an immediate retry reuses an associated inquiry before CRM search indexing", async ({
+  request,
+}) => {
+  const data = projectBrief({
+    workEmail: "index-delay@example.com",
+    companyName: "Index Delay Co",
+    companyWebsite: "https://index-delay.example",
+  });
+  const headers = {
+    "Idempotency-Key": "index-delay-retry-key-0001",
+    "x-forwarded-for": "203.0.113.86",
+  };
+  const first = await request.post("/api/project-brief", { data, headers });
+  expect(first.status()).toBe(201);
+  expect(await first.json()).toEqual({ ok: true });
+  const second = await request.post("/api/project-brief", { data, headers });
+  expect(second.status()).toBe(200);
+  expect(await second.json()).toEqual({ ok: true, duplicate: true });
+
+  const state = await providerState(request);
+  expect(
+    state.contacts.filter(
+      (record) => record.properties.email === data.workEmail,
+    ),
+  ).toHaveLength(1);
+  expect(
+    state.companies.filter(
+      (record) => record.properties.domain === "index-delay.example",
+    ),
+  ).toHaveLength(1);
+  const deals = state.deals.filter((record) =>
+    record.properties.dealname?.startsWith("Index Delay Co —"),
+  );
+  expect(deals).toHaveLength(1);
+  expect(
+    state.emails.filter((email) =>
+      email.key.startsWith(deals[0]?.properties.strive_reference ?? "missing"),
+    ),
+  ).toHaveLength(2);
 });
 
 test("project brief submissions are rate limited", async ({ request }) => {
@@ -1097,6 +1223,7 @@ test("cross-origin and honeypot submissions are contained", async ({
     headers,
   });
   expect(trapped.status()).toBe(200);
+  expect(await trapped.json()).toEqual({ ok: true });
 
   const legitimate = await request.post("/api/project-brief", {
     data: projectBrief(),
@@ -1120,9 +1247,56 @@ test("form-encoded submissions provide a no-JavaScript success fallback", async 
     maxRedirects: 0,
   });
   expect(response.status()).toBe(303);
-  expect(response.headers().location).toMatch(
-    /\/start-a-project\?submission=received&reference=STG-/,
-  );
+  const location = response.headers().location;
+  if (!location) throw new Error("Expected a confirmation redirect.");
+  const destination = new URL(location, response.url());
+  expect(destination.origin).toBe(new URL(response.url()).origin);
+  expect(destination.pathname).toBe("/start-a-project");
+  expect(destination.search).toBe("?submission=received");
+  const confirmation = await request.get(destination.toString());
+  expect(await confirmation.text()).not.toMatch(/STG-|submission-reference/);
+});
+
+test("the browser can submit without JavaScript and shows a clean confirmation", async ({
+  browser,
+  baseURL,
+}) => {
+  const context = await browser.newContext({
+    baseURL:
+      baseURL === "http://127.0.0.1:3100" ? "https://127.0.0.1:3143" : baseURL,
+    javaScriptEnabled: false,
+    ignoreHTTPSErrors: true,
+  });
+  try {
+    const page = await context.newPage();
+    const response = await page.goto("/start-a-project");
+    expect(response?.headers()["content-security-policy"]).toContain(
+      "upgrade-insecure-requests",
+    );
+    expect(response?.headers()["content-security-policy"]).toContain(
+      "form-action 'self'",
+    );
+    await fillProjectBrief(page);
+    const submit = page.getByRole("button", { name: "Submit project brief" });
+    await submit.focus();
+    await submit.press("Enter");
+    await expect(page).toHaveURL(/\/start-a-project\?submission=received$/);
+    await expect(page.getByRole("status")).toContainText(
+      "Thank you. We've received your project brief.",
+    );
+    await expect(page.locator("main")).not.toContainText(
+      /STG-|Reference|HubSpot/,
+    );
+
+    await page.goto(
+      "/start-a-project?submission=received&reference=STG-INTERNAL-ONLY",
+    );
+    await expect(page.locator("main")).not.toContainText(
+      /STG-|Reference|HubSpot/,
+    );
+  } finally {
+    await context.close();
+  }
 });
 
 test("responses include the defensive browser policy headers", async ({
