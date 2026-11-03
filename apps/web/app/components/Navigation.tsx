@@ -14,6 +14,7 @@ export function Navigation() {
   const pathname = usePathname();
   const firstLinkRef = useRef<HTMLAnchorElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const desktopNavigationRef = useRef<HTMLElement>(null);
   const mobileNavigationRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -21,9 +22,19 @@ export function Navigation() {
   }, [pathname]);
 
   useEffect(() => {
+    const mobileViewport = window.matchMedia("(max-width: 62rem)");
+    const closeOnDesktop = () => {
+      if (!mobileViewport.matches) setOpen(false);
+    };
+    mobileViewport.addEventListener("change", closeOnDesktop);
+    return () => mobileViewport.removeEventListener("change", closeOnDesktop);
+  }, []);
+
+  useEffect(() => {
     if (!open) return;
     const previousOverflow = document.body.style.overflow;
     const menuButton = menuButtonRef.current;
+    const desktopNavigation = desktopNavigationRef.current;
     document.body.style.overflow = "hidden";
     firstLinkRef.current?.focus();
 
@@ -56,7 +67,15 @@ export function Navigation() {
     return () => {
       window.removeEventListener("keydown", onKeyDown);
       document.body.style.overflow = previousOverflow;
-      menuButton?.focus();
+      if (menuButton?.getClientRects().length) {
+        menuButton.focus();
+      } else {
+        const desktopLink =
+          desktopNavigation?.querySelector<HTMLAnchorElement>(
+            'a[aria-current="page"]',
+          ) ?? desktopNavigation?.querySelector<HTMLAnchorElement>("a");
+        desktopLink?.focus();
+      }
     };
   }, [open]);
 
@@ -66,7 +85,11 @@ export function Navigation() {
     <header className="site-header">
       <div className="site-container header-inner">
         <Logo surface="light" compact />
-        <nav aria-label="Primary" className="desktop-navigation">
+        <nav
+          ref={desktopNavigationRef}
+          aria-label="Primary"
+          className="desktop-navigation"
+        >
           {navigation.map((item) => (
             <Link
               key={item.href}

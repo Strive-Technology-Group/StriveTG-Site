@@ -784,6 +784,59 @@ test("mobile navigation exposes state, handles Escape, and restores focus", asyn
   await expect(page).toHaveURL(/\/approach$/);
 });
 
+test("an open mobile menu closes and releases scrolling when resized to desktop", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/", { waitUntil: "networkidle" });
+  await expect(page.locator("html")).toHaveClass(/motion-ready/);
+  await page.getByRole("button", { name: "Open navigation" }).click();
+  await expect(page.locator("body")).toHaveCSS("overflow", "hidden");
+
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await expect(page.locator("#mobile-navigation")).toBeHidden();
+  await expect(page.locator(".menu-button")).toHaveAttribute(
+    "aria-expanded",
+    "false",
+  );
+  await expect(page.locator("body")).not.toHaveCSS("overflow", "hidden");
+  await expect(page.locator(".desktop-navigation")).toBeVisible();
+  await expect(page.locator(".desktop-navigation a").first()).toBeFocused();
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  await expect(page.locator("#mobile-navigation")).toBeHidden();
+  await page.getByRole("button", { name: "Open navigation" }).click();
+  await expect(page.locator("#mobile-navigation")).toBeVisible();
+  await page.keyboard.press("Escape");
+  await expect(
+    page.getByRole("button", { name: "Open navigation" }),
+  ).toBeFocused();
+});
+
+test("the mobile menu can scroll to its project action in a short landscape viewport", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 844, height: 390 });
+  await page.goto("/", { waitUntil: "networkidle" });
+  await expect(page.locator("html")).toHaveClass(/motion-ready/);
+  await page.getByRole("button", { name: "Open navigation" }).click();
+  const menu = page.locator("#mobile-navigation");
+  await expect(menu).toHaveCSS("overflow-y", "auto");
+  const bounds = await menu.boundingBox();
+  expect(bounds).not.toBeNull();
+  expect(bounds!.y + bounds!.height).toBeLessThanOrEqual(391);
+  await menu.hover();
+  await page.mouse.wheel(0, 500);
+  await expect
+    .poll(() => menu.evaluate((element) => element.scrollTop))
+    .toBeGreaterThan(0);
+  await menu.getByRole("link", { name: "Start a Project" }).click();
+  await expect(page).toHaveURL(/\/start-a-project$/);
+  await expect(menu).toBeHidden();
+  await expect(page.locator("body")).not.toHaveCSS("overflow", "hidden");
+  await expect(page.locator("form.project-brief-form")).toBeVisible();
+});
+
 test("project brief preserves input, focuses errors, and validates telephone conditionally", async ({
   page,
 }) => {
