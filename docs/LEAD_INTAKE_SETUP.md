@@ -11,12 +11,17 @@ All 27 production configuration values have been saved as Vercel secrets,
 scoped only to Production. Credentials remain excluded from version control;
 the local copies are in the ignored `apps/web/.env.local`.
 
-The first production deployment was rejected because the repository was a
-private GitHub organization repository on Vercel's Hobby plan. The owner has
-since changed the repository to public, and GitHub confirms that visibility.
-The release is being pushed again to retry deployment with the existing plan.
-Production verification remains pending until the new build is live and the
-public-domain CRM and email smoke test passes.
+Production is deployed on Vercel at https://www.strivetg.com and was verified
+on November 2, 2026. Vercel built `main` at `520faa7` and assigned the public
+domain successfully. The initial private-organization plan restriction was
+resolved after the owner changed the GitHub repository to public.
+
+Cloud-only tests passed with the local application server stopped. Browser
+submissions with JavaScript enabled and disabled each persisted one test
+inquiry in HubSpot and delivered one internal notification and one customer
+confirmation. Immediate retries returned `duplicate: true` without additional
+records or messages. The delivered customer confirmation contains no internal
+reference or CRM details and replies to the monitored inbox.
 
 With the checked-in example values, `POST /api/project-brief` returns `503`.
 That is the required fail-closed state, not a successful production activation.
@@ -67,8 +72,33 @@ production operating approvals remain owner responsibilities.
   The existing project uses root directory `apps/web`, includes workspace files
   outside that root, builds with `pnpm run build`, and uses Node.js 22.
 - The owner changed the GitHub repository to public after the initial Hobby
-  plan rejection. Deployment is being retried; the public-domain smoke test
-  remains pending.
+  plan rejection. Vercel automatically deployed the subsequent push to `main`.
+
+### Public production verification — November 2, 2026
+
+- All nine public pages returned HTTP `200`, with page titles, canonical URLs,
+  production security headers, and no browser runtime errors or failed assets.
+- Mobile navigation and the project-brief success view worked at 390 px without
+  horizontal overflow. Desktop and mobile browser screenshots were inspected.
+- The sitemap, robots file, apex-to-www HTTPS redirect, and missing-page `404`
+  response passed. Thirteen public JavaScript/CSS files were checked and did
+  not contain either provider credential.
+- A JavaScript-enabled browser submission returned HTTP `201` and `{ok: true}`.
+  Client validation prevented an empty submission, focus moved to the success
+  message, and customer-facing responses contained no internal reference.
+- With JavaScript disabled, a real HTTPS browser form submission returned a
+  relative HTTP `303` redirect to `/start-a-project?submission=received` and
+  displayed the same clean confirmation under the production CSP.
+- Each cloud inquiry had the expected owner, pipeline, stage, mapped fields,
+  one contact association, one company association, and notification status
+  `complete`. Immediate retries returned HTTP `200` with `duplicate: true`.
+- Resend reported exactly two delivered emails per cloud inquiry, including
+  after the retries: one internal notification and one customer confirmation.
+  The delivered customer email's subject, body, sender, and monitored reply-to
+  were inspected. It contains no reference number or CRM details.
+- Local application and test server ports 3000, 3100, 3101, 3102, and 3143 were
+  closed during the final cloud checks. Test inquiries are clearly labeled in
+  HubSpot and use only Strive-controlled email addresses.
 
 ## Current application contract
 
