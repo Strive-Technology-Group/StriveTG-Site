@@ -2748,6 +2748,60 @@ a {
   }
 }
 
+/* Grow the composition on large windows without stretching reading surfaces. */
+@media (min-width: 100rem) {
+  html {
+    font-size: clamp(100%, min(calc(50% + 0.5vw), 1.5svh), 125%);
+  }
+
+  :root {
+    --strive-max: clamp(87.5rem, 85vw, 210rem);
+    --strive-gutter: clamp(3rem, 2.5vw, 5rem);
+    --strive-section: clamp(9rem, 5.5vw, 12rem);
+    --strive-display-lg: clamp(7.2rem, 5.1vw, 11rem);
+    --strive-display-md: clamp(5.4rem, 4vw, 8.5rem);
+  }
+
+  .home-hero {
+    padding-block: clamp(2rem, 3svh, 4rem) clamp(3rem, 4svh, 6rem);
+  }
+
+  .home-hero-stage {
+    padding-top: clamp(1.5rem, 3svh, 3.2rem);
+  }
+
+  .home-hero-stage h1 {
+    font-size: clamp(9rem, min(9vw, 16svh), 16rem);
+  }
+
+  .hero-line-content {
+    gap: clamp(2rem, 1.6vw, 3rem);
+  }
+
+  .hero-line-two .hero-line-content {
+    padding-left: clamp(10rem, 9vw, 18rem);
+  }
+
+  .hero-line-four .hero-line-content {
+    padding-left: clamp(4.5rem, 4vw, 8rem);
+  }
+
+  .hero-system-insert {
+    flex-basis: clamp(17rem, 13vw, 26rem);
+    height: clamp(5.35rem, 5vw, 8rem);
+  }
+
+  .home-hero-rail {
+    margin-top: clamp(2rem, 2.5svh, 4rem);
+    padding-top: clamp(1.4rem, 2.5svh, 2.5rem);
+  }
+
+  .project-intake-layout {
+    max-width: 100rem;
+    margin-inline: auto;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

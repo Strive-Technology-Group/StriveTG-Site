@@ -18,7 +18,9 @@ const routes = [
   "/privacy",
   "/terms",
 ];
-const widths = [1440, 1024, 768, 390, 375, 320];
+const widths = [
+  5120, 3840, 3440, 2560, 2176, 1920, 1440, 1024, 768, 390, 375, 320,
+];
 
 const projectBrief = (overrides: Record<string, string> = {}) => ({
   fullName: "Jordan Lee",
@@ -397,7 +399,7 @@ test("hero headline rows leave clearance between glyphs at release widths", asyn
 }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
 
-  for (const width of [1920, ...widths]) {
+  for (const width of widths) {
     await page.setViewportSize({ width, height: 1000 });
     await page.goto("/", { waitUntil: "networkidle" });
     await page.evaluate(async () => {
@@ -495,6 +497,46 @@ test("the primary mobile action remains in the first viewport", async ({
   expect((bounds?.y ?? 1000) + (bounds?.height ?? 1000)).toBeLessThanOrEqual(
     844,
   );
+});
+
+test("ultrawide layouts grow with the window and keep copy readable", async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+
+  for (const [width, height] of [
+    [1920, 1080],
+    [2176, 1281],
+    [2560, 1440],
+    [3440, 1440],
+    [3840, 2160],
+    [5120, 1440],
+  ] as const) {
+    await page.setViewportSize({ width, height });
+    await page.goto("/", { waitUntil: "networkidle" });
+    const layout = await page.evaluate(() => {
+      const container = document.querySelector(".home-hero .site-container")!;
+      const headline = document.querySelector(".home-hero-stage h1")!;
+      const summary = document.querySelector(".hero-rail-summary")!;
+      return {
+        containerWidth: container.getBoundingClientRect().width,
+        headlineSize: parseFloat(getComputedStyle(headline).fontSize),
+        bodySize: parseFloat(getComputedStyle(document.body).fontSize),
+        readingMeasure:
+          summary.getBoundingClientRect().width /
+          parseFloat(getComputedStyle(summary).fontSize),
+      };
+    });
+
+    expect(layout.containerWidth, `${width}px window`).toBeGreaterThan(
+      width * 0.75,
+    );
+    expect(layout.containerWidth).toBeLessThan(width * 0.95);
+    expect(layout.headlineSize).toBeGreaterThan(144);
+    expect(layout.bodySize).toBeGreaterThan(18);
+    expect(layout.bodySize).toBeLessThanOrEqual(24);
+    expect(layout.readingMeasure).toBeLessThanOrEqual(40);
+  }
 });
 
 test("public routes do not overflow at release widths", async ({ page }) => {

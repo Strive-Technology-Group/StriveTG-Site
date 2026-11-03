@@ -74,6 +74,14 @@ Both families are distributed under the SIL Open Font License 1.1 in the officia
 
 The system does not reproduce the reference's literal 165–295px scale. Display sizes use `clamp()` with art-directed maxima, readable line-height, and breakpoint-specific wrapping. Long-form legal and FAQ pages use restrained serif mastheads and comfortable sans-serif body measure.
 
+Above a 1600px-wide window, the composition expands to about 85% of the
+viewport, with a 210rem maximum. Interface sizing grows from the visitor’s
+default font size to at most 125%, constrained by window height. The homepage
+headline and its system inserts grow together; the headline also respects a
+height-based limit for short ultrawide windows. Paragraph measures remain
+capped, and the project-intake layout is capped at 100rem for comfortable
+form use. Small-screen layouts retain their existing scale.
+
 ## Principle-to-component mapping
 
 | Reference principle       | Strive translation                                                                                                    |
@@ -142,7 +150,7 @@ The page sequence is Strive-specific rather than a one-to-one reference copy:
 - Original system diagrams replace the reference photography treatment because no approved Strive photography exists.
 - The closing pale-teal band is short, useful, and directs visitors to the first-party project brief rather than empty brand theater.
 - Navigation remains fully visible on desktop and uses Strive's accessible compact menu on mobile.
-- Display sizes are materially smaller than the reference maxima to protect clarity, CTA visibility, and responsive behavior.
+- Display sizes adapt to window width and height to protect clarity, CTA visibility, and responsive behavior across normal and ultrawide windows.
 - The reference's multi-second loader, cycling photography, marquee, continuous scroll cue, and scroll-scrubbed font morphs are rejected.
 - Legal and FAQ pages prioritize reading comfort instead of monumental type.
 - No investment language, source-company content, identifying layout signature, proprietary asset, or exact footer treatment is reproduced.
